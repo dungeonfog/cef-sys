@@ -1,7 +1,7 @@
 use cef_sys::*;
 use std::sync::Mutex;
 use std::collections::{HashMap, hash_map::DefaultHasher};
-use std::{ptr::hash, hash::Hasher, os::raw::c_int, mem::size_of};
+use std::{ptr::hash, hash::Hasher, os::raw::{c_int, c_void}, mem::size_of};
 use lazy_static::lazy_static;
 use winapi::um::{libloaderapi::GetModuleHandleA, winuser::{
     WS_OVERLAPPEDWINDOW,
@@ -10,6 +10,7 @@ use winapi::um::{libloaderapi::GetModuleHandleA, winuser::{
     WS_VISIBLE,
     CW_USEDEFAULT,
 }};
+use libc::free;
 
 lazy_static! {
     static ref REFCOUNT: Mutex<HashMap<u64, usize>> = Mutex::new(HashMap::new());
@@ -51,6 +52,7 @@ impl CefBaseRefCounted {
                 *c -= 1;
                 if *c == 0 {
                     ref_count.remove(&hash);
+                    unsafe { free(ref_counted as *mut c_void); }
                     return 1;
                 }
             }
