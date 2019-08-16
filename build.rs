@@ -52,6 +52,8 @@ fn main() {
         .whitelist_function("cef_browser_host_create_browser")
         .whitelist_function("cef_browser_host_create_browser_sync")
         .whitelist_function("cef_run_message_loop")
+        .whitelist_function("cef_quit_message_loop")
+        .whitelist_function("cef_do_message_loop_work")
         .whitelist_function("cef_shutdown")
         .whitelist_function("cef_enable_highdpi_support")
         .derive_copy(false)
