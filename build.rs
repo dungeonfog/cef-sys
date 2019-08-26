@@ -2,8 +2,21 @@ use std::env;
 use std::path::PathBuf;
 
 fn main() {
-    println!("cargo:rustc-link-lib=cef_sandbox");
-    println!("cargo:rustc-link-lib=libcef");
+    let target_os = env::var("CARGO_CFG_TARGET_OS");
+
+    match target_os.as_ref().map(|x| &**x) {
+        Ok("windows") => {
+            println!("cargo:rustc-link-lib=cef_sandbox");
+            println!("cargo:rustc-link-lib=libcef");
+        },
+        Ok("linux") => {
+            println!("cargo:rustc-link-lib=cef");
+            println!("cargo:rustc-link-lib=EGL");
+            println!("cargo:rustc-link-lib=GLESv2");
+            println!(r"cargo:rustc-link-search=../cef/Debug");
+        }
+        _ => {},
+    }
 
     // The bindgen::Builder is the main entry point
     // to bindgen, and lets you build up options for
@@ -12,7 +25,7 @@ fn main() {
         // The input header we would like to generate
         // bindings for.
         .header("wrapper.hpp")
-        .clang_arg("-I../cef_binary_76.1.9+g2cf916e+chromium-76.0.3809.87_windows64")
+        .clang_arg("-I../cef")
         .whitelist_type("cef_life_span_handler_t")
         .whitelist_type("cef_app_t")
         .whitelist_type("cef_command_line_t")

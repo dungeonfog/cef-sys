@@ -1,8 +1,9 @@
 use cef_sys::*;
 use std::sync::Mutex;
 use std::collections::{HashMap, hash_map::DefaultHasher};
-use std::{ptr::hash, hash::Hasher, os::raw::{c_int, c_void}, mem::size_of};
+use std::{ptr::hash, hash::Hasher, os::raw::{c_int, c_uint, c_void}, ffi::CString, mem::size_of};
 use lazy_static::lazy_static;
+#[cfg(windows)]
 use winapi::um::{libloaderapi::GetModuleHandleA, winuser::{
     WS_OVERLAPPEDWINDOW,
     WS_CLIPCHILDREN,
@@ -114,11 +115,12 @@ impl CefApp {
 struct CefSettings;
 
 impl CefSettings {
-    pub fn new(log_severity: cef_log_severity_t, no_sandbox: bool) -> cef_settings_t {
+    pub fn new(log_severity: cef_log_severity_t, no_sandbox: bool, locales_path: &str) -> cef_settings_t {
         cef_settings_t {
             size: size_of::<cef_settings_t>(),
             no_sandbox: if no_sandbox { 1 } else { 0 },
             log_severity,
+            locales_dir_path: CefString::new(locales_path).into(),
             ..Default::default()
         }
     }
@@ -127,9 +129,21 @@ impl CefSettings {
 struct CefWindowInfo;
 
 impl CefWindowInfo {
+    #[cfg(windows)]
     pub fn new(style: DWORD, x: c_int, y: c_int, width: c_int, height: c_int, name: &str) -> cef_window_info_t {
         cef_window_info_t {
             style,
+            x,
+            y,
+            width,
+            height,
+            window_name: CefString::new(name).into(),
+            ..Default::default()
+        }
+    }
+    #[cfg(not(windows))]
+    pub fn new(x: c_uint, y: c_uint, width: c_uint, height: c_uint, name: &str) -> cef_window_info_t {
+        cef_window_info_t {
             x,
             y,
             width,
@@ -250,8 +264,14 @@ impl CefClient {
 
 fn main() {
     let mut app = CefApp::new();
+    #[cfg(not(windows))]
+    let main_args = cef_main_args_t {
+        argc: 1,
+        argv: [CString::new("cefsimple").unwrap().into_raw()].as_mut_ptr(),
+    };
     unsafe {
         cef_enable_highdpi_support();
+        #[cfg(windows)]
         let main_args = cef_main_args_t {
             instance: GetModuleHandleA(std::ptr::null()) as HINSTANCE
         };
@@ -261,13 +281,17 @@ fn main() {
             std::process::exit(result);
         }
 
-        let settings = CefSettings::new(cef_log_severity_t::LOGSEVERITY_VERBOSE, false);
+        let settings = CefSettings::new(cef_log_severity_t::LOGSEVERITY_VERBOSE, true, "./locales");
         cef_initialize(&main_args, &settings, &mut app.0, std::ptr::null_mut());
 
+        #[cfg(windows)]
         let window_info = CefWindowInfo::new(WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_CLIPSIBLINGS | WS_VISIBLE, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, "cefcapi Rust example");
+        #[cfg(not(windows))]
+        let window_info = CefWindowInfo::new(0, 0, 1920, 1080, "cefcapi Rust example");
 
         let url = CefString::new("https://www.youtube.com").into();
         let browser_settings = CefBrowserSettings::new();
+
 
         let mut client = CefClient::new();
 
