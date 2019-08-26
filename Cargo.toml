@@ -1,0 +1,9 @@
+[package]
+name = "cef-sys"
+version = "0.1.0"
+authors = ["Andreas Monitzer <andreas@monitzer.com>"]
+edition = "2018"
+links = "cef"
+build = "build.rs"
+
+[dependencies]
