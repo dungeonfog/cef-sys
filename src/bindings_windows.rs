@@ -3397,6 +3397,7 @@ impl Default for _cef_cursor_info_t {
         unsafe { ::std::mem::zeroed() }
     }
 }
+pub type cef_cursor_info_t = _cef_cursor_info_t;
 #[repr(i32)]
 #[doc = ""]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
@@ -6744,6 +6745,7 @@ fn bindgen_test_layout__cef_drag_data_t() {
         )
     );
 }
+pub type cef_drag_data_t = _cef_drag_data_t;
 #[doc = ""]
 #[repr(C)]
 #[derive(Debug, Default)]
@@ -13591,6 +13593,7 @@ fn bindgen_test_layout__cef_v8context_t() {
         )
     );
 }
+pub type cef_v8context_t = _cef_v8context_t;
 #[doc = ""]
 #[repr(C)]
 #[derive(Debug, Default)]
@@ -13643,6 +13646,193 @@ fn bindgen_test_layout__cef_v8handler_t() {
         )
     );
 }
+pub type cef_v8handler_t = _cef_v8handler_t;
+#[doc = ""]
+#[repr(C)]
+#[derive(Debug, Default)]
+pub struct _cef_v8accessor_t {
+    #[doc = ""]
+    pub base: cef_base_ref_counted_t,
+    #[doc = ""]
+    pub get: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_v8accessor_t,
+            name: *const cef_string_t,
+            object: *mut _cef_v8value_t,
+            retval: *mut *mut _cef_v8value_t,
+            exception: *mut cef_string_t,
+        ) -> ::std::os::raw::c_int,
+    >,
+    #[doc = ""]
+    pub set: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_v8accessor_t,
+            name: *const cef_string_t,
+            object: *mut _cef_v8value_t,
+            value: *mut _cef_v8value_t,
+            exception: *mut cef_string_t,
+        ) -> ::std::os::raw::c_int,
+    >,
+}
+#[test]
+fn bindgen_test_layout__cef_v8accessor_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_v8accessor_t>(),
+        56usize,
+        concat!("Size of: ", stringify!(_cef_v8accessor_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_v8accessor_t>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_cef_v8accessor_t))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_v8accessor_t>())).base as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_v8accessor_t),
+            "::",
+            stringify!(base)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_v8accessor_t>())).get as *const _ as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_v8accessor_t),
+            "::",
+            stringify!(get)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_v8accessor_t>())).set as *const _ as usize },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_v8accessor_t),
+            "::",
+            stringify!(set)
+        )
+    );
+}
+pub type cef_v8accessor_t = _cef_v8accessor_t;
+#[doc = ""]
+#[repr(C)]
+#[derive(Debug, Default)]
+pub struct _cef_v8interceptor_t {
+    #[doc = ""]
+    pub base: cef_base_ref_counted_t,
+    #[doc = ""]
+    pub get_byname: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_v8interceptor_t,
+            name: *const cef_string_t,
+            object: *mut _cef_v8value_t,
+            retval: *mut *mut _cef_v8value_t,
+            exception: *mut cef_string_t,
+        ) -> ::std::os::raw::c_int,
+    >,
+    #[doc = ""]
+    pub get_byindex: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_v8interceptor_t,
+            index: ::std::os::raw::c_int,
+            object: *mut _cef_v8value_t,
+            retval: *mut *mut _cef_v8value_t,
+            exception: *mut cef_string_t,
+        ) -> ::std::os::raw::c_int,
+    >,
+    #[doc = ""]
+    pub set_byname: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_v8interceptor_t,
+            name: *const cef_string_t,
+            object: *mut _cef_v8value_t,
+            value: *mut _cef_v8value_t,
+            exception: *mut cef_string_t,
+        ) -> ::std::os::raw::c_int,
+    >,
+    #[doc = ""]
+    pub set_byindex: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_v8interceptor_t,
+            index: ::std::os::raw::c_int,
+            object: *mut _cef_v8value_t,
+            value: *mut _cef_v8value_t,
+            exception: *mut cef_string_t,
+        ) -> ::std::os::raw::c_int,
+    >,
+}
+#[test]
+fn bindgen_test_layout__cef_v8interceptor_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_v8interceptor_t>(),
+        72usize,
+        concat!("Size of: ", stringify!(_cef_v8interceptor_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_v8interceptor_t>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_cef_v8interceptor_t))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_v8interceptor_t>())).base as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_v8interceptor_t),
+            "::",
+            stringify!(base)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_v8interceptor_t>())).get_byname as *const _ as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_v8interceptor_t),
+            "::",
+            stringify!(get_byname)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_v8interceptor_t>())).get_byindex as *const _ as usize
+        },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_v8interceptor_t),
+            "::",
+            stringify!(get_byindex)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_v8interceptor_t>())).set_byname as *const _ as usize },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_v8interceptor_t),
+            "::",
+            stringify!(set_byname)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_v8interceptor_t>())).set_byindex as *const _ as usize
+        },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_v8interceptor_t),
+            "::",
+            stringify!(set_byindex)
+        )
+    );
+}
+pub type cef_v8interceptor_t = _cef_v8interceptor_t;
 #[doc = ""]
 #[repr(C)]
 #[derive(Debug, Default)]
@@ -13800,6 +13990,7 @@ fn bindgen_test_layout__cef_v8exception_t() {
         )
     );
 }
+pub type cef_v8exception_t = _cef_v8exception_t;
 #[doc = ""]
 #[repr(C)]
 #[derive(Debug, Default)]
@@ -13859,6 +14050,7 @@ fn bindgen_test_layout__cef_v8array_buffer_release_callback_t() {
         )
     );
 }
+pub type cef_v8array_buffer_release_callback_t = _cef_v8array_buffer_release_callback_t;
 #[doc = ""]
 #[repr(C)]
 #[derive(Debug, Default)]
@@ -14637,6 +14829,65 @@ fn bindgen_test_layout__cef_v8value_t() {
         )
     );
 }
+pub type cef_v8value_t = _cef_v8value_t;
+extern "C" {
+    #[doc = ""]
+    pub fn cef_v8value_create_undefined() -> *mut cef_v8value_t;
+}
+extern "C" {
+    #[doc = ""]
+    pub fn cef_v8value_create_null() -> *mut cef_v8value_t;
+}
+extern "C" {
+    #[doc = ""]
+    pub fn cef_v8value_create_bool(value: ::std::os::raw::c_int) -> *mut cef_v8value_t;
+}
+extern "C" {
+    #[doc = ""]
+    pub fn cef_v8value_create_int(value: int32) -> *mut cef_v8value_t;
+}
+extern "C" {
+    #[doc = ""]
+    pub fn cef_v8value_create_uint(value: uint32) -> *mut cef_v8value_t;
+}
+extern "C" {
+    #[doc = ""]
+    pub fn cef_v8value_create_double(value: f64) -> *mut cef_v8value_t;
+}
+extern "C" {
+    #[doc = ""]
+    pub fn cef_v8value_create_date(date: *const cef_time_t) -> *mut cef_v8value_t;
+}
+extern "C" {
+    #[doc = ""]
+    pub fn cef_v8value_create_string(value: *const cef_string_t) -> *mut cef_v8value_t;
+}
+extern "C" {
+    #[doc = ""]
+    pub fn cef_v8value_create_object(
+        accessor: *mut cef_v8accessor_t,
+        interceptor: *mut cef_v8interceptor_t,
+    ) -> *mut cef_v8value_t;
+}
+extern "C" {
+    #[doc = ""]
+    pub fn cef_v8value_create_array(length: ::std::os::raw::c_int) -> *mut cef_v8value_t;
+}
+extern "C" {
+    #[doc = ""]
+    pub fn cef_v8value_create_array_buffer(
+        buffer: *mut ::std::os::raw::c_void,
+        length: usize,
+        release_callback: *mut cef_v8array_buffer_release_callback_t,
+    ) -> *mut cef_v8value_t;
+}
+extern "C" {
+    #[doc = ""]
+    pub fn cef_v8value_create_function(
+        name: *const cef_string_t,
+        handler: *mut cef_v8handler_t,
+    ) -> *mut cef_v8value_t;
+}
 #[doc = ""]
 #[repr(C)]
 #[derive(Debug, Default)]
@@ -14713,6 +14964,13 @@ fn bindgen_test_layout__cef_v8stack_trace_t() {
             stringify!(get_frame)
         )
     );
+}
+pub type cef_v8stack_trace_t = _cef_v8stack_trace_t;
+extern "C" {
+    #[doc = ""]
+    pub fn cef_v8stack_trace_get_current(
+        frame_limit: ::std::os::raw::c_int,
+    ) -> *mut cef_v8stack_trace_t;
 }
 #[doc = ""]
 #[repr(C)]
@@ -14866,6 +15124,15 @@ fn bindgen_test_layout__cef_v8stack_frame_t() {
             stringify!(is_constructor)
         )
     );
+}
+pub type cef_v8stack_frame_t = _cef_v8stack_frame_t;
+extern "C" {
+    #[doc = ""]
+    pub fn cef_register_extension(
+        extension_name: *const cef_string_t,
+        javascript_code: *const cef_string_t,
+        handler: *mut cef_v8handler_t,
+    ) -> ::std::os::raw::c_int;
 }
 #[doc = ""]
 #[repr(C)]
@@ -19218,6 +19485,7 @@ fn bindgen_test_layout__cef_accessibility_handler_t() {
         )
     );
 }
+pub type cef_accessibility_handler_t = _cef_accessibility_handler_t;
 #[doc = ""]
 #[repr(C)]
 #[derive(Debug, Default)]
