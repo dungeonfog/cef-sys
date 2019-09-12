@@ -3672,6 +3672,18 @@ pub enum cef_ssl_content_status_t {
     SSL_CONTENT_DISPLAYED_INSECURE_CONTENT = 1,
     SSL_CONTENT_RAN_INSECURE_CONTENT = 2,
 }
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub enum cef_scheme_options_t {
+    CEF_SCHEME_OPTION_NONE = 0,
+    CEF_SCHEME_OPTION_STANDARD = 1,
+    CEF_SCHEME_OPTION_LOCAL = 2,
+    CEF_SCHEME_OPTION_DISPLAY_ISOLATED = 4,
+    CEF_SCHEME_OPTION_SECURE = 8,
+    CEF_SCHEME_OPTION_CORS_ENABLED = 16,
+    CEF_SCHEME_OPTION_CSP_BYPASSING = 32,
+    CEF_SCHEME_OPTION_FETCH_ENABLED = 64,
+}
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_composition_underline_t {
