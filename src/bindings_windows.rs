@@ -197,6 +197,46 @@ extern "C" {
     pub fn cef_string_list_copy(list: cef_string_list_t) -> cef_string_list_t;
 }
 pub type cef_string_map_t = *mut ::std::os::raw::c_void;
+extern "C" {
+    pub fn cef_string_map_alloc() -> cef_string_map_t;
+}
+extern "C" {
+    pub fn cef_string_map_size(map: cef_string_map_t) -> usize;
+}
+extern "C" {
+    pub fn cef_string_map_find(
+        map: cef_string_map_t,
+        key: *const cef_string_t,
+        value: *mut cef_string_t,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn cef_string_map_key(
+        map: cef_string_map_t,
+        index: usize,
+        key: *mut cef_string_t,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn cef_string_map_value(
+        map: cef_string_map_t,
+        index: usize,
+        value: *mut cef_string_t,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn cef_string_map_append(
+        map: cef_string_map_t,
+        key: *const cef_string_t,
+        value: *const cef_string_t,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn cef_string_map_clear(map: cef_string_map_t);
+}
+extern "C" {
+    pub fn cef_string_map_free(map: cef_string_map_t);
+}
 pub type cef_string_multimap_t = *mut ::std::os::raw::c_void;
 #[repr(C)]
 #[derive(Default)]
