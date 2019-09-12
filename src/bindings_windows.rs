@@ -4197,6 +4197,12 @@ fn bindgen_test_layout__cef_command_line_t() {
     );
 }
 pub type cef_command_line_t = _cef_command_line_t;
+extern "C" {
+    pub fn cef_command_line_create() -> *mut cef_command_line_t;
+}
+extern "C" {
+    pub fn cef_command_line_get_global() -> *mut cef_command_line_t;
+}
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_value_t {
