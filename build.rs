@@ -113,6 +113,8 @@ fn main() {
         .whitelist_function("cef_v8value_create_function")
         .whitelist_function("cef_v8stack_trace_get_current")
         .whitelist_function("cef_register_extension")
+        .whitelist_function("cef_command_line_create")
+        .whitelist_function("cef_command_line_get_global")
         .whitelist_type("cef_point_t")
         .whitelist_type("cef_rect_t")
         .whitelist_type("cef_size_t")
