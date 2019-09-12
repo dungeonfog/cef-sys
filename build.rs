@@ -128,6 +128,7 @@ fn main() {
         .whitelist_type("cef_size_t")
         .whitelist_type("cef_range_t")
         .whitelist_type("cef_insets_t")
+        .whitelist_type("cef_scheme_options_t")
         .derive_copy(false)
         .derive_debug(false)
         .derive_default(true)
