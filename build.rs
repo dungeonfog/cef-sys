@@ -1,6 +1,15 @@
 use std::env;
 use std::path::PathBuf;
 
+#[derive(Debug)]
+struct ParseCallbacks();
+
+impl bindgen::callbacks::ParseCallbacks for ParseCallbacks {
+    fn int_macro(&self, _name: &str, _value: i64) -> Option<bindgen::callbacks::IntKind> {
+        Some(bindgen::callbacks::IntKind::I32)
+    }
+}
+
 fn main() {
     let target_os = env::var("CARGO_CFG_TARGET_OS");
 
@@ -130,7 +139,16 @@ fn main() {
         .whitelist_type("cef_range_t")
         .whitelist_type("cef_insets_t")
         .whitelist_type("cef_scheme_options_t")
-        .whitelist_var(".*")
+        .whitelist_var("IDR_.*")
+        .whitelist_var(".*_JS")
+        .whitelist_var(".*_JS_2")
+        .whitelist_var(".*_HTML")
+        .whitelist_var(".*_PNG")
+        .whitelist_var(".*_SVG")
+        .whitelist_var(".*_JSON")
+        .whitelist_var("IDS_.*")
+        .whitelist_var("CONTENT_INVALID_.*")
+        .parse_callbacks(Box::new(ParseCallbacks()))
         .derive_copy(false)
         .derive_debug(false)
         .derive_default(true)
