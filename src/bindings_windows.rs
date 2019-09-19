@@ -11319,6 +11319,10 @@ fn bindgen_test_layout__cef_value_t() {
         )
     );
 }
+pub type cef_value_t = _cef_value_t;
+extern "C" {
+    pub fn cef_value_create() -> *mut cef_value_t;
+}
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_binary_value_t {
@@ -11447,6 +11451,13 @@ fn bindgen_test_layout__cef_binary_value_t() {
             stringify!(get_data)
         )
     );
+}
+pub type cef_binary_value_t = _cef_binary_value_t;
+extern "C" {
+    pub fn cef_binary_value_create(
+        data: *const ::std::os::raw::c_void,
+        data_size: usize,
+    ) -> *mut cef_binary_value_t;
 }
 #[repr(C)]
 #[derive(Default)]
@@ -11973,6 +11984,10 @@ fn bindgen_test_layout__cef_dictionary_value_t() {
         )
     );
 }
+pub type cef_dictionary_value_t = _cef_dictionary_value_t;
+extern "C" {
+    pub fn cef_dictionary_value_create() -> *mut cef_dictionary_value_t;
+}
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_list_value_t {
@@ -12411,6 +12426,10 @@ fn bindgen_test_layout__cef_list_value_t() {
             stringify!(set_list)
         )
     );
+}
+pub type cef_list_value_t = _cef_list_value_t;
+extern "C" {
+    pub fn cef_list_value_create() -> *mut cef_list_value_t;
 }
 #[repr(C)]
 #[derive(Default)]
