@@ -13942,6 +13942,7 @@ fn bindgen_test_layout__cef_domnode_t() {
         )
     );
 }
+pub type cef_domnode_t = _cef_domnode_t;
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_process_message_t {
@@ -14388,6 +14389,10 @@ fn bindgen_test_layout__cef_request_t() {
         )
     );
 }
+pub type cef_request_t = _cef_request_t;
+extern "C" {
+    pub fn cef_request_create() -> *mut cef_request_t;
+}
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_post_data_t {
@@ -14519,6 +14524,10 @@ fn bindgen_test_layout__cef_post_data_t() {
             stringify!(remove_elements)
         )
     );
+}
+pub type cef_post_data_t = _cef_post_data_t;
+extern "C" {
+    pub fn cef_post_data_create() -> *mut cef_post_data_t;
 }
 #[repr(C)]
 #[derive(Default)]
@@ -14675,6 +14684,10 @@ fn bindgen_test_layout__cef_post_data_element_t() {
         )
     );
 }
+pub type cef_post_data_element_t = _cef_post_data_element_t;
+extern "C" {
+    pub fn cef_post_data_element_create() -> *mut cef_post_data_element_t;
+}
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_string_visitor_t {
@@ -14716,6 +14729,7 @@ fn bindgen_test_layout__cef_string_visitor_t() {
         )
     );
 }
+pub type cef_string_visitor_t = _cef_string_visitor_t;
 #[repr(C)]
 pub struct _cef_urlrequest_client_t {
     _unused: [u8; 0],
@@ -19150,6 +19164,7 @@ fn bindgen_test_layout__cef_print_handler_t() {
         )
     );
 }
+pub type cef_print_handler_t = _cef_print_handler_t;
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_browser_process_handler_t {
