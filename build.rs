@@ -193,6 +193,7 @@ fn main() {
         .whitelist_type("cef_cookie_t")
         .whitelist_type("cef_callback_t")
         .whitelist_type("cef_request_callback_t")
+        .whitelist_type("cef_request_context_settings_t")
         .whitelist_var("IDR_.*")
         .whitelist_var(".*_JS")
         .whitelist_var(".*_JS_2")
