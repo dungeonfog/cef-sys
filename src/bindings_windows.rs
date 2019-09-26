@@ -8122,6 +8122,7 @@ impl Default for _cef_request_context_settings_t {
         unsafe { ::std::mem::zeroed() }
     }
 }
+pub type cef_request_context_settings_t = _cef_request_context_settings_t;
 #[repr(C)]
 pub struct _cef_browser_settings_t {
     pub size: usize,
