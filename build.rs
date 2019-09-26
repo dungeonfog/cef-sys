@@ -190,6 +190,8 @@ fn main() {
         .whitelist_function("cef_register_web_plugin_crash")
         .whitelist_function("cef_is_web_plugin_unstable")
         .whitelist_function("cef_register_widevine_cdm")
+        .whitelist_type("cef_cookie_t")
+        .whitelist_type("cef_callback_t")
         .whitelist_var("IDR_.*")
         .whitelist_var(".*_JS")
         .whitelist_var(".*_JS_2")
