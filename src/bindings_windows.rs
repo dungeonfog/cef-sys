@@ -6968,6 +6968,53 @@ extern "C" {
     pub fn cef_string_map_free(map: cef_string_map_t);
 }
 pub type cef_string_multimap_t = *mut ::std::os::raw::c_void;
+extern "C" {
+    pub fn cef_string_multimap_alloc() -> cef_string_multimap_t;
+}
+extern "C" {
+    pub fn cef_string_multimap_size(map: cef_string_multimap_t) -> usize;
+}
+extern "C" {
+    pub fn cef_string_multimap_find_count(
+        map: cef_string_multimap_t,
+        key: *const cef_string_t,
+    ) -> usize;
+}
+extern "C" {
+    pub fn cef_string_multimap_enumerate(
+        map: cef_string_multimap_t,
+        key: *const cef_string_t,
+        value_index: usize,
+        value: *mut cef_string_t,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn cef_string_multimap_key(
+        map: cef_string_multimap_t,
+        index: usize,
+        key: *mut cef_string_t,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn cef_string_multimap_value(
+        map: cef_string_multimap_t,
+        index: usize,
+        value: *mut cef_string_t,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn cef_string_multimap_append(
+        map: cef_string_multimap_t,
+        key: *const cef_string_t,
+        value: *const cef_string_t,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn cef_string_multimap_clear(map: cef_string_multimap_t);
+}
+extern "C" {
+    pub fn cef_string_multimap_free(map: cef_string_multimap_t);
+}
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_time_t {
