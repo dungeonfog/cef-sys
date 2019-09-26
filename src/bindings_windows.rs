@@ -14778,14 +14778,6 @@ fn bindgen_test_layout__cef_string_visitor_t() {
 }
 pub type cef_string_visitor_t = _cef_string_visitor_t;
 #[repr(C)]
-pub struct _cef_urlrequest_client_t {
-    _unused: [u8; 0],
-}
-#[repr(C)]
-pub struct _cef_urlrequest_t {
-    _unused: [u8; 0],
-}
-#[repr(C)]
 #[derive(Default)]
 pub struct _cef_frame_t {
     pub base: cef_base_ref_counted_t,
@@ -17078,6 +17070,7 @@ fn bindgen_test_layout__cef_request_context_t() {
         )
     );
 }
+pub type cef_request_context_t = _cef_request_context_t;
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_browser_t {
@@ -25702,6 +25695,7 @@ fn bindgen_test_layout__cef_auth_callback_t() {
         )
     );
 }
+pub type cef_auth_callback_t = _cef_auth_callback_t;
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_request_callback_t {
@@ -26713,3 +26707,266 @@ fn bindgen_test_layout__cef_client_t() {
     );
 }
 pub type cef_client_t = _cef_client_t;
+#[repr(C)]
+#[derive(Default)]
+pub struct _cef_urlrequest_t {
+    pub base: cef_base_ref_counted_t,
+    pub get_request: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_urlrequest_t) -> *mut _cef_request_t,
+    >,
+    pub get_client: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_urlrequest_t) -> *mut _cef_urlrequest_client_t,
+    >,
+    pub get_request_status: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_urlrequest_t) -> cef_urlrequest_status_t,
+    >,
+    pub get_request_error: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_urlrequest_t) -> cef_errorcode_t,
+    >,
+    pub get_response: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_urlrequest_t) -> *mut _cef_response_t,
+    >,
+    pub response_was_cached: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_urlrequest_t) -> ::std::os::raw::c_int,
+    >,
+    pub cancel: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_urlrequest_t)>,
+}
+#[test]
+fn bindgen_test_layout__cef_urlrequest_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_urlrequest_t>(),
+        96usize,
+        concat!("Size of: ", stringify!(_cef_urlrequest_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_urlrequest_t>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_cef_urlrequest_t))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_urlrequest_t>())).base as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_urlrequest_t),
+            "::",
+            stringify!(base)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_urlrequest_t>())).get_request as *const _ as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_urlrequest_t),
+            "::",
+            stringify!(get_request)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_urlrequest_t>())).get_client as *const _ as usize },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_urlrequest_t),
+            "::",
+            stringify!(get_client)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_urlrequest_t>())).get_request_status as *const _ as usize
+        },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_urlrequest_t),
+            "::",
+            stringify!(get_request_status)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_urlrequest_t>())).get_request_error as *const _ as usize
+        },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_urlrequest_t),
+            "::",
+            stringify!(get_request_error)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_urlrequest_t>())).get_response as *const _ as usize },
+        72usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_urlrequest_t),
+            "::",
+            stringify!(get_response)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_urlrequest_t>())).response_was_cached as *const _ as usize
+        },
+        80usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_urlrequest_t),
+            "::",
+            stringify!(response_was_cached)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_urlrequest_t>())).cancel as *const _ as usize },
+        88usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_urlrequest_t),
+            "::",
+            stringify!(cancel)
+        )
+    );
+}
+pub type cef_urlrequest_t = _cef_urlrequest_t;
+extern "C" {
+    pub fn cef_urlrequest_create(
+        request: *mut _cef_request_t,
+        client: *mut _cef_urlrequest_client_t,
+        request_context: *mut _cef_request_context_t,
+    ) -> *mut cef_urlrequest_t;
+}
+#[repr(C)]
+#[derive(Default)]
+pub struct _cef_urlrequest_client_t {
+    pub base: cef_base_ref_counted_t,
+    pub on_request_complete: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_urlrequest_client_t, request: *mut _cef_urlrequest_t),
+    >,
+    pub on_upload_progress: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_urlrequest_client_t,
+            request: *mut _cef_urlrequest_t,
+            current: int64,
+            total: int64,
+        ),
+    >,
+    pub on_download_progress: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_urlrequest_client_t,
+            request: *mut _cef_urlrequest_t,
+            current: int64,
+            total: int64,
+        ),
+    >,
+    pub on_download_data: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_urlrequest_client_t,
+            request: *mut _cef_urlrequest_t,
+            data: *const ::std::os::raw::c_void,
+            data_length: usize,
+        ),
+    >,
+    pub get_auth_credentials: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_urlrequest_client_t,
+            isProxy: ::std::os::raw::c_int,
+            host: *const cef_string_t,
+            port: ::std::os::raw::c_int,
+            realm: *const cef_string_t,
+            scheme: *const cef_string_t,
+            callback: *mut _cef_auth_callback_t,
+        ) -> ::std::os::raw::c_int,
+    >,
+}
+#[test]
+fn bindgen_test_layout__cef_urlrequest_client_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_urlrequest_client_t>(),
+        80usize,
+        concat!("Size of: ", stringify!(_cef_urlrequest_client_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_urlrequest_client_t>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_cef_urlrequest_client_t))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_urlrequest_client_t>())).base as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_urlrequest_client_t),
+            "::",
+            stringify!(base)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_urlrequest_client_t>())).on_request_complete as *const _
+                as usize
+        },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_urlrequest_client_t),
+            "::",
+            stringify!(on_request_complete)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_urlrequest_client_t>())).on_upload_progress as *const _
+                as usize
+        },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_urlrequest_client_t),
+            "::",
+            stringify!(on_upload_progress)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_urlrequest_client_t>())).on_download_progress as *const _
+                as usize
+        },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_urlrequest_client_t),
+            "::",
+            stringify!(on_download_progress)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_urlrequest_client_t>())).on_download_data as *const _
+                as usize
+        },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_urlrequest_client_t),
+            "::",
+            stringify!(on_download_data)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_urlrequest_client_t>())).get_auth_credentials as *const _
+                as usize
+        },
+        72usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_urlrequest_client_t),
+            "::",
+            stringify!(get_auth_credentials)
+        )
+    );
+}
+pub type cef_urlrequest_client_t = _cef_urlrequest_client_t;
