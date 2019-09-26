@@ -7121,6 +7121,25 @@ fn bindgen_test_layout__cef_time_t() {
     );
 }
 pub type cef_time_t = _cef_time_t;
+extern "C" {
+    pub fn cef_time_to_doublet(
+        cef_time: *const cef_time_t,
+        time: *mut f64,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn cef_time_from_doublet(time: f64, cef_time: *mut cef_time_t) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn cef_time_now(cef_time: *mut cef_time_t) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn cef_time_delta(
+        cef_time1: *const cef_time_t,
+        cef_time2: *const cef_time_t,
+        delta: *mut ::std::os::raw::c_longlong,
+    ) -> ::std::os::raw::c_int;
+}
 pub type DWORD = ::std::os::raw::c_ulong;
 pub type UINT = ::std::os::raw::c_uint;
 pub type UINT_PTR = ::std::os::raw::c_ulonglong;
