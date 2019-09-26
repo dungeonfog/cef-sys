@@ -8005,6 +8005,124 @@ impl Default for _cef_settings_t {
 }
 pub type cef_settings_t = _cef_settings_t;
 #[repr(C)]
+pub struct _cef_request_context_settings_t {
+    pub size: usize,
+    pub cache_path: cef_string_t,
+    pub persist_session_cookies: ::std::os::raw::c_int,
+    pub persist_user_preferences: ::std::os::raw::c_int,
+    pub ignore_certificate_errors: ::std::os::raw::c_int,
+    pub enable_net_security_expiration: ::std::os::raw::c_int,
+    pub accept_language_list: cef_string_t,
+}
+#[test]
+fn bindgen_test_layout__cef_request_context_settings_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_request_context_settings_t>(),
+        72usize,
+        concat!("Size of: ", stringify!(_cef_request_context_settings_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_request_context_settings_t>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_cef_request_context_settings_t))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_request_context_settings_t>())).size as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_request_context_settings_t),
+            "::",
+            stringify!(size)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_request_context_settings_t>())).cache_path as *const _
+                as usize
+        },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_request_context_settings_t),
+            "::",
+            stringify!(cache_path)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_request_context_settings_t>())).persist_session_cookies
+                as *const _ as usize
+        },
+        32usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_request_context_settings_t),
+            "::",
+            stringify!(persist_session_cookies)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_request_context_settings_t>())).persist_user_preferences
+                as *const _ as usize
+        },
+        36usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_request_context_settings_t),
+            "::",
+            stringify!(persist_user_preferences)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_request_context_settings_t>())).ignore_certificate_errors
+                as *const _ as usize
+        },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_request_context_settings_t),
+            "::",
+            stringify!(ignore_certificate_errors)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_request_context_settings_t>()))
+                .enable_net_security_expiration as *const _ as usize
+        },
+        44usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_request_context_settings_t),
+            "::",
+            stringify!(enable_net_security_expiration)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_request_context_settings_t>())).accept_language_list
+                as *const _ as usize
+        },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_request_context_settings_t),
+            "::",
+            stringify!(accept_language_list)
+        )
+    );
+}
+impl Default for _cef_request_context_settings_t {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
 pub struct _cef_browser_settings_t {
     pub size: usize,
     pub windowless_frame_rate: ::std::os::raw::c_int,
@@ -13349,6 +13467,7 @@ fn bindgen_test_layout__cef_domvisitor_t() {
         )
     );
 }
+pub type cef_domvisitor_t = _cef_domvisitor_t;
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_domdocument_t {
@@ -13585,6 +13704,7 @@ fn bindgen_test_layout__cef_domdocument_t() {
         )
     );
 }
+pub type cef_domdocument_t = _cef_domdocument_t;
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_domnode_t {
@@ -17071,6 +17191,21 @@ fn bindgen_test_layout__cef_request_context_t() {
     );
 }
 pub type cef_request_context_t = _cef_request_context_t;
+extern "C" {
+    pub fn cef_request_context_get_global_context() -> *mut cef_request_context_t;
+}
+extern "C" {
+    pub fn cef_request_context_create_context(
+        settings: *const _cef_request_context_settings_t,
+        handler: *mut _cef_request_context_handler_t,
+    ) -> *mut cef_request_context_t;
+}
+extern "C" {
+    pub fn cef_create_context_shared(
+        other: *mut cef_request_context_t,
+        handler: *mut _cef_request_context_handler_t,
+    ) -> *mut cef_request_context_t;
+}
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_browser_t {
@@ -21739,6 +21874,10 @@ fn bindgen_test_layout__cef_response_t() {
             stringify!(set_url)
         )
     );
+}
+pub type cef_response_t = _cef_response_t;
+extern "C" {
+    pub fn cef_response_create() -> *mut cef_response_t;
 }
 #[repr(C)]
 #[derive(Default)]
