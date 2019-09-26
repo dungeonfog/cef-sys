@@ -10499,6 +10499,14 @@ pub enum cef_scale_factor_t {
     SCALE_FACTOR_250P = 8,
     SCALE_FACTOR_300P = 9,
 }
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub enum cef_plugin_policy_t {
+    PLUGIN_POLICY_ALLOW = 0,
+    PLUGIN_POLICY_DETECT_IMPORTANT = 1,
+    PLUGIN_POLICY_BLOCK = 2,
+    PLUGIN_POLICY_DISABLE = 3,
+}
 impl cef_referrer_policy_t {
     pub const REFERRER_POLICY_DEFAULT: cef_referrer_policy_t =
         cef_referrer_policy_t::REFERRER_POLICY_CLEAR_REFERRER_ON_TRANSITION_FROM_SECURE_TO_INSECURE;
@@ -16701,10 +16709,6 @@ fn bindgen_test_layout__cef_extension_handler_t() {
             stringify!(get_extension_resource)
         )
     );
-}
-#[repr(C)]
-pub struct _cef_request_context_handler_t {
-    _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Default)]
@@ -27384,3 +27388,102 @@ extern "C" {
         callback: *mut cef_register_cdm_callback_t,
     );
 }
+#[repr(C)]
+#[derive(Default)]
+pub struct _cef_request_context_handler_t {
+    pub base: cef_base_ref_counted_t,
+    pub on_request_context_initialized: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_request_context_handler_t,
+            request_context: *mut _cef_request_context_t,
+        ),
+    >,
+    pub on_before_plugin_load: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_request_context_handler_t,
+            mime_type: *const cef_string_t,
+            plugin_url: *const cef_string_t,
+            is_main_frame: ::std::os::raw::c_int,
+            top_origin_url: *const cef_string_t,
+            plugin_info: *mut _cef_web_plugin_info_t,
+            plugin_policy: *mut cef_plugin_policy_t,
+        ) -> ::std::os::raw::c_int,
+    >,
+    pub get_resource_request_handler: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_request_context_handler_t,
+            browser: *mut _cef_browser_t,
+            frame: *mut _cef_frame_t,
+            request: *mut _cef_request_t,
+            is_navigation: ::std::os::raw::c_int,
+            is_download: ::std::os::raw::c_int,
+            request_initiator: *const cef_string_t,
+            disable_default_handling: *mut ::std::os::raw::c_int,
+        ) -> *mut _cef_resource_request_handler_t,
+    >,
+}
+#[test]
+fn bindgen_test_layout__cef_request_context_handler_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_request_context_handler_t>(),
+        64usize,
+        concat!("Size of: ", stringify!(_cef_request_context_handler_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_request_context_handler_t>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_cef_request_context_handler_t))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_request_context_handler_t>())).base as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_request_context_handler_t),
+            "::",
+            stringify!(base)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_request_context_handler_t>()))
+                .on_request_context_initialized as *const _ as usize
+        },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_request_context_handler_t),
+            "::",
+            stringify!(on_request_context_initialized)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_request_context_handler_t>())).on_before_plugin_load
+                as *const _ as usize
+        },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_request_context_handler_t),
+            "::",
+            stringify!(on_before_plugin_load)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_request_context_handler_t>())).get_resource_request_handler
+                as *const _ as usize
+        },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_request_context_handler_t),
+            "::",
+            stringify!(get_resource_request_handler)
+        )
+    );
+}
+pub type cef_request_context_handler_t = _cef_request_context_handler_t;
