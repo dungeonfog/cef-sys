@@ -22142,6 +22142,7 @@ fn bindgen_test_layout__cef_resource_handler_t() {
         )
     );
 }
+pub type cef_resource_handler_t = _cef_resource_handler_t;
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_scheme_registrar_t {
@@ -25967,6 +25968,7 @@ fn bindgen_test_layout__cef_response_filter_t() {
         )
     );
 }
+pub type cef_response_filter_t = _cef_response_filter_t;
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_resource_request_handler_t {
@@ -26174,6 +26176,7 @@ fn bindgen_test_layout__cef_resource_request_handler_t() {
         )
     );
 }
+pub type cef_resource_request_handler_t = _cef_resource_request_handler_t;
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_cookie_access_filter_t {
@@ -26249,6 +26252,7 @@ fn bindgen_test_layout__cef_cookie_access_filter_t() {
         )
     );
 }
+pub type cef_cookie_access_filter_t = _cef_cookie_access_filter_t;
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_sslinfo_t {
