@@ -8714,6 +8714,7 @@ impl Default for _cef_cookie_t {
         unsafe { ::std::mem::zeroed() }
     }
 }
+pub type cef_cookie_t = _cef_cookie_t;
 #[repr(i32)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum cef_termination_status_t {
@@ -15967,6 +15968,7 @@ fn bindgen_test_layout__cef_callback_t() {
         )
     );
 }
+pub type cef_callback_t = _cef_callback_t;
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_completion_callback_t {
