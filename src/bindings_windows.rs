@@ -10579,6 +10579,14 @@ pub enum cef_scheme_options_t {
     CEF_SCHEME_OPTION_CSP_BYPASSING = 32,
     CEF_SCHEME_OPTION_FETCH_ENABLED = 64,
 }
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub enum cef_cdm_registration_error_t {
+    CEF_CDM_REGISTRATION_ERROR_NONE = 0,
+    CEF_CDM_REGISTRATION_ERROR_INCORRECT_CONTENTS = 1,
+    CEF_CDM_REGISTRATION_ERROR_INCOMPATIBLE = 2,
+    CEF_CDM_REGISTRATION_ERROR_NOT_SUPPORTED = 3,
+}
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_composition_underline_t {
@@ -27109,3 +27117,266 @@ fn bindgen_test_layout__cef_urlrequest_client_t() {
     );
 }
 pub type cef_urlrequest_client_t = _cef_urlrequest_client_t;
+#[repr(C)]
+#[derive(Default)]
+pub struct _cef_web_plugin_info_t {
+    pub base: cef_base_ref_counted_t,
+    pub get_name: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_web_plugin_info_t) -> cef_string_userfree_t,
+    >,
+    pub get_path: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_web_plugin_info_t) -> cef_string_userfree_t,
+    >,
+    pub get_version: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_web_plugin_info_t) -> cef_string_userfree_t,
+    >,
+    pub get_description: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_web_plugin_info_t) -> cef_string_userfree_t,
+    >,
+}
+#[test]
+fn bindgen_test_layout__cef_web_plugin_info_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_web_plugin_info_t>(),
+        72usize,
+        concat!("Size of: ", stringify!(_cef_web_plugin_info_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_web_plugin_info_t>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_cef_web_plugin_info_t))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_web_plugin_info_t>())).base as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_web_plugin_info_t),
+            "::",
+            stringify!(base)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_web_plugin_info_t>())).get_name as *const _ as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_web_plugin_info_t),
+            "::",
+            stringify!(get_name)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_web_plugin_info_t>())).get_path as *const _ as usize },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_web_plugin_info_t),
+            "::",
+            stringify!(get_path)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_web_plugin_info_t>())).get_version as *const _ as usize
+        },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_web_plugin_info_t),
+            "::",
+            stringify!(get_version)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_web_plugin_info_t>())).get_description as *const _ as usize
+        },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_web_plugin_info_t),
+            "::",
+            stringify!(get_description)
+        )
+    );
+}
+pub type cef_web_plugin_info_t = _cef_web_plugin_info_t;
+#[repr(C)]
+#[derive(Default)]
+pub struct _cef_web_plugin_info_visitor_t {
+    pub base: cef_base_ref_counted_t,
+    pub visit: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_web_plugin_info_visitor_t,
+            info: *mut _cef_web_plugin_info_t,
+            count: ::std::os::raw::c_int,
+            total: ::std::os::raw::c_int,
+        ) -> ::std::os::raw::c_int,
+    >,
+}
+#[test]
+fn bindgen_test_layout__cef_web_plugin_info_visitor_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_web_plugin_info_visitor_t>(),
+        48usize,
+        concat!("Size of: ", stringify!(_cef_web_plugin_info_visitor_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_web_plugin_info_visitor_t>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_cef_web_plugin_info_visitor_t))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_web_plugin_info_visitor_t>())).base as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_web_plugin_info_visitor_t),
+            "::",
+            stringify!(base)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_web_plugin_info_visitor_t>())).visit as *const _ as usize
+        },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_web_plugin_info_visitor_t),
+            "::",
+            stringify!(visit)
+        )
+    );
+}
+pub type cef_web_plugin_info_visitor_t = _cef_web_plugin_info_visitor_t;
+#[repr(C)]
+#[derive(Default)]
+pub struct _cef_web_plugin_unstable_callback_t {
+    pub base: cef_base_ref_counted_t,
+    pub is_unstable: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_web_plugin_unstable_callback_t,
+            path: *const cef_string_t,
+            unstable: ::std::os::raw::c_int,
+        ),
+    >,
+}
+#[test]
+fn bindgen_test_layout__cef_web_plugin_unstable_callback_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_web_plugin_unstable_callback_t>(),
+        48usize,
+        concat!("Size of: ", stringify!(_cef_web_plugin_unstable_callback_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_web_plugin_unstable_callback_t>(),
+        8usize,
+        concat!(
+            "Alignment of ",
+            stringify!(_cef_web_plugin_unstable_callback_t)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_web_plugin_unstable_callback_t>())).base as *const _
+                as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_web_plugin_unstable_callback_t),
+            "::",
+            stringify!(base)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_web_plugin_unstable_callback_t>())).is_unstable as *const _
+                as usize
+        },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_web_plugin_unstable_callback_t),
+            "::",
+            stringify!(is_unstable)
+        )
+    );
+}
+pub type cef_web_plugin_unstable_callback_t = _cef_web_plugin_unstable_callback_t;
+#[repr(C)]
+#[derive(Default)]
+pub struct _cef_register_cdm_callback_t {
+    pub base: cef_base_ref_counted_t,
+    pub on_cdm_registration_complete: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_register_cdm_callback_t,
+            result: cef_cdm_registration_error_t,
+            error_message: *const cef_string_t,
+        ),
+    >,
+}
+#[test]
+fn bindgen_test_layout__cef_register_cdm_callback_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_register_cdm_callback_t>(),
+        48usize,
+        concat!("Size of: ", stringify!(_cef_register_cdm_callback_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_register_cdm_callback_t>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_cef_register_cdm_callback_t))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_register_cdm_callback_t>())).base as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_register_cdm_callback_t),
+            "::",
+            stringify!(base)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_register_cdm_callback_t>())).on_cdm_registration_complete
+                as *const _ as usize
+        },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_register_cdm_callback_t),
+            "::",
+            stringify!(on_cdm_registration_complete)
+        )
+    );
+}
+pub type cef_register_cdm_callback_t = _cef_register_cdm_callback_t;
+extern "C" {
+    pub fn cef_refresh_web_plugins();
+}
+extern "C" {
+    pub fn cef_unregister_internal_web_plugin(path: *const cef_string_t);
+}
+extern "C" {
+    pub fn cef_register_web_plugin_crash(path: *const cef_string_t);
+}
+extern "C" {
+    pub fn cef_is_web_plugin_unstable(
+        path: *const cef_string_t,
+        callback: *mut cef_web_plugin_unstable_callback_t,
+    );
+}
+extern "C" {
+    pub fn cef_register_widevine_cdm(
+        path: *const cef_string_t,
+        callback: *mut cef_register_cdm_callback_t,
+    );
+}
