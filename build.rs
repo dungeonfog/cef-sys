@@ -192,6 +192,8 @@ fn main() {
         .whitelist_function("cef_register_widevine_cdm")
         .whitelist_type("cef_cookie_t")
         .whitelist_type("cef_callback_t")
+        .whitelist_type("cef_resource_skip_callback_t")
+        .whitelist_type("cef_resource_read_callback_t")
         .whitelist_type("cef_request_callback_t")
         .whitelist_type("cef_request_context_handler_t")
         .whitelist_type("cef_request_context_settings_t")
