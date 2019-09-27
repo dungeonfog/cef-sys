@@ -21958,6 +21958,7 @@ fn bindgen_test_layout__cef_resource_skip_callback_t() {
         )
     );
 }
+pub type cef_resource_skip_callback_t = _cef_resource_skip_callback_t;
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_resource_read_callback_t {
@@ -22006,6 +22007,7 @@ fn bindgen_test_layout__cef_resource_read_callback_t() {
         )
     );
 }
+pub type cef_resource_read_callback_t = _cef_resource_read_callback_t;
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_resource_handler_t {
