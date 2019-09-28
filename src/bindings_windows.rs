@@ -27515,3 +27515,9 @@ fn bindgen_test_layout__cef_request_context_handler_t() {
     );
 }
 pub type cef_request_context_handler_t = _cef_request_context_handler_t;
+extern "C" {
+    pub fn cef_sandbox_info_create() -> *mut ::std::os::raw::c_void;
+}
+extern "C" {
+    pub fn cef_sandbox_info_destroy(sandbox_info: *mut ::std::os::raw::c_void);
+}
