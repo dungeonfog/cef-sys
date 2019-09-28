@@ -22401,6 +22401,9 @@ extern "C" {
     pub fn cef_quit_message_loop();
 }
 extern "C" {
+    pub fn cef_set_osmodal_loop(osModalLoop: ::std::os::raw::c_int);
+}
+extern "C" {
     pub fn cef_enable_highdpi_support();
 }
 #[repr(C)]
