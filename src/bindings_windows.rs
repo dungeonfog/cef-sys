@@ -9916,6 +9916,7 @@ impl Default for _cef_key_event_t {
         unsafe { ::std::mem::zeroed() }
     }
 }
+pub type cef_key_event_t = _cef_key_event_t;
 #[repr(i32)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum cef_focus_source_t {
