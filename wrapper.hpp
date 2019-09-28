@@ -5,5 +5,6 @@
 #include "include/capi/cef_request_context_handler_capi.h"
 #include "include/capi/cef_life_span_handler_capi.h"
 #include "include/capi/cef_web_plugin_capi.h"
+#include "include/cef_sandbox_win.h"
 #include "include/cef_pack_resources.h"
 #include "include/cef_pack_strings.h"
