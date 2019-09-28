@@ -203,6 +203,7 @@ fn main() {
         .whitelist_type("cef_resource_handler_t")
         .whitelist_type("cef_response_filter_t")
         .whitelist_type("cef_time_t")
+        .whitelist_type("cef_key_event_t")
         .whitelist_function("cef_time_to_doublet")
         .whitelist_function("cef_time_from_doublet")
         .whitelist_function("cef_time_now")
