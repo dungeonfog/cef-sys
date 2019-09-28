@@ -218,6 +218,8 @@ fn main() {
         .whitelist_var(".*_JSON")
         .whitelist_var("IDS_.*")
         .whitelist_var("CONTENT_INVALID_.*")
+        .blacklist_type("HINSTANCE")
+        .blacklist_type("HINSTANCE__")
         .parse_callbacks(Box::new(ParseCallbacks()))
         .derive_copy(false)
         .derive_debug(false)
