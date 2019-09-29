@@ -12851,6 +12851,7 @@ fn bindgen_test_layout__cef_image_t() {
         )
     );
 }
+pub type cef_image_t = _cef_image_t;
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_stream_reader_t {
