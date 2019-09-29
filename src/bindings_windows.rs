@@ -17561,6 +17561,7 @@ fn bindgen_test_layout__cef_run_file_dialog_callback_t() {
         )
     );
 }
+pub type cef_run_file_dialog_callback_t = _cef_run_file_dialog_callback_t;
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_navigation_entry_visitor_t {
