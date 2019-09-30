@@ -7545,19 +7545,23 @@ fn bindgen_test_layout__cef_window_info_t() {
 }
 pub type cef_window_info_t = _cef_window_info_t;
 pub type cef_color_t = uint32;
-pub const cef_log_severity_t_LOGSEVERITY_DEFAULT: cef_log_severity_t = 0;
-pub const cef_log_severity_t_LOGSEVERITY_VERBOSE: cef_log_severity_t = 1;
-pub const cef_log_severity_t_LOGSEVERITY_DEBUG: cef_log_severity_t = 1;
-pub const cef_log_severity_t_LOGSEVERITY_INFO: cef_log_severity_t = 2;
-pub const cef_log_severity_t_LOGSEVERITY_WARNING: cef_log_severity_t = 3;
-pub const cef_log_severity_t_LOGSEVERITY_ERROR: cef_log_severity_t = 4;
-pub const cef_log_severity_t_LOGSEVERITY_FATAL: cef_log_severity_t = 5;
-pub const cef_log_severity_t_LOGSEVERITY_DISABLE: cef_log_severity_t = 99;
-pub type cef_log_severity_t = i32;
-pub const cef_state_t_STATE_DEFAULT: cef_state_t = 0;
-pub const cef_state_t_STATE_ENABLED: cef_state_t = 1;
-pub const cef_state_t_STATE_DISABLED: cef_state_t = 2;
-pub type cef_state_t = i32;
+pub mod cef_log_severity_t {
+    pub type Type = i32;
+    pub const LOGSEVERITY_DEFAULT: Type = 0;
+    pub const LOGSEVERITY_VERBOSE: Type = 1;
+    pub const LOGSEVERITY_DEBUG: Type = 1;
+    pub const LOGSEVERITY_INFO: Type = 2;
+    pub const LOGSEVERITY_WARNING: Type = 3;
+    pub const LOGSEVERITY_ERROR: Type = 4;
+    pub const LOGSEVERITY_FATAL: Type = 5;
+    pub const LOGSEVERITY_DISABLE: Type = 99;
+}
+pub mod cef_state_t {
+    pub type Type = i32;
+    pub const STATE_DEFAULT: Type = 0;
+    pub const STATE_ENABLED: Type = 1;
+    pub const STATE_DISABLED: Type = 2;
+}
 #[repr(C)]
 pub struct _cef_settings_t {
     pub size: usize,
@@ -7578,7 +7582,7 @@ pub struct _cef_settings_t {
     pub product_version: cef_string_t,
     pub locale: cef_string_t,
     pub log_file: cef_string_t,
-    pub log_severity: cef_log_severity_t,
+    pub log_severity: cef_log_severity_t::Type,
     pub javascript_flags: cef_string_t,
     pub resources_dir_path: cef_string_t,
     pub locales_dir_path: cef_string_t,
@@ -8082,23 +8086,23 @@ pub struct _cef_browser_settings_t {
     pub minimum_font_size: ::std::os::raw::c_int,
     pub minimum_logical_font_size: ::std::os::raw::c_int,
     pub default_encoding: cef_string_t,
-    pub remote_fonts: cef_state_t,
-    pub javascript: cef_state_t,
-    pub javascript_close_windows: cef_state_t,
-    pub javascript_access_clipboard: cef_state_t,
-    pub javascript_dom_paste: cef_state_t,
-    pub plugins: cef_state_t,
-    pub universal_access_from_file_urls: cef_state_t,
-    pub file_access_from_file_urls: cef_state_t,
-    pub web_security: cef_state_t,
-    pub image_loading: cef_state_t,
-    pub image_shrink_standalone_to_fit: cef_state_t,
-    pub text_area_resize: cef_state_t,
-    pub tab_to_links: cef_state_t,
-    pub local_storage: cef_state_t,
-    pub databases: cef_state_t,
-    pub application_cache: cef_state_t,
-    pub webgl: cef_state_t,
+    pub remote_fonts: cef_state_t::Type,
+    pub javascript: cef_state_t::Type,
+    pub javascript_close_windows: cef_state_t::Type,
+    pub javascript_access_clipboard: cef_state_t::Type,
+    pub javascript_dom_paste: cef_state_t::Type,
+    pub plugins: cef_state_t::Type,
+    pub universal_access_from_file_urls: cef_state_t::Type,
+    pub file_access_from_file_urls: cef_state_t::Type,
+    pub web_security: cef_state_t::Type,
+    pub image_loading: cef_state_t::Type,
+    pub image_shrink_standalone_to_fit: cef_state_t::Type,
+    pub text_area_resize: cef_state_t::Type,
+    pub tab_to_links: cef_state_t::Type,
+    pub local_storage: cef_state_t::Type,
+    pub databases: cef_state_t::Type,
+    pub application_cache: cef_state_t::Type,
+    pub webgl: cef_state_t::Type,
     pub background_color: cef_color_t,
     pub accept_language_list: cef_string_t,
 }
@@ -8516,10 +8520,12 @@ fn bindgen_test_layout__cef_browser_settings_t() {
     );
 }
 pub type cef_browser_settings_t = _cef_browser_settings_t;
-pub const cef_return_value_t_RV_CANCEL: cef_return_value_t = 0;
-pub const cef_return_value_t_RV_CONTINUE: cef_return_value_t = 1;
-pub const cef_return_value_t_RV_CONTINUE_ASYNC: cef_return_value_t = 2;
-pub type cef_return_value_t = i32;
+pub mod cef_return_value_t {
+    pub type Type = i32;
+    pub const RV_CANCEL: Type = 0;
+    pub const RV_CONTINUE: Type = 1;
+    pub const RV_CONTINUE_ASYNC: Type = 2;
+}
 #[repr(C)]
 pub struct _cef_cookie_t {
     pub name: cef_string_t,
@@ -8647,267 +8653,275 @@ fn bindgen_test_layout__cef_cookie_t() {
     );
 }
 pub type cef_cookie_t = _cef_cookie_t;
-pub const cef_termination_status_t_TS_ABNORMAL_TERMINATION: cef_termination_status_t = 0;
-pub const cef_termination_status_t_TS_PROCESS_WAS_KILLED: cef_termination_status_t = 1;
-pub const cef_termination_status_t_TS_PROCESS_CRASHED: cef_termination_status_t = 2;
-pub const cef_termination_status_t_TS_PROCESS_OOM: cef_termination_status_t = 3;
-pub type cef_termination_status_t = i32;
-pub const cef_errorcode_t_ERR_NONE: cef_errorcode_t = 0;
-pub const cef_errorcode_t_ERR_IO_PENDING: cef_errorcode_t = -1;
-pub const cef_errorcode_t_ERR_FAILED: cef_errorcode_t = -2;
-pub const cef_errorcode_t_ERR_ABORTED: cef_errorcode_t = -3;
-pub const cef_errorcode_t_ERR_INVALID_ARGUMENT: cef_errorcode_t = -4;
-pub const cef_errorcode_t_ERR_INVALID_HANDLE: cef_errorcode_t = -5;
-pub const cef_errorcode_t_ERR_FILE_NOT_FOUND: cef_errorcode_t = -6;
-pub const cef_errorcode_t_ERR_TIMED_OUT: cef_errorcode_t = -7;
-pub const cef_errorcode_t_ERR_FILE_TOO_BIG: cef_errorcode_t = -8;
-pub const cef_errorcode_t_ERR_UNEXPECTED: cef_errorcode_t = -9;
-pub const cef_errorcode_t_ERR_ACCESS_DENIED: cef_errorcode_t = -10;
-pub const cef_errorcode_t_ERR_NOT_IMPLEMENTED: cef_errorcode_t = -11;
-pub const cef_errorcode_t_ERR_INSUFFICIENT_RESOURCES: cef_errorcode_t = -12;
-pub const cef_errorcode_t_ERR_OUT_OF_MEMORY: cef_errorcode_t = -13;
-pub const cef_errorcode_t_ERR_UPLOAD_FILE_CHANGED: cef_errorcode_t = -14;
-pub const cef_errorcode_t_ERR_SOCKET_NOT_CONNECTED: cef_errorcode_t = -15;
-pub const cef_errorcode_t_ERR_FILE_EXISTS: cef_errorcode_t = -16;
-pub const cef_errorcode_t_ERR_FILE_PATH_TOO_LONG: cef_errorcode_t = -17;
-pub const cef_errorcode_t_ERR_FILE_NO_SPACE: cef_errorcode_t = -18;
-pub const cef_errorcode_t_ERR_FILE_VIRUS_INFECTED: cef_errorcode_t = -19;
-pub const cef_errorcode_t_ERR_BLOCKED_BY_CLIENT: cef_errorcode_t = -20;
-pub const cef_errorcode_t_ERR_NETWORK_CHANGED: cef_errorcode_t = -21;
-pub const cef_errorcode_t_ERR_BLOCKED_BY_ADMINISTRATOR: cef_errorcode_t = -22;
-pub const cef_errorcode_t_ERR_SOCKET_IS_CONNECTED: cef_errorcode_t = -23;
-pub const cef_errorcode_t_ERR_BLOCKED_ENROLLMENT_CHECK_PENDING: cef_errorcode_t = -24;
-pub const cef_errorcode_t_ERR_UPLOAD_STREAM_REWIND_NOT_SUPPORTED: cef_errorcode_t = -25;
-pub const cef_errorcode_t_ERR_CONTEXT_SHUT_DOWN: cef_errorcode_t = -26;
-pub const cef_errorcode_t_ERR_BLOCKED_BY_RESPONSE: cef_errorcode_t = -27;
-pub const cef_errorcode_t_ERR_BLOCKED_BY_XSS_AUDITOR: cef_errorcode_t = -28;
-pub const cef_errorcode_t_ERR_CLEARTEXT_NOT_PERMITTED: cef_errorcode_t = -29;
-pub const cef_errorcode_t_ERR_CONNECTION_CLOSED: cef_errorcode_t = -100;
-pub const cef_errorcode_t_ERR_CONNECTION_RESET: cef_errorcode_t = -101;
-pub const cef_errorcode_t_ERR_CONNECTION_REFUSED: cef_errorcode_t = -102;
-pub const cef_errorcode_t_ERR_CONNECTION_ABORTED: cef_errorcode_t = -103;
-pub const cef_errorcode_t_ERR_CONNECTION_FAILED: cef_errorcode_t = -104;
-pub const cef_errorcode_t_ERR_NAME_NOT_RESOLVED: cef_errorcode_t = -105;
-pub const cef_errorcode_t_ERR_INTERNET_DISCONNECTED: cef_errorcode_t = -106;
-pub const cef_errorcode_t_ERR_SSL_PROTOCOL_ERROR: cef_errorcode_t = -107;
-pub const cef_errorcode_t_ERR_ADDRESS_INVALID: cef_errorcode_t = -108;
-pub const cef_errorcode_t_ERR_ADDRESS_UNREACHABLE: cef_errorcode_t = -109;
-pub const cef_errorcode_t_ERR_SSL_CLIENT_AUTH_CERT_NEEDED: cef_errorcode_t = -110;
-pub const cef_errorcode_t_ERR_TUNNEL_CONNECTION_FAILED: cef_errorcode_t = -111;
-pub const cef_errorcode_t_ERR_NO_SSL_VERSIONS_ENABLED: cef_errorcode_t = -112;
-pub const cef_errorcode_t_ERR_SSL_VERSION_OR_CIPHER_MISMATCH: cef_errorcode_t = -113;
-pub const cef_errorcode_t_ERR_SSL_RENEGOTIATION_REQUESTED: cef_errorcode_t = -114;
-pub const cef_errorcode_t_ERR_PROXY_AUTH_UNSUPPORTED: cef_errorcode_t = -115;
-pub const cef_errorcode_t_ERR_CERT_ERROR_IN_SSL_RENEGOTIATION: cef_errorcode_t = -116;
-pub const cef_errorcode_t_ERR_BAD_SSL_CLIENT_AUTH_CERT: cef_errorcode_t = -117;
-pub const cef_errorcode_t_ERR_CONNECTION_TIMED_OUT: cef_errorcode_t = -118;
-pub const cef_errorcode_t_ERR_HOST_RESOLVER_QUEUE_TOO_LARGE: cef_errorcode_t = -119;
-pub const cef_errorcode_t_ERR_SOCKS_CONNECTION_FAILED: cef_errorcode_t = -120;
-pub const cef_errorcode_t_ERR_SOCKS_CONNECTION_HOST_UNREACHABLE: cef_errorcode_t = -121;
-pub const cef_errorcode_t_ERR_ALPN_NEGOTIATION_FAILED: cef_errorcode_t = -122;
-pub const cef_errorcode_t_ERR_SSL_NO_RENEGOTIATION: cef_errorcode_t = -123;
-pub const cef_errorcode_t_ERR_WINSOCK_UNEXPECTED_WRITTEN_BYTES: cef_errorcode_t = -124;
-pub const cef_errorcode_t_ERR_SSL_DECOMPRESSION_FAILURE_ALERT: cef_errorcode_t = -125;
-pub const cef_errorcode_t_ERR_SSL_BAD_RECORD_MAC_ALERT: cef_errorcode_t = -126;
-pub const cef_errorcode_t_ERR_PROXY_AUTH_REQUESTED: cef_errorcode_t = -127;
-pub const cef_errorcode_t_ERR_SSL_WEAK_SERVER_EPHEMERAL_DH_KEY: cef_errorcode_t = -129;
-pub const cef_errorcode_t_ERR_PROXY_CONNECTION_FAILED: cef_errorcode_t = -130;
-pub const cef_errorcode_t_ERR_MANDATORY_PROXY_CONFIGURATION_FAILED: cef_errorcode_t = -131;
-pub const cef_errorcode_t_ERR_PRECONNECT_MAX_SOCKET_LIMIT: cef_errorcode_t = -133;
-pub const cef_errorcode_t_ERR_SSL_CLIENT_AUTH_PRIVATE_KEY_ACCESS_DENIED: cef_errorcode_t = -134;
-pub const cef_errorcode_t_ERR_SSL_CLIENT_AUTH_CERT_NO_PRIVATE_KEY: cef_errorcode_t = -135;
-pub const cef_errorcode_t_ERR_PROXY_CERTIFICATE_INVALID: cef_errorcode_t = -136;
-pub const cef_errorcode_t_ERR_NAME_RESOLUTION_FAILED: cef_errorcode_t = -137;
-pub const cef_errorcode_t_ERR_NETWORK_ACCESS_DENIED: cef_errorcode_t = -138;
-pub const cef_errorcode_t_ERR_TEMPORARILY_THROTTLED: cef_errorcode_t = -139;
-pub const cef_errorcode_t_ERR_HTTPS_PROXY_TUNNEL_RESPONSE_REDIRECT: cef_errorcode_t = -140;
-pub const cef_errorcode_t_ERR_SSL_CLIENT_AUTH_SIGNATURE_FAILED: cef_errorcode_t = -141;
-pub const cef_errorcode_t_ERR_MSG_TOO_BIG: cef_errorcode_t = -142;
-pub const cef_errorcode_t_ERR_WS_PROTOCOL_ERROR: cef_errorcode_t = -145;
-pub const cef_errorcode_t_ERR_ADDRESS_IN_USE: cef_errorcode_t = -147;
-pub const cef_errorcode_t_ERR_SSL_HANDSHAKE_NOT_COMPLETED: cef_errorcode_t = -148;
-pub const cef_errorcode_t_ERR_SSL_BAD_PEER_PUBLIC_KEY: cef_errorcode_t = -149;
-pub const cef_errorcode_t_ERR_SSL_PINNED_KEY_NOT_IN_CERT_CHAIN: cef_errorcode_t = -150;
-pub const cef_errorcode_t_ERR_CLIENT_AUTH_CERT_TYPE_UNSUPPORTED: cef_errorcode_t = -151;
-pub const cef_errorcode_t_ERR_ORIGIN_BOUND_CERT_GENERATION_TYPE_MISMATCH: cef_errorcode_t = -152;
-pub const cef_errorcode_t_ERR_SSL_DECRYPT_ERROR_ALERT: cef_errorcode_t = -153;
-pub const cef_errorcode_t_ERR_WS_THROTTLE_QUEUE_TOO_LARGE: cef_errorcode_t = -154;
-pub const cef_errorcode_t_ERR_SSL_SERVER_CERT_CHANGED: cef_errorcode_t = -156;
-pub const cef_errorcode_t_ERR_SSL_UNRECOGNIZED_NAME_ALERT: cef_errorcode_t = -159;
-pub const cef_errorcode_t_ERR_SOCKET_SET_RECEIVE_BUFFER_SIZE_ERROR: cef_errorcode_t = -160;
-pub const cef_errorcode_t_ERR_SOCKET_SET_SEND_BUFFER_SIZE_ERROR: cef_errorcode_t = -161;
-pub const cef_errorcode_t_ERR_SOCKET_RECEIVE_BUFFER_SIZE_UNCHANGEABLE: cef_errorcode_t = -162;
-pub const cef_errorcode_t_ERR_SOCKET_SEND_BUFFER_SIZE_UNCHANGEABLE: cef_errorcode_t = -163;
-pub const cef_errorcode_t_ERR_SSL_CLIENT_AUTH_CERT_BAD_FORMAT: cef_errorcode_t = -164;
-pub const cef_errorcode_t_ERR_ICANN_NAME_COLLISION: cef_errorcode_t = -166;
-pub const cef_errorcode_t_ERR_SSL_SERVER_CERT_BAD_FORMAT: cef_errorcode_t = -167;
-pub const cef_errorcode_t_ERR_CT_STH_PARSING_FAILED: cef_errorcode_t = -168;
-pub const cef_errorcode_t_ERR_CT_STH_INCOMPLETE: cef_errorcode_t = -169;
-pub const cef_errorcode_t_ERR_UNABLE_TO_REUSE_CONNECTION_FOR_PROXY_AUTH: cef_errorcode_t = -170;
-pub const cef_errorcode_t_ERR_CT_CONSISTENCY_PROOF_PARSING_FAILED: cef_errorcode_t = -171;
-pub const cef_errorcode_t_ERR_SSL_OBSOLETE_CIPHER: cef_errorcode_t = -172;
-pub const cef_errorcode_t_ERR_WS_UPGRADE: cef_errorcode_t = -173;
-pub const cef_errorcode_t_ERR_READ_IF_READY_NOT_IMPLEMENTED: cef_errorcode_t = -174;
-pub const cef_errorcode_t_ERR_NO_BUFFER_SPACE: cef_errorcode_t = -176;
-pub const cef_errorcode_t_ERR_SSL_CLIENT_AUTH_NO_COMMON_ALGORITHMS: cef_errorcode_t = -177;
-pub const cef_errorcode_t_ERR_EARLY_DATA_REJECTED: cef_errorcode_t = -178;
-pub const cef_errorcode_t_ERR_WRONG_VERSION_ON_EARLY_DATA: cef_errorcode_t = -179;
-pub const cef_errorcode_t_ERR_TLS13_DOWNGRADE_DETECTED: cef_errorcode_t = -180;
-pub const cef_errorcode_t_ERR_SSL_KEY_USAGE_INCOMPATIBLE: cef_errorcode_t = -181;
-pub const cef_errorcode_t_ERR_CERT_COMMON_NAME_INVALID: cef_errorcode_t = -200;
-pub const cef_errorcode_t_ERR_CERT_DATE_INVALID: cef_errorcode_t = -201;
-pub const cef_errorcode_t_ERR_CERT_AUTHORITY_INVALID: cef_errorcode_t = -202;
-pub const cef_errorcode_t_ERR_CERT_CONTAINS_ERRORS: cef_errorcode_t = -203;
-pub const cef_errorcode_t_ERR_CERT_NO_REVOCATION_MECHANISM: cef_errorcode_t = -204;
-pub const cef_errorcode_t_ERR_CERT_UNABLE_TO_CHECK_REVOCATION: cef_errorcode_t = -205;
-pub const cef_errorcode_t_ERR_CERT_REVOKED: cef_errorcode_t = -206;
-pub const cef_errorcode_t_ERR_CERT_INVALID: cef_errorcode_t = -207;
-pub const cef_errorcode_t_ERR_CERT_WEAK_SIGNATURE_ALGORITHM: cef_errorcode_t = -208;
-pub const cef_errorcode_t_ERR_CERT_NON_UNIQUE_NAME: cef_errorcode_t = -210;
-pub const cef_errorcode_t_ERR_CERT_WEAK_KEY: cef_errorcode_t = -211;
-pub const cef_errorcode_t_ERR_CERT_NAME_CONSTRAINT_VIOLATION: cef_errorcode_t = -212;
-pub const cef_errorcode_t_ERR_CERT_VALIDITY_TOO_LONG: cef_errorcode_t = -213;
-pub const cef_errorcode_t_ERR_CERTIFICATE_TRANSPARENCY_REQUIRED: cef_errorcode_t = -214;
-pub const cef_errorcode_t_ERR_CERT_SYMANTEC_LEGACY: cef_errorcode_t = -215;
-pub const cef_errorcode_t_ERR_CERT_END: cef_errorcode_t = -216;
-pub const cef_errorcode_t_ERR_INVALID_URL: cef_errorcode_t = -300;
-pub const cef_errorcode_t_ERR_DISALLOWED_URL_SCHEME: cef_errorcode_t = -301;
-pub const cef_errorcode_t_ERR_UNKNOWN_URL_SCHEME: cef_errorcode_t = -302;
-pub const cef_errorcode_t_ERR_INVALID_REDIRECT: cef_errorcode_t = -303;
-pub const cef_errorcode_t_ERR_TOO_MANY_REDIRECTS: cef_errorcode_t = -310;
-pub const cef_errorcode_t_ERR_UNSAFE_REDIRECT: cef_errorcode_t = -311;
-pub const cef_errorcode_t_ERR_UNSAFE_PORT: cef_errorcode_t = -312;
-pub const cef_errorcode_t_ERR_INVALID_RESPONSE: cef_errorcode_t = -320;
-pub const cef_errorcode_t_ERR_INVALID_CHUNKED_ENCODING: cef_errorcode_t = -321;
-pub const cef_errorcode_t_ERR_METHOD_NOT_SUPPORTED: cef_errorcode_t = -322;
-pub const cef_errorcode_t_ERR_UNEXPECTED_PROXY_AUTH: cef_errorcode_t = -323;
-pub const cef_errorcode_t_ERR_EMPTY_RESPONSE: cef_errorcode_t = -324;
-pub const cef_errorcode_t_ERR_RESPONSE_HEADERS_TOO_BIG: cef_errorcode_t = -325;
-pub const cef_errorcode_t_ERR_PAC_STATUS_NOT_OK: cef_errorcode_t = -326;
-pub const cef_errorcode_t_ERR_PAC_SCRIPT_FAILED: cef_errorcode_t = -327;
-pub const cef_errorcode_t_ERR_REQUEST_RANGE_NOT_SATISFIABLE: cef_errorcode_t = -328;
-pub const cef_errorcode_t_ERR_MALFORMED_IDENTITY: cef_errorcode_t = -329;
-pub const cef_errorcode_t_ERR_CONTENT_DECODING_FAILED: cef_errorcode_t = -330;
-pub const cef_errorcode_t_ERR_NETWORK_IO_SUSPENDED: cef_errorcode_t = -331;
-pub const cef_errorcode_t_ERR_SYN_REPLY_NOT_RECEIVED: cef_errorcode_t = -332;
-pub const cef_errorcode_t_ERR_ENCODING_CONVERSION_FAILED: cef_errorcode_t = -333;
-pub const cef_errorcode_t_ERR_UNRECOGNIZED_FTP_DIRECTORY_LISTING_FORMAT: cef_errorcode_t = -334;
-pub const cef_errorcode_t_ERR_NO_SUPPORTED_PROXIES: cef_errorcode_t = -336;
-pub const cef_errorcode_t_ERR_SPDY_PROTOCOL_ERROR: cef_errorcode_t = -337;
-pub const cef_errorcode_t_ERR_INVALID_AUTH_CREDENTIALS: cef_errorcode_t = -338;
-pub const cef_errorcode_t_ERR_UNSUPPORTED_AUTH_SCHEME: cef_errorcode_t = -339;
-pub const cef_errorcode_t_ERR_ENCODING_DETECTION_FAILED: cef_errorcode_t = -340;
-pub const cef_errorcode_t_ERR_MISSING_AUTH_CREDENTIALS: cef_errorcode_t = -341;
-pub const cef_errorcode_t_ERR_UNEXPECTED_SECURITY_LIBRARY_STATUS: cef_errorcode_t = -342;
-pub const cef_errorcode_t_ERR_MISCONFIGURED_AUTH_ENVIRONMENT: cef_errorcode_t = -343;
-pub const cef_errorcode_t_ERR_UNDOCUMENTED_SECURITY_LIBRARY_STATUS: cef_errorcode_t = -344;
-pub const cef_errorcode_t_ERR_RESPONSE_BODY_TOO_BIG_TO_DRAIN: cef_errorcode_t = -345;
-pub const cef_errorcode_t_ERR_RESPONSE_HEADERS_MULTIPLE_CONTENT_LENGTH: cef_errorcode_t = -346;
-pub const cef_errorcode_t_ERR_INCOMPLETE_SPDY_HEADERS: cef_errorcode_t = -347;
-pub const cef_errorcode_t_ERR_PAC_NOT_IN_DHCP: cef_errorcode_t = -348;
-pub const cef_errorcode_t_ERR_RESPONSE_HEADERS_MULTIPLE_CONTENT_DISPOSITION: cef_errorcode_t = -349;
-pub const cef_errorcode_t_ERR_RESPONSE_HEADERS_MULTIPLE_LOCATION: cef_errorcode_t = -350;
-pub const cef_errorcode_t_ERR_SPDY_SERVER_REFUSED_STREAM: cef_errorcode_t = -351;
-pub const cef_errorcode_t_ERR_SPDY_PING_FAILED: cef_errorcode_t = -352;
-pub const cef_errorcode_t_ERR_CONTENT_LENGTH_MISMATCH: cef_errorcode_t = -354;
-pub const cef_errorcode_t_ERR_INCOMPLETE_CHUNKED_ENCODING: cef_errorcode_t = -355;
-pub const cef_errorcode_t_ERR_QUIC_PROTOCOL_ERROR: cef_errorcode_t = -356;
-pub const cef_errorcode_t_ERR_RESPONSE_HEADERS_TRUNCATED: cef_errorcode_t = -357;
-pub const cef_errorcode_t_ERR_QUIC_HANDSHAKE_FAILED: cef_errorcode_t = -358;
-pub const cef_errorcode_t_ERR_SPDY_INADEQUATE_TRANSPORT_SECURITY: cef_errorcode_t = -360;
-pub const cef_errorcode_t_ERR_SPDY_FLOW_CONTROL_ERROR: cef_errorcode_t = -361;
-pub const cef_errorcode_t_ERR_SPDY_FRAME_SIZE_ERROR: cef_errorcode_t = -362;
-pub const cef_errorcode_t_ERR_SPDY_COMPRESSION_ERROR: cef_errorcode_t = -363;
-pub const cef_errorcode_t_ERR_PROXY_AUTH_REQUESTED_WITH_NO_CONNECTION: cef_errorcode_t = -364;
-pub const cef_errorcode_t_ERR_HTTP_1_1_REQUIRED: cef_errorcode_t = -365;
-pub const cef_errorcode_t_ERR_PROXY_HTTP_1_1_REQUIRED: cef_errorcode_t = -366;
-pub const cef_errorcode_t_ERR_PAC_SCRIPT_TERMINATED: cef_errorcode_t = -367;
-pub const cef_errorcode_t_ERR_INVALID_HTTP_RESPONSE: cef_errorcode_t = -370;
-pub const cef_errorcode_t_ERR_CONTENT_DECODING_INIT_FAILED: cef_errorcode_t = -371;
-pub const cef_errorcode_t_ERR_SPDY_RST_STREAM_NO_ERROR_RECEIVED: cef_errorcode_t = -372;
-pub const cef_errorcode_t_ERR_SPDY_PUSHED_STREAM_NOT_AVAILABLE: cef_errorcode_t = -373;
-pub const cef_errorcode_t_ERR_SPDY_CLAIMED_PUSHED_STREAM_RESET_BY_SERVER: cef_errorcode_t = -374;
-pub const cef_errorcode_t_ERR_TOO_MANY_RETRIES: cef_errorcode_t = -375;
-pub const cef_errorcode_t_ERR_SPDY_STREAM_CLOSED: cef_errorcode_t = -376;
-pub const cef_errorcode_t_ERR_SPDY_CLIENT_REFUSED_STREAM: cef_errorcode_t = -377;
-pub const cef_errorcode_t_ERR_SPDY_PUSHED_RESPONSE_DOES_NOT_MATCH: cef_errorcode_t = -378;
-pub const cef_errorcode_t_ERR_CACHE_MISS: cef_errorcode_t = -400;
-pub const cef_errorcode_t_ERR_CACHE_READ_FAILURE: cef_errorcode_t = -401;
-pub const cef_errorcode_t_ERR_CACHE_WRITE_FAILURE: cef_errorcode_t = -402;
-pub const cef_errorcode_t_ERR_CACHE_OPERATION_NOT_SUPPORTED: cef_errorcode_t = -403;
-pub const cef_errorcode_t_ERR_CACHE_OPEN_FAILURE: cef_errorcode_t = -404;
-pub const cef_errorcode_t_ERR_CACHE_CREATE_FAILURE: cef_errorcode_t = -405;
-pub const cef_errorcode_t_ERR_CACHE_RACE: cef_errorcode_t = -406;
-pub const cef_errorcode_t_ERR_CACHE_CHECKSUM_READ_FAILURE: cef_errorcode_t = -407;
-pub const cef_errorcode_t_ERR_CACHE_CHECKSUM_MISMATCH: cef_errorcode_t = -408;
-pub const cef_errorcode_t_ERR_CACHE_LOCK_TIMEOUT: cef_errorcode_t = -409;
-pub const cef_errorcode_t_ERR_CACHE_AUTH_FAILURE_AFTER_READ: cef_errorcode_t = -410;
-pub const cef_errorcode_t_ERR_CACHE_ENTRY_NOT_SUITABLE: cef_errorcode_t = -411;
-pub const cef_errorcode_t_ERR_CACHE_DOOM_FAILURE: cef_errorcode_t = -412;
-pub const cef_errorcode_t_ERR_CACHE_OPEN_OR_CREATE_FAILURE: cef_errorcode_t = -413;
-pub const cef_errorcode_t_ERR_INSECURE_RESPONSE: cef_errorcode_t = -501;
-pub const cef_errorcode_t_ERR_NO_PRIVATE_KEY_FOR_CERT: cef_errorcode_t = -502;
-pub const cef_errorcode_t_ERR_ADD_USER_CERT_FAILED: cef_errorcode_t = -503;
-pub const cef_errorcode_t_ERR_INVALID_SIGNED_EXCHANGE: cef_errorcode_t = -504;
-pub const cef_errorcode_t_ERR_FTP_FAILED: cef_errorcode_t = -601;
-pub const cef_errorcode_t_ERR_FTP_SERVICE_UNAVAILABLE: cef_errorcode_t = -602;
-pub const cef_errorcode_t_ERR_FTP_TRANSFER_ABORTED: cef_errorcode_t = -603;
-pub const cef_errorcode_t_ERR_FTP_FILE_BUSY: cef_errorcode_t = -604;
-pub const cef_errorcode_t_ERR_FTP_SYNTAX_ERROR: cef_errorcode_t = -605;
-pub const cef_errorcode_t_ERR_FTP_COMMAND_NOT_SUPPORTED: cef_errorcode_t = -606;
-pub const cef_errorcode_t_ERR_FTP_BAD_COMMAND_SEQUENCE: cef_errorcode_t = -607;
-pub const cef_errorcode_t_ERR_PKCS12_IMPORT_BAD_PASSWORD: cef_errorcode_t = -701;
-pub const cef_errorcode_t_ERR_PKCS12_IMPORT_FAILED: cef_errorcode_t = -702;
-pub const cef_errorcode_t_ERR_IMPORT_CA_CERT_NOT_CA: cef_errorcode_t = -703;
-pub const cef_errorcode_t_ERR_IMPORT_CERT_ALREADY_EXISTS: cef_errorcode_t = -704;
-pub const cef_errorcode_t_ERR_IMPORT_CA_CERT_FAILED: cef_errorcode_t = -705;
-pub const cef_errorcode_t_ERR_IMPORT_SERVER_CERT_FAILED: cef_errorcode_t = -706;
-pub const cef_errorcode_t_ERR_PKCS12_IMPORT_INVALID_MAC: cef_errorcode_t = -707;
-pub const cef_errorcode_t_ERR_PKCS12_IMPORT_INVALID_FILE: cef_errorcode_t = -708;
-pub const cef_errorcode_t_ERR_PKCS12_IMPORT_UNSUPPORTED: cef_errorcode_t = -709;
-pub const cef_errorcode_t_ERR_KEY_GENERATION_FAILED: cef_errorcode_t = -710;
-pub const cef_errorcode_t_ERR_PRIVATE_KEY_EXPORT_FAILED: cef_errorcode_t = -712;
-pub const cef_errorcode_t_ERR_SELF_SIGNED_CERT_GENERATION_FAILED: cef_errorcode_t = -713;
-pub const cef_errorcode_t_ERR_CERT_DATABASE_CHANGED: cef_errorcode_t = -714;
-pub const cef_errorcode_t_ERR_DNS_MALFORMED_RESPONSE: cef_errorcode_t = -800;
-pub const cef_errorcode_t_ERR_DNS_SERVER_REQUIRES_TCP: cef_errorcode_t = -801;
-pub const cef_errorcode_t_ERR_DNS_SERVER_FAILED: cef_errorcode_t = -802;
-pub const cef_errorcode_t_ERR_DNS_TIMED_OUT: cef_errorcode_t = -803;
-pub const cef_errorcode_t_ERR_DNS_CACHE_MISS: cef_errorcode_t = -804;
-pub const cef_errorcode_t_ERR_DNS_SEARCH_EMPTY: cef_errorcode_t = -805;
-pub const cef_errorcode_t_ERR_DNS_SORT_ERROR: cef_errorcode_t = -806;
-pub const cef_errorcode_t_ERR_DNS_HTTP_FAILED: cef_errorcode_t = -807;
-pub type cef_errorcode_t = i32;
-pub const cef_cert_status_t_CERT_STATUS_NONE: cef_cert_status_t = 0;
-pub const cef_cert_status_t_CERT_STATUS_COMMON_NAME_INVALID: cef_cert_status_t = 1;
-pub const cef_cert_status_t_CERT_STATUS_DATE_INVALID: cef_cert_status_t = 2;
-pub const cef_cert_status_t_CERT_STATUS_AUTHORITY_INVALID: cef_cert_status_t = 4;
-pub const cef_cert_status_t_CERT_STATUS_NO_REVOCATION_MECHANISM: cef_cert_status_t = 16;
-pub const cef_cert_status_t_CERT_STATUS_UNABLE_TO_CHECK_REVOCATION: cef_cert_status_t = 32;
-pub const cef_cert_status_t_CERT_STATUS_REVOKED: cef_cert_status_t = 64;
-pub const cef_cert_status_t_CERT_STATUS_INVALID: cef_cert_status_t = 128;
-pub const cef_cert_status_t_CERT_STATUS_WEAK_SIGNATURE_ALGORITHM: cef_cert_status_t = 256;
-pub const cef_cert_status_t_CERT_STATUS_NON_UNIQUE_NAME: cef_cert_status_t = 1024;
-pub const cef_cert_status_t_CERT_STATUS_WEAK_KEY: cef_cert_status_t = 2048;
-pub const cef_cert_status_t_CERT_STATUS_PINNED_KEY_MISSING: cef_cert_status_t = 8192;
-pub const cef_cert_status_t_CERT_STATUS_NAME_CONSTRAINT_VIOLATION: cef_cert_status_t = 16384;
-pub const cef_cert_status_t_CERT_STATUS_VALIDITY_TOO_LONG: cef_cert_status_t = 32768;
-pub const cef_cert_status_t_CERT_STATUS_IS_EV: cef_cert_status_t = 65536;
-pub const cef_cert_status_t_CERT_STATUS_REV_CHECKING_ENABLED: cef_cert_status_t = 131072;
-pub const cef_cert_status_t_CERT_STATUS_SHA1_SIGNATURE_PRESENT: cef_cert_status_t = 524288;
-pub const cef_cert_status_t_CERT_STATUS_CT_COMPLIANCE_FAILED: cef_cert_status_t = 1048576;
-pub type cef_cert_status_t = i32;
-pub const cef_window_open_disposition_t_WOD_UNKNOWN: cef_window_open_disposition_t = 0;
-pub const cef_window_open_disposition_t_WOD_CURRENT_TAB: cef_window_open_disposition_t = 1;
-pub const cef_window_open_disposition_t_WOD_SINGLETON_TAB: cef_window_open_disposition_t = 2;
-pub const cef_window_open_disposition_t_WOD_NEW_FOREGROUND_TAB: cef_window_open_disposition_t = 3;
-pub const cef_window_open_disposition_t_WOD_NEW_BACKGROUND_TAB: cef_window_open_disposition_t = 4;
-pub const cef_window_open_disposition_t_WOD_NEW_POPUP: cef_window_open_disposition_t = 5;
-pub const cef_window_open_disposition_t_WOD_NEW_WINDOW: cef_window_open_disposition_t = 6;
-pub const cef_window_open_disposition_t_WOD_SAVE_TO_DISK: cef_window_open_disposition_t = 7;
-pub const cef_window_open_disposition_t_WOD_OFF_THE_RECORD: cef_window_open_disposition_t = 8;
-pub const cef_window_open_disposition_t_WOD_IGNORE_ACTION: cef_window_open_disposition_t = 9;
-pub type cef_window_open_disposition_t = i32;
+pub mod cef_termination_status_t {
+    pub type Type = i32;
+    pub const TS_ABNORMAL_TERMINATION: Type = 0;
+    pub const TS_PROCESS_WAS_KILLED: Type = 1;
+    pub const TS_PROCESS_CRASHED: Type = 2;
+    pub const TS_PROCESS_OOM: Type = 3;
+}
+pub mod cef_errorcode_t {
+    pub type Type = i32;
+    pub const ERR_NONE: Type = 0;
+    pub const ERR_IO_PENDING: Type = -1;
+    pub const ERR_FAILED: Type = -2;
+    pub const ERR_ABORTED: Type = -3;
+    pub const ERR_INVALID_ARGUMENT: Type = -4;
+    pub const ERR_INVALID_HANDLE: Type = -5;
+    pub const ERR_FILE_NOT_FOUND: Type = -6;
+    pub const ERR_TIMED_OUT: Type = -7;
+    pub const ERR_FILE_TOO_BIG: Type = -8;
+    pub const ERR_UNEXPECTED: Type = -9;
+    pub const ERR_ACCESS_DENIED: Type = -10;
+    pub const ERR_NOT_IMPLEMENTED: Type = -11;
+    pub const ERR_INSUFFICIENT_RESOURCES: Type = -12;
+    pub const ERR_OUT_OF_MEMORY: Type = -13;
+    pub const ERR_UPLOAD_FILE_CHANGED: Type = -14;
+    pub const ERR_SOCKET_NOT_CONNECTED: Type = -15;
+    pub const ERR_FILE_EXISTS: Type = -16;
+    pub const ERR_FILE_PATH_TOO_LONG: Type = -17;
+    pub const ERR_FILE_NO_SPACE: Type = -18;
+    pub const ERR_FILE_VIRUS_INFECTED: Type = -19;
+    pub const ERR_BLOCKED_BY_CLIENT: Type = -20;
+    pub const ERR_NETWORK_CHANGED: Type = -21;
+    pub const ERR_BLOCKED_BY_ADMINISTRATOR: Type = -22;
+    pub const ERR_SOCKET_IS_CONNECTED: Type = -23;
+    pub const ERR_BLOCKED_ENROLLMENT_CHECK_PENDING: Type = -24;
+    pub const ERR_UPLOAD_STREAM_REWIND_NOT_SUPPORTED: Type = -25;
+    pub const ERR_CONTEXT_SHUT_DOWN: Type = -26;
+    pub const ERR_BLOCKED_BY_RESPONSE: Type = -27;
+    pub const ERR_BLOCKED_BY_XSS_AUDITOR: Type = -28;
+    pub const ERR_CLEARTEXT_NOT_PERMITTED: Type = -29;
+    pub const ERR_CONNECTION_CLOSED: Type = -100;
+    pub const ERR_CONNECTION_RESET: Type = -101;
+    pub const ERR_CONNECTION_REFUSED: Type = -102;
+    pub const ERR_CONNECTION_ABORTED: Type = -103;
+    pub const ERR_CONNECTION_FAILED: Type = -104;
+    pub const ERR_NAME_NOT_RESOLVED: Type = -105;
+    pub const ERR_INTERNET_DISCONNECTED: Type = -106;
+    pub const ERR_SSL_PROTOCOL_ERROR: Type = -107;
+    pub const ERR_ADDRESS_INVALID: Type = -108;
+    pub const ERR_ADDRESS_UNREACHABLE: Type = -109;
+    pub const ERR_SSL_CLIENT_AUTH_CERT_NEEDED: Type = -110;
+    pub const ERR_TUNNEL_CONNECTION_FAILED: Type = -111;
+    pub const ERR_NO_SSL_VERSIONS_ENABLED: Type = -112;
+    pub const ERR_SSL_VERSION_OR_CIPHER_MISMATCH: Type = -113;
+    pub const ERR_SSL_RENEGOTIATION_REQUESTED: Type = -114;
+    pub const ERR_PROXY_AUTH_UNSUPPORTED: Type = -115;
+    pub const ERR_CERT_ERROR_IN_SSL_RENEGOTIATION: Type = -116;
+    pub const ERR_BAD_SSL_CLIENT_AUTH_CERT: Type = -117;
+    pub const ERR_CONNECTION_TIMED_OUT: Type = -118;
+    pub const ERR_HOST_RESOLVER_QUEUE_TOO_LARGE: Type = -119;
+    pub const ERR_SOCKS_CONNECTION_FAILED: Type = -120;
+    pub const ERR_SOCKS_CONNECTION_HOST_UNREACHABLE: Type = -121;
+    pub const ERR_ALPN_NEGOTIATION_FAILED: Type = -122;
+    pub const ERR_SSL_NO_RENEGOTIATION: Type = -123;
+    pub const ERR_WINSOCK_UNEXPECTED_WRITTEN_BYTES: Type = -124;
+    pub const ERR_SSL_DECOMPRESSION_FAILURE_ALERT: Type = -125;
+    pub const ERR_SSL_BAD_RECORD_MAC_ALERT: Type = -126;
+    pub const ERR_PROXY_AUTH_REQUESTED: Type = -127;
+    pub const ERR_SSL_WEAK_SERVER_EPHEMERAL_DH_KEY: Type = -129;
+    pub const ERR_PROXY_CONNECTION_FAILED: Type = -130;
+    pub const ERR_MANDATORY_PROXY_CONFIGURATION_FAILED: Type = -131;
+    pub const ERR_PRECONNECT_MAX_SOCKET_LIMIT: Type = -133;
+    pub const ERR_SSL_CLIENT_AUTH_PRIVATE_KEY_ACCESS_DENIED: Type = -134;
+    pub const ERR_SSL_CLIENT_AUTH_CERT_NO_PRIVATE_KEY: Type = -135;
+    pub const ERR_PROXY_CERTIFICATE_INVALID: Type = -136;
+    pub const ERR_NAME_RESOLUTION_FAILED: Type = -137;
+    pub const ERR_NETWORK_ACCESS_DENIED: Type = -138;
+    pub const ERR_TEMPORARILY_THROTTLED: Type = -139;
+    pub const ERR_HTTPS_PROXY_TUNNEL_RESPONSE_REDIRECT: Type = -140;
+    pub const ERR_SSL_CLIENT_AUTH_SIGNATURE_FAILED: Type = -141;
+    pub const ERR_MSG_TOO_BIG: Type = -142;
+    pub const ERR_WS_PROTOCOL_ERROR: Type = -145;
+    pub const ERR_ADDRESS_IN_USE: Type = -147;
+    pub const ERR_SSL_HANDSHAKE_NOT_COMPLETED: Type = -148;
+    pub const ERR_SSL_BAD_PEER_PUBLIC_KEY: Type = -149;
+    pub const ERR_SSL_PINNED_KEY_NOT_IN_CERT_CHAIN: Type = -150;
+    pub const ERR_CLIENT_AUTH_CERT_TYPE_UNSUPPORTED: Type = -151;
+    pub const ERR_ORIGIN_BOUND_CERT_GENERATION_TYPE_MISMATCH: Type = -152;
+    pub const ERR_SSL_DECRYPT_ERROR_ALERT: Type = -153;
+    pub const ERR_WS_THROTTLE_QUEUE_TOO_LARGE: Type = -154;
+    pub const ERR_SSL_SERVER_CERT_CHANGED: Type = -156;
+    pub const ERR_SSL_UNRECOGNIZED_NAME_ALERT: Type = -159;
+    pub const ERR_SOCKET_SET_RECEIVE_BUFFER_SIZE_ERROR: Type = -160;
+    pub const ERR_SOCKET_SET_SEND_BUFFER_SIZE_ERROR: Type = -161;
+    pub const ERR_SOCKET_RECEIVE_BUFFER_SIZE_UNCHANGEABLE: Type = -162;
+    pub const ERR_SOCKET_SEND_BUFFER_SIZE_UNCHANGEABLE: Type = -163;
+    pub const ERR_SSL_CLIENT_AUTH_CERT_BAD_FORMAT: Type = -164;
+    pub const ERR_ICANN_NAME_COLLISION: Type = -166;
+    pub const ERR_SSL_SERVER_CERT_BAD_FORMAT: Type = -167;
+    pub const ERR_CT_STH_PARSING_FAILED: Type = -168;
+    pub const ERR_CT_STH_INCOMPLETE: Type = -169;
+    pub const ERR_UNABLE_TO_REUSE_CONNECTION_FOR_PROXY_AUTH: Type = -170;
+    pub const ERR_CT_CONSISTENCY_PROOF_PARSING_FAILED: Type = -171;
+    pub const ERR_SSL_OBSOLETE_CIPHER: Type = -172;
+    pub const ERR_WS_UPGRADE: Type = -173;
+    pub const ERR_READ_IF_READY_NOT_IMPLEMENTED: Type = -174;
+    pub const ERR_NO_BUFFER_SPACE: Type = -176;
+    pub const ERR_SSL_CLIENT_AUTH_NO_COMMON_ALGORITHMS: Type = -177;
+    pub const ERR_EARLY_DATA_REJECTED: Type = -178;
+    pub const ERR_WRONG_VERSION_ON_EARLY_DATA: Type = -179;
+    pub const ERR_TLS13_DOWNGRADE_DETECTED: Type = -180;
+    pub const ERR_SSL_KEY_USAGE_INCOMPATIBLE: Type = -181;
+    pub const ERR_CERT_COMMON_NAME_INVALID: Type = -200;
+    pub const ERR_CERT_DATE_INVALID: Type = -201;
+    pub const ERR_CERT_AUTHORITY_INVALID: Type = -202;
+    pub const ERR_CERT_CONTAINS_ERRORS: Type = -203;
+    pub const ERR_CERT_NO_REVOCATION_MECHANISM: Type = -204;
+    pub const ERR_CERT_UNABLE_TO_CHECK_REVOCATION: Type = -205;
+    pub const ERR_CERT_REVOKED: Type = -206;
+    pub const ERR_CERT_INVALID: Type = -207;
+    pub const ERR_CERT_WEAK_SIGNATURE_ALGORITHM: Type = -208;
+    pub const ERR_CERT_NON_UNIQUE_NAME: Type = -210;
+    pub const ERR_CERT_WEAK_KEY: Type = -211;
+    pub const ERR_CERT_NAME_CONSTRAINT_VIOLATION: Type = -212;
+    pub const ERR_CERT_VALIDITY_TOO_LONG: Type = -213;
+    pub const ERR_CERTIFICATE_TRANSPARENCY_REQUIRED: Type = -214;
+    pub const ERR_CERT_SYMANTEC_LEGACY: Type = -215;
+    pub const ERR_CERT_END: Type = -216;
+    pub const ERR_INVALID_URL: Type = -300;
+    pub const ERR_DISALLOWED_URL_SCHEME: Type = -301;
+    pub const ERR_UNKNOWN_URL_SCHEME: Type = -302;
+    pub const ERR_INVALID_REDIRECT: Type = -303;
+    pub const ERR_TOO_MANY_REDIRECTS: Type = -310;
+    pub const ERR_UNSAFE_REDIRECT: Type = -311;
+    pub const ERR_UNSAFE_PORT: Type = -312;
+    pub const ERR_INVALID_RESPONSE: Type = -320;
+    pub const ERR_INVALID_CHUNKED_ENCODING: Type = -321;
+    pub const ERR_METHOD_NOT_SUPPORTED: Type = -322;
+    pub const ERR_UNEXPECTED_PROXY_AUTH: Type = -323;
+    pub const ERR_EMPTY_RESPONSE: Type = -324;
+    pub const ERR_RESPONSE_HEADERS_TOO_BIG: Type = -325;
+    pub const ERR_PAC_STATUS_NOT_OK: Type = -326;
+    pub const ERR_PAC_SCRIPT_FAILED: Type = -327;
+    pub const ERR_REQUEST_RANGE_NOT_SATISFIABLE: Type = -328;
+    pub const ERR_MALFORMED_IDENTITY: Type = -329;
+    pub const ERR_CONTENT_DECODING_FAILED: Type = -330;
+    pub const ERR_NETWORK_IO_SUSPENDED: Type = -331;
+    pub const ERR_SYN_REPLY_NOT_RECEIVED: Type = -332;
+    pub const ERR_ENCODING_CONVERSION_FAILED: Type = -333;
+    pub const ERR_UNRECOGNIZED_FTP_DIRECTORY_LISTING_FORMAT: Type = -334;
+    pub const ERR_NO_SUPPORTED_PROXIES: Type = -336;
+    pub const ERR_SPDY_PROTOCOL_ERROR: Type = -337;
+    pub const ERR_INVALID_AUTH_CREDENTIALS: Type = -338;
+    pub const ERR_UNSUPPORTED_AUTH_SCHEME: Type = -339;
+    pub const ERR_ENCODING_DETECTION_FAILED: Type = -340;
+    pub const ERR_MISSING_AUTH_CREDENTIALS: Type = -341;
+    pub const ERR_UNEXPECTED_SECURITY_LIBRARY_STATUS: Type = -342;
+    pub const ERR_MISCONFIGURED_AUTH_ENVIRONMENT: Type = -343;
+    pub const ERR_UNDOCUMENTED_SECURITY_LIBRARY_STATUS: Type = -344;
+    pub const ERR_RESPONSE_BODY_TOO_BIG_TO_DRAIN: Type = -345;
+    pub const ERR_RESPONSE_HEADERS_MULTIPLE_CONTENT_LENGTH: Type = -346;
+    pub const ERR_INCOMPLETE_SPDY_HEADERS: Type = -347;
+    pub const ERR_PAC_NOT_IN_DHCP: Type = -348;
+    pub const ERR_RESPONSE_HEADERS_MULTIPLE_CONTENT_DISPOSITION: Type = -349;
+    pub const ERR_RESPONSE_HEADERS_MULTIPLE_LOCATION: Type = -350;
+    pub const ERR_SPDY_SERVER_REFUSED_STREAM: Type = -351;
+    pub const ERR_SPDY_PING_FAILED: Type = -352;
+    pub const ERR_CONTENT_LENGTH_MISMATCH: Type = -354;
+    pub const ERR_INCOMPLETE_CHUNKED_ENCODING: Type = -355;
+    pub const ERR_QUIC_PROTOCOL_ERROR: Type = -356;
+    pub const ERR_RESPONSE_HEADERS_TRUNCATED: Type = -357;
+    pub const ERR_QUIC_HANDSHAKE_FAILED: Type = -358;
+    pub const ERR_SPDY_INADEQUATE_TRANSPORT_SECURITY: Type = -360;
+    pub const ERR_SPDY_FLOW_CONTROL_ERROR: Type = -361;
+    pub const ERR_SPDY_FRAME_SIZE_ERROR: Type = -362;
+    pub const ERR_SPDY_COMPRESSION_ERROR: Type = -363;
+    pub const ERR_PROXY_AUTH_REQUESTED_WITH_NO_CONNECTION: Type = -364;
+    pub const ERR_HTTP_1_1_REQUIRED: Type = -365;
+    pub const ERR_PROXY_HTTP_1_1_REQUIRED: Type = -366;
+    pub const ERR_PAC_SCRIPT_TERMINATED: Type = -367;
+    pub const ERR_INVALID_HTTP_RESPONSE: Type = -370;
+    pub const ERR_CONTENT_DECODING_INIT_FAILED: Type = -371;
+    pub const ERR_SPDY_RST_STREAM_NO_ERROR_RECEIVED: Type = -372;
+    pub const ERR_SPDY_PUSHED_STREAM_NOT_AVAILABLE: Type = -373;
+    pub const ERR_SPDY_CLAIMED_PUSHED_STREAM_RESET_BY_SERVER: Type = -374;
+    pub const ERR_TOO_MANY_RETRIES: Type = -375;
+    pub const ERR_SPDY_STREAM_CLOSED: Type = -376;
+    pub const ERR_SPDY_CLIENT_REFUSED_STREAM: Type = -377;
+    pub const ERR_SPDY_PUSHED_RESPONSE_DOES_NOT_MATCH: Type = -378;
+    pub const ERR_CACHE_MISS: Type = -400;
+    pub const ERR_CACHE_READ_FAILURE: Type = -401;
+    pub const ERR_CACHE_WRITE_FAILURE: Type = -402;
+    pub const ERR_CACHE_OPERATION_NOT_SUPPORTED: Type = -403;
+    pub const ERR_CACHE_OPEN_FAILURE: Type = -404;
+    pub const ERR_CACHE_CREATE_FAILURE: Type = -405;
+    pub const ERR_CACHE_RACE: Type = -406;
+    pub const ERR_CACHE_CHECKSUM_READ_FAILURE: Type = -407;
+    pub const ERR_CACHE_CHECKSUM_MISMATCH: Type = -408;
+    pub const ERR_CACHE_LOCK_TIMEOUT: Type = -409;
+    pub const ERR_CACHE_AUTH_FAILURE_AFTER_READ: Type = -410;
+    pub const ERR_CACHE_ENTRY_NOT_SUITABLE: Type = -411;
+    pub const ERR_CACHE_DOOM_FAILURE: Type = -412;
+    pub const ERR_CACHE_OPEN_OR_CREATE_FAILURE: Type = -413;
+    pub const ERR_INSECURE_RESPONSE: Type = -501;
+    pub const ERR_NO_PRIVATE_KEY_FOR_CERT: Type = -502;
+    pub const ERR_ADD_USER_CERT_FAILED: Type = -503;
+    pub const ERR_INVALID_SIGNED_EXCHANGE: Type = -504;
+    pub const ERR_FTP_FAILED: Type = -601;
+    pub const ERR_FTP_SERVICE_UNAVAILABLE: Type = -602;
+    pub const ERR_FTP_TRANSFER_ABORTED: Type = -603;
+    pub const ERR_FTP_FILE_BUSY: Type = -604;
+    pub const ERR_FTP_SYNTAX_ERROR: Type = -605;
+    pub const ERR_FTP_COMMAND_NOT_SUPPORTED: Type = -606;
+    pub const ERR_FTP_BAD_COMMAND_SEQUENCE: Type = -607;
+    pub const ERR_PKCS12_IMPORT_BAD_PASSWORD: Type = -701;
+    pub const ERR_PKCS12_IMPORT_FAILED: Type = -702;
+    pub const ERR_IMPORT_CA_CERT_NOT_CA: Type = -703;
+    pub const ERR_IMPORT_CERT_ALREADY_EXISTS: Type = -704;
+    pub const ERR_IMPORT_CA_CERT_FAILED: Type = -705;
+    pub const ERR_IMPORT_SERVER_CERT_FAILED: Type = -706;
+    pub const ERR_PKCS12_IMPORT_INVALID_MAC: Type = -707;
+    pub const ERR_PKCS12_IMPORT_INVALID_FILE: Type = -708;
+    pub const ERR_PKCS12_IMPORT_UNSUPPORTED: Type = -709;
+    pub const ERR_KEY_GENERATION_FAILED: Type = -710;
+    pub const ERR_PRIVATE_KEY_EXPORT_FAILED: Type = -712;
+    pub const ERR_SELF_SIGNED_CERT_GENERATION_FAILED: Type = -713;
+    pub const ERR_CERT_DATABASE_CHANGED: Type = -714;
+    pub const ERR_DNS_MALFORMED_RESPONSE: Type = -800;
+    pub const ERR_DNS_SERVER_REQUIRES_TCP: Type = -801;
+    pub const ERR_DNS_SERVER_FAILED: Type = -802;
+    pub const ERR_DNS_TIMED_OUT: Type = -803;
+    pub const ERR_DNS_CACHE_MISS: Type = -804;
+    pub const ERR_DNS_SEARCH_EMPTY: Type = -805;
+    pub const ERR_DNS_SORT_ERROR: Type = -806;
+    pub const ERR_DNS_HTTP_FAILED: Type = -807;
+}
+pub mod cef_cert_status_t {
+    pub type Type = i32;
+    pub const CERT_STATUS_NONE: Type = 0;
+    pub const CERT_STATUS_COMMON_NAME_INVALID: Type = 1;
+    pub const CERT_STATUS_DATE_INVALID: Type = 2;
+    pub const CERT_STATUS_AUTHORITY_INVALID: Type = 4;
+    pub const CERT_STATUS_NO_REVOCATION_MECHANISM: Type = 16;
+    pub const CERT_STATUS_UNABLE_TO_CHECK_REVOCATION: Type = 32;
+    pub const CERT_STATUS_REVOKED: Type = 64;
+    pub const CERT_STATUS_INVALID: Type = 128;
+    pub const CERT_STATUS_WEAK_SIGNATURE_ALGORITHM: Type = 256;
+    pub const CERT_STATUS_NON_UNIQUE_NAME: Type = 1024;
+    pub const CERT_STATUS_WEAK_KEY: Type = 2048;
+    pub const CERT_STATUS_PINNED_KEY_MISSING: Type = 8192;
+    pub const CERT_STATUS_NAME_CONSTRAINT_VIOLATION: Type = 16384;
+    pub const CERT_STATUS_VALIDITY_TOO_LONG: Type = 32768;
+    pub const CERT_STATUS_IS_EV: Type = 65536;
+    pub const CERT_STATUS_REV_CHECKING_ENABLED: Type = 131072;
+    pub const CERT_STATUS_SHA1_SIGNATURE_PRESENT: Type = 524288;
+    pub const CERT_STATUS_CT_COMPLIANCE_FAILED: Type = 1048576;
+}
+pub mod cef_window_open_disposition_t {
+    pub type Type = i32;
+    pub const WOD_UNKNOWN: Type = 0;
+    pub const WOD_CURRENT_TAB: Type = 1;
+    pub const WOD_SINGLETON_TAB: Type = 2;
+    pub const WOD_NEW_FOREGROUND_TAB: Type = 3;
+    pub const WOD_NEW_BACKGROUND_TAB: Type = 4;
+    pub const WOD_NEW_POPUP: Type = 5;
+    pub const WOD_NEW_WINDOW: Type = 6;
+    pub const WOD_SAVE_TO_DISK: Type = 7;
+    pub const WOD_OFF_THE_RECORD: Type = 8;
+    pub const WOD_IGNORE_ACTION: Type = 9;
+}
 impl cef_drag_operations_mask_t {
     pub const DRAG_OPERATION_NONE: cef_drag_operations_mask_t = cef_drag_operations_mask_t(0);
 }
@@ -8961,74 +8975,86 @@ impl ::std::ops::BitAndAssign for cef_drag_operations_mask_t {
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub struct cef_drag_operations_mask_t(pub i32);
-pub const cef_text_input_mode_t_CEF_TEXT_INPUT_MODE_DEFAULT: cef_text_input_mode_t = 0;
-pub const cef_text_input_mode_t_CEF_TEXT_INPUT_MODE_NONE: cef_text_input_mode_t = 1;
-pub const cef_text_input_mode_t_CEF_TEXT_INPUT_MODE_TEXT: cef_text_input_mode_t = 2;
-pub const cef_text_input_mode_t_CEF_TEXT_INPUT_MODE_TEL: cef_text_input_mode_t = 3;
-pub const cef_text_input_mode_t_CEF_TEXT_INPUT_MODE_URL: cef_text_input_mode_t = 4;
-pub const cef_text_input_mode_t_CEF_TEXT_INPUT_MODE_EMAIL: cef_text_input_mode_t = 5;
-pub const cef_text_input_mode_t_CEF_TEXT_INPUT_MODE_NUMERIC: cef_text_input_mode_t = 6;
-pub const cef_text_input_mode_t_CEF_TEXT_INPUT_MODE_DECIMAL: cef_text_input_mode_t = 7;
-pub const cef_text_input_mode_t_CEF_TEXT_INPUT_MODE_SEARCH: cef_text_input_mode_t = 8;
-pub const cef_text_input_mode_t_CEF_TEXT_INPUT_MODE_MAX: cef_text_input_mode_t = 8;
-pub type cef_text_input_mode_t = i32;
-pub const cef_v8_accesscontrol_t_V8_ACCESS_CONTROL_DEFAULT: cef_v8_accesscontrol_t = 0;
-pub const cef_v8_accesscontrol_t_V8_ACCESS_CONTROL_ALL_CAN_READ: cef_v8_accesscontrol_t = 1;
-pub const cef_v8_accesscontrol_t_V8_ACCESS_CONTROL_ALL_CAN_WRITE: cef_v8_accesscontrol_t = 2;
-pub const cef_v8_accesscontrol_t_V8_ACCESS_CONTROL_PROHIBITS_OVERWRITING: cef_v8_accesscontrol_t =
-    4;
-pub type cef_v8_accesscontrol_t = i32;
-pub const cef_v8_propertyattribute_t_V8_PROPERTY_ATTRIBUTE_NONE: cef_v8_propertyattribute_t = 0;
-pub const cef_v8_propertyattribute_t_V8_PROPERTY_ATTRIBUTE_READONLY: cef_v8_propertyattribute_t = 1;
-pub const cef_v8_propertyattribute_t_V8_PROPERTY_ATTRIBUTE_DONTENUM: cef_v8_propertyattribute_t = 2;
-pub const cef_v8_propertyattribute_t_V8_PROPERTY_ATTRIBUTE_DONTDELETE: cef_v8_propertyattribute_t =
-    4;
-pub type cef_v8_propertyattribute_t = i32;
-pub const cef_postdataelement_type_t_PDE_TYPE_EMPTY: cef_postdataelement_type_t = 0;
-pub const cef_postdataelement_type_t_PDE_TYPE_BYTES: cef_postdataelement_type_t = 1;
-pub const cef_postdataelement_type_t_PDE_TYPE_FILE: cef_postdataelement_type_t = 2;
-pub type cef_postdataelement_type_t = i32;
-pub const cef_resource_type_t_RT_MAIN_FRAME: cef_resource_type_t = 0;
-pub const cef_resource_type_t_RT_SUB_FRAME: cef_resource_type_t = 1;
-pub const cef_resource_type_t_RT_STYLESHEET: cef_resource_type_t = 2;
-pub const cef_resource_type_t_RT_SCRIPT: cef_resource_type_t = 3;
-pub const cef_resource_type_t_RT_IMAGE: cef_resource_type_t = 4;
-pub const cef_resource_type_t_RT_FONT_RESOURCE: cef_resource_type_t = 5;
-pub const cef_resource_type_t_RT_SUB_RESOURCE: cef_resource_type_t = 6;
-pub const cef_resource_type_t_RT_OBJECT: cef_resource_type_t = 7;
-pub const cef_resource_type_t_RT_MEDIA: cef_resource_type_t = 8;
-pub const cef_resource_type_t_RT_WORKER: cef_resource_type_t = 9;
-pub const cef_resource_type_t_RT_SHARED_WORKER: cef_resource_type_t = 10;
-pub const cef_resource_type_t_RT_PREFETCH: cef_resource_type_t = 11;
-pub const cef_resource_type_t_RT_FAVICON: cef_resource_type_t = 12;
-pub const cef_resource_type_t_RT_XHR: cef_resource_type_t = 13;
-pub const cef_resource_type_t_RT_PING: cef_resource_type_t = 14;
-pub const cef_resource_type_t_RT_SERVICE_WORKER: cef_resource_type_t = 15;
-pub const cef_resource_type_t_RT_CSP_REPORT: cef_resource_type_t = 16;
-pub const cef_resource_type_t_RT_PLUGIN_RESOURCE: cef_resource_type_t = 17;
-pub type cef_resource_type_t = i32;
-pub const cef_transition_type_t_TT_LINK: cef_transition_type_t = 0;
-pub const cef_transition_type_t_TT_EXPLICIT: cef_transition_type_t = 1;
-pub const cef_transition_type_t_TT_AUTO_SUBFRAME: cef_transition_type_t = 3;
-pub const cef_transition_type_t_TT_MANUAL_SUBFRAME: cef_transition_type_t = 4;
-pub const cef_transition_type_t_TT_FORM_SUBMIT: cef_transition_type_t = 7;
-pub const cef_transition_type_t_TT_RELOAD: cef_transition_type_t = 8;
-pub const cef_transition_type_t_TT_SOURCE_MASK: cef_transition_type_t = 255;
-pub const cef_transition_type_t_TT_BLOCKED_FLAG: cef_transition_type_t = 8388608;
-pub const cef_transition_type_t_TT_FORWARD_BACK_FLAG: cef_transition_type_t = 16777216;
-pub const cef_transition_type_t_TT_CHAIN_START_FLAG: cef_transition_type_t = 268435456;
-pub const cef_transition_type_t_TT_CHAIN_END_FLAG: cef_transition_type_t = 536870912;
-pub const cef_transition_type_t_TT_CLIENT_REDIRECT_FLAG: cef_transition_type_t = 1073741824;
-pub const cef_transition_type_t_TT_SERVER_REDIRECT_FLAG: cef_transition_type_t = -2147483648;
-pub const cef_transition_type_t_TT_IS_REDIRECT_MASK: cef_transition_type_t = -1073741824;
-pub const cef_transition_type_t_TT_QUALIFIER_MASK: cef_transition_type_t = -256;
-pub type cef_transition_type_t = i32;
-pub const cef_urlrequest_status_t_UR_UNKNOWN: cef_urlrequest_status_t = 0;
-pub const cef_urlrequest_status_t_UR_SUCCESS: cef_urlrequest_status_t = 1;
-pub const cef_urlrequest_status_t_UR_IO_PENDING: cef_urlrequest_status_t = 2;
-pub const cef_urlrequest_status_t_UR_CANCELED: cef_urlrequest_status_t = 3;
-pub const cef_urlrequest_status_t_UR_FAILED: cef_urlrequest_status_t = 4;
-pub type cef_urlrequest_status_t = i32;
+pub mod cef_text_input_mode_t {
+    pub type Type = i32;
+    pub const CEF_TEXT_INPUT_MODE_DEFAULT: Type = 0;
+    pub const CEF_TEXT_INPUT_MODE_NONE: Type = 1;
+    pub const CEF_TEXT_INPUT_MODE_TEXT: Type = 2;
+    pub const CEF_TEXT_INPUT_MODE_TEL: Type = 3;
+    pub const CEF_TEXT_INPUT_MODE_URL: Type = 4;
+    pub const CEF_TEXT_INPUT_MODE_EMAIL: Type = 5;
+    pub const CEF_TEXT_INPUT_MODE_NUMERIC: Type = 6;
+    pub const CEF_TEXT_INPUT_MODE_DECIMAL: Type = 7;
+    pub const CEF_TEXT_INPUT_MODE_SEARCH: Type = 8;
+    pub const CEF_TEXT_INPUT_MODE_MAX: Type = 8;
+}
+pub mod cef_v8_accesscontrol_t {
+    pub type Type = i32;
+    pub const V8_ACCESS_CONTROL_DEFAULT: Type = 0;
+    pub const V8_ACCESS_CONTROL_ALL_CAN_READ: Type = 1;
+    pub const V8_ACCESS_CONTROL_ALL_CAN_WRITE: Type = 2;
+    pub const V8_ACCESS_CONTROL_PROHIBITS_OVERWRITING: Type = 4;
+}
+pub mod cef_v8_propertyattribute_t {
+    pub type Type = i32;
+    pub const V8_PROPERTY_ATTRIBUTE_NONE: Type = 0;
+    pub const V8_PROPERTY_ATTRIBUTE_READONLY: Type = 1;
+    pub const V8_PROPERTY_ATTRIBUTE_DONTENUM: Type = 2;
+    pub const V8_PROPERTY_ATTRIBUTE_DONTDELETE: Type = 4;
+}
+pub mod cef_postdataelement_type_t {
+    pub type Type = i32;
+    pub const PDE_TYPE_EMPTY: Type = 0;
+    pub const PDE_TYPE_BYTES: Type = 1;
+    pub const PDE_TYPE_FILE: Type = 2;
+}
+pub mod cef_resource_type_t {
+    pub type Type = i32;
+    pub const RT_MAIN_FRAME: Type = 0;
+    pub const RT_SUB_FRAME: Type = 1;
+    pub const RT_STYLESHEET: Type = 2;
+    pub const RT_SCRIPT: Type = 3;
+    pub const RT_IMAGE: Type = 4;
+    pub const RT_FONT_RESOURCE: Type = 5;
+    pub const RT_SUB_RESOURCE: Type = 6;
+    pub const RT_OBJECT: Type = 7;
+    pub const RT_MEDIA: Type = 8;
+    pub const RT_WORKER: Type = 9;
+    pub const RT_SHARED_WORKER: Type = 10;
+    pub const RT_PREFETCH: Type = 11;
+    pub const RT_FAVICON: Type = 12;
+    pub const RT_XHR: Type = 13;
+    pub const RT_PING: Type = 14;
+    pub const RT_SERVICE_WORKER: Type = 15;
+    pub const RT_CSP_REPORT: Type = 16;
+    pub const RT_PLUGIN_RESOURCE: Type = 17;
+}
+pub mod cef_transition_type_t {
+    pub type Type = i32;
+    pub const TT_LINK: Type = 0;
+    pub const TT_EXPLICIT: Type = 1;
+    pub const TT_AUTO_SUBFRAME: Type = 3;
+    pub const TT_MANUAL_SUBFRAME: Type = 4;
+    pub const TT_FORM_SUBMIT: Type = 7;
+    pub const TT_RELOAD: Type = 8;
+    pub const TT_SOURCE_MASK: Type = 255;
+    pub const TT_BLOCKED_FLAG: Type = 8388608;
+    pub const TT_FORWARD_BACK_FLAG: Type = 16777216;
+    pub const TT_CHAIN_START_FLAG: Type = 268435456;
+    pub const TT_CHAIN_END_FLAG: Type = 536870912;
+    pub const TT_CLIENT_REDIRECT_FLAG: Type = 1073741824;
+    pub const TT_SERVER_REDIRECT_FLAG: Type = -2147483648;
+    pub const TT_IS_REDIRECT_MASK: Type = -1073741824;
+    pub const TT_QUALIFIER_MASK: Type = -256;
+}
+pub mod cef_urlrequest_status_t {
+    pub type Type = i32;
+    pub const UR_UNKNOWN: Type = 0;
+    pub const UR_SUCCESS: Type = 1;
+    pub const UR_IO_PENDING: Type = 2;
+    pub const UR_CANCELED: Type = 3;
+    pub const UR_FAILED: Type = 4;
+}
 #[repr(C)]
 pub struct _cef_point_t {
     pub x: ::std::os::raw::c_int,
@@ -9309,32 +9335,40 @@ fn bindgen_test_layout__cef_draggable_region_t() {
     );
 }
 pub type cef_draggable_region_t = _cef_draggable_region_t;
-pub const cef_process_id_t_PID_BROWSER: cef_process_id_t = 0;
-pub const cef_process_id_t_PID_RENDERER: cef_process_id_t = 1;
-pub type cef_process_id_t = i32;
-pub const cef_thread_id_t_TID_UI: cef_thread_id_t = 0;
-pub const cef_thread_id_t_TID_FILE_BACKGROUND: cef_thread_id_t = 1;
-pub const cef_thread_id_t_TID_FILE: cef_thread_id_t = 1;
-pub const cef_thread_id_t_TID_FILE_USER_VISIBLE: cef_thread_id_t = 2;
-pub const cef_thread_id_t_TID_FILE_USER_BLOCKING: cef_thread_id_t = 3;
-pub const cef_thread_id_t_TID_PROCESS_LAUNCHER: cef_thread_id_t = 4;
-pub const cef_thread_id_t_TID_IO: cef_thread_id_t = 5;
-pub const cef_thread_id_t_TID_RENDERER: cef_thread_id_t = 6;
-pub type cef_thread_id_t = i32;
-pub const cef_value_type_t_VTYPE_INVALID: cef_value_type_t = 0;
-pub const cef_value_type_t_VTYPE_NULL: cef_value_type_t = 1;
-pub const cef_value_type_t_VTYPE_BOOL: cef_value_type_t = 2;
-pub const cef_value_type_t_VTYPE_INT: cef_value_type_t = 3;
-pub const cef_value_type_t_VTYPE_DOUBLE: cef_value_type_t = 4;
-pub const cef_value_type_t_VTYPE_STRING: cef_value_type_t = 5;
-pub const cef_value_type_t_VTYPE_BINARY: cef_value_type_t = 6;
-pub const cef_value_type_t_VTYPE_DICTIONARY: cef_value_type_t = 7;
-pub const cef_value_type_t_VTYPE_LIST: cef_value_type_t = 8;
-pub type cef_value_type_t = i32;
-pub const cef_jsdialog_type_t_JSDIALOGTYPE_ALERT: cef_jsdialog_type_t = 0;
-pub const cef_jsdialog_type_t_JSDIALOGTYPE_CONFIRM: cef_jsdialog_type_t = 1;
-pub const cef_jsdialog_type_t_JSDIALOGTYPE_PROMPT: cef_jsdialog_type_t = 2;
-pub type cef_jsdialog_type_t = i32;
+pub mod cef_process_id_t {
+    pub type Type = i32;
+    pub const PID_BROWSER: Type = 0;
+    pub const PID_RENDERER: Type = 1;
+}
+pub mod cef_thread_id_t {
+    pub type Type = i32;
+    pub const TID_UI: Type = 0;
+    pub const TID_FILE_BACKGROUND: Type = 1;
+    pub const TID_FILE: Type = 1;
+    pub const TID_FILE_USER_VISIBLE: Type = 2;
+    pub const TID_FILE_USER_BLOCKING: Type = 3;
+    pub const TID_PROCESS_LAUNCHER: Type = 4;
+    pub const TID_IO: Type = 5;
+    pub const TID_RENDERER: Type = 6;
+}
+pub mod cef_value_type_t {
+    pub type Type = i32;
+    pub const VTYPE_INVALID: Type = 0;
+    pub const VTYPE_NULL: Type = 1;
+    pub const VTYPE_BOOL: Type = 2;
+    pub const VTYPE_INT: Type = 3;
+    pub const VTYPE_DOUBLE: Type = 4;
+    pub const VTYPE_STRING: Type = 5;
+    pub const VTYPE_BINARY: Type = 6;
+    pub const VTYPE_DICTIONARY: Type = 7;
+    pub const VTYPE_LIST: Type = 8;
+}
+pub mod cef_jsdialog_type_t {
+    pub type Type = i32;
+    pub const JSDIALOGTYPE_ALERT: Type = 0;
+    pub const JSDIALOGTYPE_CONFIRM: Type = 1;
+    pub const JSDIALOGTYPE_PROMPT: Type = 2;
+}
 #[repr(C)]
 pub struct _cef_screen_info_t {
     pub device_scale_factor: f32,
@@ -9426,10 +9460,12 @@ fn bindgen_test_layout__cef_screen_info_t() {
     );
 }
 pub type cef_screen_info_t = _cef_screen_info_t;
-pub const cef_mouse_button_type_t_MBT_LEFT: cef_mouse_button_type_t = 0;
-pub const cef_mouse_button_type_t_MBT_MIDDLE: cef_mouse_button_type_t = 1;
-pub const cef_mouse_button_type_t_MBT_RIGHT: cef_mouse_button_type_t = 2;
-pub type cef_mouse_button_type_t = i32;
+pub mod cef_mouse_button_type_t {
+    pub type Type = i32;
+    pub const MBT_LEFT: Type = 0;
+    pub const MBT_MIDDLE: Type = 1;
+    pub const MBT_RIGHT: Type = 2;
+}
 #[repr(C)]
 pub struct _cef_mouse_event_t {
     pub x: ::std::os::raw::c_int,
@@ -9479,17 +9515,21 @@ fn bindgen_test_layout__cef_mouse_event_t() {
         )
     );
 }
-pub const cef_touch_event_type_t_CEF_TET_RELEASED: cef_touch_event_type_t = 0;
-pub const cef_touch_event_type_t_CEF_TET_PRESSED: cef_touch_event_type_t = 1;
-pub const cef_touch_event_type_t_CEF_TET_MOVED: cef_touch_event_type_t = 2;
-pub const cef_touch_event_type_t_CEF_TET_CANCELLED: cef_touch_event_type_t = 3;
-pub type cef_touch_event_type_t = i32;
-pub const cef_pointer_type_t_CEF_POINTER_TYPE_TOUCH: cef_pointer_type_t = 0;
-pub const cef_pointer_type_t_CEF_POINTER_TYPE_MOUSE: cef_pointer_type_t = 1;
-pub const cef_pointer_type_t_CEF_POINTER_TYPE_PEN: cef_pointer_type_t = 2;
-pub const cef_pointer_type_t_CEF_POINTER_TYPE_ERASER: cef_pointer_type_t = 3;
-pub const cef_pointer_type_t_CEF_POINTER_TYPE_UNKNOWN: cef_pointer_type_t = 4;
-pub type cef_pointer_type_t = i32;
+pub mod cef_touch_event_type_t {
+    pub type Type = i32;
+    pub const CEF_TET_RELEASED: Type = 0;
+    pub const CEF_TET_PRESSED: Type = 1;
+    pub const CEF_TET_MOVED: Type = 2;
+    pub const CEF_TET_CANCELLED: Type = 3;
+}
+pub mod cef_pointer_type_t {
+    pub type Type = i32;
+    pub const CEF_POINTER_TYPE_TOUCH: Type = 0;
+    pub const CEF_POINTER_TYPE_MOUSE: Type = 1;
+    pub const CEF_POINTER_TYPE_PEN: Type = 2;
+    pub const CEF_POINTER_TYPE_ERASER: Type = 3;
+    pub const CEF_POINTER_TYPE_UNKNOWN: Type = 4;
+}
 #[repr(C)]
 pub struct _cef_touch_event_t {
     pub id: ::std::os::raw::c_int,
@@ -9499,9 +9539,9 @@ pub struct _cef_touch_event_t {
     pub radius_y: f32,
     pub rotation_angle: f32,
     pub pressure: f32,
-    pub type_: cef_touch_event_type_t,
+    pub type_: cef_touch_event_type_t::Type,
     pub modifiers: uint32,
-    pub pointer_type: cef_pointer_type_t,
+    pub pointer_type: cef_pointer_type_t::Type,
 }
 #[test]
 fn bindgen_test_layout__cef_touch_event_t() {
@@ -9618,9 +9658,11 @@ fn bindgen_test_layout__cef_touch_event_t() {
         )
     );
 }
-pub const cef_paint_element_type_t_PET_VIEW: cef_paint_element_type_t = 0;
-pub const cef_paint_element_type_t_PET_POPUP: cef_paint_element_type_t = 1;
-pub type cef_paint_element_type_t = i32;
+pub mod cef_paint_element_type_t {
+    pub type Type = i32;
+    pub const PET_VIEW: Type = 0;
+    pub const PET_POPUP: Type = 1;
+}
 impl cef_event_flags_t {
     pub const EVENTFLAG_NONE: cef_event_flags_t = cef_event_flags_t(0);
 }
@@ -9689,78 +9731,70 @@ impl ::std::ops::BitAndAssign for cef_event_flags_t {
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub struct cef_event_flags_t(pub i32);
-pub const cef_menu_item_type_t_MENUITEMTYPE_NONE: cef_menu_item_type_t = 0;
-pub const cef_menu_item_type_t_MENUITEMTYPE_COMMAND: cef_menu_item_type_t = 1;
-pub const cef_menu_item_type_t_MENUITEMTYPE_CHECK: cef_menu_item_type_t = 2;
-pub const cef_menu_item_type_t_MENUITEMTYPE_RADIO: cef_menu_item_type_t = 3;
-pub const cef_menu_item_type_t_MENUITEMTYPE_SEPARATOR: cef_menu_item_type_t = 4;
-pub const cef_menu_item_type_t_MENUITEMTYPE_SUBMENU: cef_menu_item_type_t = 5;
-pub type cef_menu_item_type_t = i32;
-pub const cef_context_menu_type_flags_t_CM_TYPEFLAG_NONE: cef_context_menu_type_flags_t = 0;
-pub const cef_context_menu_type_flags_t_CM_TYPEFLAG_PAGE: cef_context_menu_type_flags_t = 1;
-pub const cef_context_menu_type_flags_t_CM_TYPEFLAG_FRAME: cef_context_menu_type_flags_t = 2;
-pub const cef_context_menu_type_flags_t_CM_TYPEFLAG_LINK: cef_context_menu_type_flags_t = 4;
-pub const cef_context_menu_type_flags_t_CM_TYPEFLAG_MEDIA: cef_context_menu_type_flags_t = 8;
-pub const cef_context_menu_type_flags_t_CM_TYPEFLAG_SELECTION: cef_context_menu_type_flags_t = 16;
-pub const cef_context_menu_type_flags_t_CM_TYPEFLAG_EDITABLE: cef_context_menu_type_flags_t = 32;
-pub type cef_context_menu_type_flags_t = i32;
-pub const cef_context_menu_media_type_t_CM_MEDIATYPE_NONE: cef_context_menu_media_type_t = 0;
-pub const cef_context_menu_media_type_t_CM_MEDIATYPE_IMAGE: cef_context_menu_media_type_t = 1;
-pub const cef_context_menu_media_type_t_CM_MEDIATYPE_VIDEO: cef_context_menu_media_type_t = 2;
-pub const cef_context_menu_media_type_t_CM_MEDIATYPE_AUDIO: cef_context_menu_media_type_t = 3;
-pub const cef_context_menu_media_type_t_CM_MEDIATYPE_FILE: cef_context_menu_media_type_t = 4;
-pub const cef_context_menu_media_type_t_CM_MEDIATYPE_PLUGIN: cef_context_menu_media_type_t = 5;
-pub type cef_context_menu_media_type_t = i32;
-pub const cef_context_menu_media_state_flags_t_CM_MEDIAFLAG_NONE:
-    cef_context_menu_media_state_flags_t = 0;
-pub const cef_context_menu_media_state_flags_t_CM_MEDIAFLAG_ERROR:
-    cef_context_menu_media_state_flags_t = 1;
-pub const cef_context_menu_media_state_flags_t_CM_MEDIAFLAG_PAUSED:
-    cef_context_menu_media_state_flags_t = 2;
-pub const cef_context_menu_media_state_flags_t_CM_MEDIAFLAG_MUTED:
-    cef_context_menu_media_state_flags_t = 4;
-pub const cef_context_menu_media_state_flags_t_CM_MEDIAFLAG_LOOP:
-    cef_context_menu_media_state_flags_t = 8;
-pub const cef_context_menu_media_state_flags_t_CM_MEDIAFLAG_CAN_SAVE:
-    cef_context_menu_media_state_flags_t = 16;
-pub const cef_context_menu_media_state_flags_t_CM_MEDIAFLAG_HAS_AUDIO:
-    cef_context_menu_media_state_flags_t = 32;
-pub const cef_context_menu_media_state_flags_t_CM_MEDIAFLAG_HAS_VIDEO:
-    cef_context_menu_media_state_flags_t = 64;
-pub const cef_context_menu_media_state_flags_t_CM_MEDIAFLAG_CONTROL_ROOT_ELEMENT:
-    cef_context_menu_media_state_flags_t = 128;
-pub const cef_context_menu_media_state_flags_t_CM_MEDIAFLAG_CAN_PRINT:
-    cef_context_menu_media_state_flags_t = 256;
-pub const cef_context_menu_media_state_flags_t_CM_MEDIAFLAG_CAN_ROTATE:
-    cef_context_menu_media_state_flags_t = 512;
-pub type cef_context_menu_media_state_flags_t = i32;
-pub const cef_context_menu_edit_state_flags_t_CM_EDITFLAG_NONE:
-    cef_context_menu_edit_state_flags_t = 0;
-pub const cef_context_menu_edit_state_flags_t_CM_EDITFLAG_CAN_UNDO:
-    cef_context_menu_edit_state_flags_t = 1;
-pub const cef_context_menu_edit_state_flags_t_CM_EDITFLAG_CAN_REDO:
-    cef_context_menu_edit_state_flags_t = 2;
-pub const cef_context_menu_edit_state_flags_t_CM_EDITFLAG_CAN_CUT:
-    cef_context_menu_edit_state_flags_t = 4;
-pub const cef_context_menu_edit_state_flags_t_CM_EDITFLAG_CAN_COPY:
-    cef_context_menu_edit_state_flags_t = 8;
-pub const cef_context_menu_edit_state_flags_t_CM_EDITFLAG_CAN_PASTE:
-    cef_context_menu_edit_state_flags_t = 16;
-pub const cef_context_menu_edit_state_flags_t_CM_EDITFLAG_CAN_DELETE:
-    cef_context_menu_edit_state_flags_t = 32;
-pub const cef_context_menu_edit_state_flags_t_CM_EDITFLAG_CAN_SELECT_ALL:
-    cef_context_menu_edit_state_flags_t = 64;
-pub const cef_context_menu_edit_state_flags_t_CM_EDITFLAG_CAN_TRANSLATE:
-    cef_context_menu_edit_state_flags_t = 128;
-pub type cef_context_menu_edit_state_flags_t = i32;
-pub const cef_key_event_type_t_KEYEVENT_RAWKEYDOWN: cef_key_event_type_t = 0;
-pub const cef_key_event_type_t_KEYEVENT_KEYDOWN: cef_key_event_type_t = 1;
-pub const cef_key_event_type_t_KEYEVENT_KEYUP: cef_key_event_type_t = 2;
-pub const cef_key_event_type_t_KEYEVENT_CHAR: cef_key_event_type_t = 3;
-pub type cef_key_event_type_t = i32;
+pub mod cef_menu_item_type_t {
+    pub type Type = i32;
+    pub const MENUITEMTYPE_NONE: Type = 0;
+    pub const MENUITEMTYPE_COMMAND: Type = 1;
+    pub const MENUITEMTYPE_CHECK: Type = 2;
+    pub const MENUITEMTYPE_RADIO: Type = 3;
+    pub const MENUITEMTYPE_SEPARATOR: Type = 4;
+    pub const MENUITEMTYPE_SUBMENU: Type = 5;
+}
+pub mod cef_context_menu_type_flags_t {
+    pub type Type = i32;
+    pub const CM_TYPEFLAG_NONE: Type = 0;
+    pub const CM_TYPEFLAG_PAGE: Type = 1;
+    pub const CM_TYPEFLAG_FRAME: Type = 2;
+    pub const CM_TYPEFLAG_LINK: Type = 4;
+    pub const CM_TYPEFLAG_MEDIA: Type = 8;
+    pub const CM_TYPEFLAG_SELECTION: Type = 16;
+    pub const CM_TYPEFLAG_EDITABLE: Type = 32;
+}
+pub mod cef_context_menu_media_type_t {
+    pub type Type = i32;
+    pub const CM_MEDIATYPE_NONE: Type = 0;
+    pub const CM_MEDIATYPE_IMAGE: Type = 1;
+    pub const CM_MEDIATYPE_VIDEO: Type = 2;
+    pub const CM_MEDIATYPE_AUDIO: Type = 3;
+    pub const CM_MEDIATYPE_FILE: Type = 4;
+    pub const CM_MEDIATYPE_PLUGIN: Type = 5;
+}
+pub mod cef_context_menu_media_state_flags_t {
+    pub type Type = i32;
+    pub const CM_MEDIAFLAG_NONE: Type = 0;
+    pub const CM_MEDIAFLAG_ERROR: Type = 1;
+    pub const CM_MEDIAFLAG_PAUSED: Type = 2;
+    pub const CM_MEDIAFLAG_MUTED: Type = 4;
+    pub const CM_MEDIAFLAG_LOOP: Type = 8;
+    pub const CM_MEDIAFLAG_CAN_SAVE: Type = 16;
+    pub const CM_MEDIAFLAG_HAS_AUDIO: Type = 32;
+    pub const CM_MEDIAFLAG_HAS_VIDEO: Type = 64;
+    pub const CM_MEDIAFLAG_CONTROL_ROOT_ELEMENT: Type = 128;
+    pub const CM_MEDIAFLAG_CAN_PRINT: Type = 256;
+    pub const CM_MEDIAFLAG_CAN_ROTATE: Type = 512;
+}
+pub mod cef_context_menu_edit_state_flags_t {
+    pub type Type = i32;
+    pub const CM_EDITFLAG_NONE: Type = 0;
+    pub const CM_EDITFLAG_CAN_UNDO: Type = 1;
+    pub const CM_EDITFLAG_CAN_REDO: Type = 2;
+    pub const CM_EDITFLAG_CAN_CUT: Type = 4;
+    pub const CM_EDITFLAG_CAN_COPY: Type = 8;
+    pub const CM_EDITFLAG_CAN_PASTE: Type = 16;
+    pub const CM_EDITFLAG_CAN_DELETE: Type = 32;
+    pub const CM_EDITFLAG_CAN_SELECT_ALL: Type = 64;
+    pub const CM_EDITFLAG_CAN_TRANSLATE: Type = 128;
+}
+pub mod cef_key_event_type_t {
+    pub type Type = i32;
+    pub const KEYEVENT_RAWKEYDOWN: Type = 0;
+    pub const KEYEVENT_KEYDOWN: Type = 1;
+    pub const KEYEVENT_KEYUP: Type = 2;
+    pub const KEYEVENT_CHAR: Type = 3;
+}
 #[repr(C)]
 pub struct _cef_key_event_t {
-    pub type_: cef_key_event_type_t,
+    pub type_: cef_key_event_type_t::Type,
     pub modifiers: uint32,
     pub windows_key_code: ::std::os::raw::c_int,
     pub native_key_code: ::std::os::raw::c_int,
@@ -9872,9 +9906,11 @@ fn bindgen_test_layout__cef_key_event_t() {
     );
 }
 pub type cef_key_event_t = _cef_key_event_t;
-pub const cef_focus_source_t_FOCUS_SOURCE_NAVIGATION: cef_focus_source_t = 0;
-pub const cef_focus_source_t_FOCUS_SOURCE_SYSTEM: cef_focus_source_t = 1;
-pub type cef_focus_source_t = i32;
+pub mod cef_focus_source_t {
+    pub type Type = i32;
+    pub const FOCUS_SOURCE_NAVIGATION: Type = 0;
+    pub const FOCUS_SOURCE_SYSTEM: Type = 1;
+}
 #[repr(C)]
 pub struct _cef_popup_features_t {
     pub x: ::std::os::raw::c_int,
@@ -10031,22 +10067,26 @@ fn bindgen_test_layout__cef_popup_features_t() {
         )
     );
 }
-pub const cef_dom_document_type_t_DOM_DOCUMENT_TYPE_UNKNOWN: cef_dom_document_type_t = 0;
-pub const cef_dom_document_type_t_DOM_DOCUMENT_TYPE_HTML: cef_dom_document_type_t = 1;
-pub const cef_dom_document_type_t_DOM_DOCUMENT_TYPE_XHTML: cef_dom_document_type_t = 2;
-pub const cef_dom_document_type_t_DOM_DOCUMENT_TYPE_PLUGIN: cef_dom_document_type_t = 3;
-pub type cef_dom_document_type_t = i32;
-pub const cef_dom_node_type_t_DOM_NODE_TYPE_UNSUPPORTED: cef_dom_node_type_t = 0;
-pub const cef_dom_node_type_t_DOM_NODE_TYPE_ELEMENT: cef_dom_node_type_t = 1;
-pub const cef_dom_node_type_t_DOM_NODE_TYPE_ATTRIBUTE: cef_dom_node_type_t = 2;
-pub const cef_dom_node_type_t_DOM_NODE_TYPE_TEXT: cef_dom_node_type_t = 3;
-pub const cef_dom_node_type_t_DOM_NODE_TYPE_CDATA_SECTION: cef_dom_node_type_t = 4;
-pub const cef_dom_node_type_t_DOM_NODE_TYPE_PROCESSING_INSTRUCTIONS: cef_dom_node_type_t = 5;
-pub const cef_dom_node_type_t_DOM_NODE_TYPE_COMMENT: cef_dom_node_type_t = 6;
-pub const cef_dom_node_type_t_DOM_NODE_TYPE_DOCUMENT: cef_dom_node_type_t = 7;
-pub const cef_dom_node_type_t_DOM_NODE_TYPE_DOCUMENT_TYPE: cef_dom_node_type_t = 8;
-pub const cef_dom_node_type_t_DOM_NODE_TYPE_DOCUMENT_FRAGMENT: cef_dom_node_type_t = 9;
-pub type cef_dom_node_type_t = i32;
+pub mod cef_dom_document_type_t {
+    pub type Type = i32;
+    pub const DOM_DOCUMENT_TYPE_UNKNOWN: Type = 0;
+    pub const DOM_DOCUMENT_TYPE_HTML: Type = 1;
+    pub const DOM_DOCUMENT_TYPE_XHTML: Type = 2;
+    pub const DOM_DOCUMENT_TYPE_PLUGIN: Type = 3;
+}
+pub mod cef_dom_node_type_t {
+    pub type Type = i32;
+    pub const DOM_NODE_TYPE_UNSUPPORTED: Type = 0;
+    pub const DOM_NODE_TYPE_ELEMENT: Type = 1;
+    pub const DOM_NODE_TYPE_ATTRIBUTE: Type = 2;
+    pub const DOM_NODE_TYPE_TEXT: Type = 3;
+    pub const DOM_NODE_TYPE_CDATA_SECTION: Type = 4;
+    pub const DOM_NODE_TYPE_PROCESSING_INSTRUCTIONS: Type = 5;
+    pub const DOM_NODE_TYPE_COMMENT: Type = 6;
+    pub const DOM_NODE_TYPE_DOCUMENT: Type = 7;
+    pub const DOM_NODE_TYPE_DOCUMENT_TYPE: Type = 8;
+    pub const DOM_NODE_TYPE_DOCUMENT_FRAGMENT: Type = 9;
+}
 impl cef_file_dialog_mode_t {
     pub const FILE_DIALOG_OPEN: cef_file_dialog_mode_t = cef_file_dialog_mode_t(0);
 }
@@ -10099,78 +10139,84 @@ impl ::std::ops::BitAndAssign for cef_file_dialog_mode_t {
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub struct cef_file_dialog_mode_t(pub i32);
-pub const cef_color_model_t_COLOR_MODEL_UNKNOWN: cef_color_model_t = 0;
-pub const cef_color_model_t_COLOR_MODEL_GRAY: cef_color_model_t = 1;
-pub const cef_color_model_t_COLOR_MODEL_COLOR: cef_color_model_t = 2;
-pub const cef_color_model_t_COLOR_MODEL_CMYK: cef_color_model_t = 3;
-pub const cef_color_model_t_COLOR_MODEL_CMY: cef_color_model_t = 4;
-pub const cef_color_model_t_COLOR_MODEL_KCMY: cef_color_model_t = 5;
-pub const cef_color_model_t_COLOR_MODEL_CMY_K: cef_color_model_t = 6;
-pub const cef_color_model_t_COLOR_MODEL_BLACK: cef_color_model_t = 7;
-pub const cef_color_model_t_COLOR_MODEL_GRAYSCALE: cef_color_model_t = 8;
-pub const cef_color_model_t_COLOR_MODEL_RGB: cef_color_model_t = 9;
-pub const cef_color_model_t_COLOR_MODEL_RGB16: cef_color_model_t = 10;
-pub const cef_color_model_t_COLOR_MODEL_RGBA: cef_color_model_t = 11;
-pub const cef_color_model_t_COLOR_MODEL_COLORMODE_COLOR: cef_color_model_t = 12;
-pub const cef_color_model_t_COLOR_MODEL_COLORMODE_MONOCHROME: cef_color_model_t = 13;
-pub const cef_color_model_t_COLOR_MODEL_HP_COLOR_COLOR: cef_color_model_t = 14;
-pub const cef_color_model_t_COLOR_MODEL_HP_COLOR_BLACK: cef_color_model_t = 15;
-pub const cef_color_model_t_COLOR_MODEL_PRINTOUTMODE_NORMAL: cef_color_model_t = 16;
-pub const cef_color_model_t_COLOR_MODEL_PRINTOUTMODE_NORMAL_GRAY: cef_color_model_t = 17;
-pub const cef_color_model_t_COLOR_MODEL_PROCESSCOLORMODEL_CMYK: cef_color_model_t = 18;
-pub const cef_color_model_t_COLOR_MODEL_PROCESSCOLORMODEL_GREYSCALE: cef_color_model_t = 19;
-pub const cef_color_model_t_COLOR_MODEL_PROCESSCOLORMODEL_RGB: cef_color_model_t = 20;
-pub type cef_color_model_t = i32;
-pub const cef_duplex_mode_t_DUPLEX_MODE_UNKNOWN: cef_duplex_mode_t = -1;
-pub const cef_duplex_mode_t_DUPLEX_MODE_SIMPLEX: cef_duplex_mode_t = 0;
-pub const cef_duplex_mode_t_DUPLEX_MODE_LONG_EDGE: cef_duplex_mode_t = 1;
-pub const cef_duplex_mode_t_DUPLEX_MODE_SHORT_EDGE: cef_duplex_mode_t = 2;
-pub type cef_duplex_mode_t = i32;
-pub const cef_cursor_type_t_CT_POINTER: cef_cursor_type_t = 0;
-pub const cef_cursor_type_t_CT_CROSS: cef_cursor_type_t = 1;
-pub const cef_cursor_type_t_CT_HAND: cef_cursor_type_t = 2;
-pub const cef_cursor_type_t_CT_IBEAM: cef_cursor_type_t = 3;
-pub const cef_cursor_type_t_CT_WAIT: cef_cursor_type_t = 4;
-pub const cef_cursor_type_t_CT_HELP: cef_cursor_type_t = 5;
-pub const cef_cursor_type_t_CT_EASTRESIZE: cef_cursor_type_t = 6;
-pub const cef_cursor_type_t_CT_NORTHRESIZE: cef_cursor_type_t = 7;
-pub const cef_cursor_type_t_CT_NORTHEASTRESIZE: cef_cursor_type_t = 8;
-pub const cef_cursor_type_t_CT_NORTHWESTRESIZE: cef_cursor_type_t = 9;
-pub const cef_cursor_type_t_CT_SOUTHRESIZE: cef_cursor_type_t = 10;
-pub const cef_cursor_type_t_CT_SOUTHEASTRESIZE: cef_cursor_type_t = 11;
-pub const cef_cursor_type_t_CT_SOUTHWESTRESIZE: cef_cursor_type_t = 12;
-pub const cef_cursor_type_t_CT_WESTRESIZE: cef_cursor_type_t = 13;
-pub const cef_cursor_type_t_CT_NORTHSOUTHRESIZE: cef_cursor_type_t = 14;
-pub const cef_cursor_type_t_CT_EASTWESTRESIZE: cef_cursor_type_t = 15;
-pub const cef_cursor_type_t_CT_NORTHEASTSOUTHWESTRESIZE: cef_cursor_type_t = 16;
-pub const cef_cursor_type_t_CT_NORTHWESTSOUTHEASTRESIZE: cef_cursor_type_t = 17;
-pub const cef_cursor_type_t_CT_COLUMNRESIZE: cef_cursor_type_t = 18;
-pub const cef_cursor_type_t_CT_ROWRESIZE: cef_cursor_type_t = 19;
-pub const cef_cursor_type_t_CT_MIDDLEPANNING: cef_cursor_type_t = 20;
-pub const cef_cursor_type_t_CT_EASTPANNING: cef_cursor_type_t = 21;
-pub const cef_cursor_type_t_CT_NORTHPANNING: cef_cursor_type_t = 22;
-pub const cef_cursor_type_t_CT_NORTHEASTPANNING: cef_cursor_type_t = 23;
-pub const cef_cursor_type_t_CT_NORTHWESTPANNING: cef_cursor_type_t = 24;
-pub const cef_cursor_type_t_CT_SOUTHPANNING: cef_cursor_type_t = 25;
-pub const cef_cursor_type_t_CT_SOUTHEASTPANNING: cef_cursor_type_t = 26;
-pub const cef_cursor_type_t_CT_SOUTHWESTPANNING: cef_cursor_type_t = 27;
-pub const cef_cursor_type_t_CT_WESTPANNING: cef_cursor_type_t = 28;
-pub const cef_cursor_type_t_CT_MOVE: cef_cursor_type_t = 29;
-pub const cef_cursor_type_t_CT_VERTICALTEXT: cef_cursor_type_t = 30;
-pub const cef_cursor_type_t_CT_CELL: cef_cursor_type_t = 31;
-pub const cef_cursor_type_t_CT_CONTEXTMENU: cef_cursor_type_t = 32;
-pub const cef_cursor_type_t_CT_ALIAS: cef_cursor_type_t = 33;
-pub const cef_cursor_type_t_CT_PROGRESS: cef_cursor_type_t = 34;
-pub const cef_cursor_type_t_CT_NODROP: cef_cursor_type_t = 35;
-pub const cef_cursor_type_t_CT_COPY: cef_cursor_type_t = 36;
-pub const cef_cursor_type_t_CT_NONE: cef_cursor_type_t = 37;
-pub const cef_cursor_type_t_CT_NOTALLOWED: cef_cursor_type_t = 38;
-pub const cef_cursor_type_t_CT_ZOOMIN: cef_cursor_type_t = 39;
-pub const cef_cursor_type_t_CT_ZOOMOUT: cef_cursor_type_t = 40;
-pub const cef_cursor_type_t_CT_GRAB: cef_cursor_type_t = 41;
-pub const cef_cursor_type_t_CT_GRABBING: cef_cursor_type_t = 42;
-pub const cef_cursor_type_t_CT_CUSTOM: cef_cursor_type_t = 43;
-pub type cef_cursor_type_t = i32;
+pub mod cef_color_model_t {
+    pub type Type = i32;
+    pub const COLOR_MODEL_UNKNOWN: Type = 0;
+    pub const COLOR_MODEL_GRAY: Type = 1;
+    pub const COLOR_MODEL_COLOR: Type = 2;
+    pub const COLOR_MODEL_CMYK: Type = 3;
+    pub const COLOR_MODEL_CMY: Type = 4;
+    pub const COLOR_MODEL_KCMY: Type = 5;
+    pub const COLOR_MODEL_CMY_K: Type = 6;
+    pub const COLOR_MODEL_BLACK: Type = 7;
+    pub const COLOR_MODEL_GRAYSCALE: Type = 8;
+    pub const COLOR_MODEL_RGB: Type = 9;
+    pub const COLOR_MODEL_RGB16: Type = 10;
+    pub const COLOR_MODEL_RGBA: Type = 11;
+    pub const COLOR_MODEL_COLORMODE_COLOR: Type = 12;
+    pub const COLOR_MODEL_COLORMODE_MONOCHROME: Type = 13;
+    pub const COLOR_MODEL_HP_COLOR_COLOR: Type = 14;
+    pub const COLOR_MODEL_HP_COLOR_BLACK: Type = 15;
+    pub const COLOR_MODEL_PRINTOUTMODE_NORMAL: Type = 16;
+    pub const COLOR_MODEL_PRINTOUTMODE_NORMAL_GRAY: Type = 17;
+    pub const COLOR_MODEL_PROCESSCOLORMODEL_CMYK: Type = 18;
+    pub const COLOR_MODEL_PROCESSCOLORMODEL_GREYSCALE: Type = 19;
+    pub const COLOR_MODEL_PROCESSCOLORMODEL_RGB: Type = 20;
+}
+pub mod cef_duplex_mode_t {
+    pub type Type = i32;
+    pub const DUPLEX_MODE_UNKNOWN: Type = -1;
+    pub const DUPLEX_MODE_SIMPLEX: Type = 0;
+    pub const DUPLEX_MODE_LONG_EDGE: Type = 1;
+    pub const DUPLEX_MODE_SHORT_EDGE: Type = 2;
+}
+pub mod cef_cursor_type_t {
+    pub type Type = i32;
+    pub const CT_POINTER: Type = 0;
+    pub const CT_CROSS: Type = 1;
+    pub const CT_HAND: Type = 2;
+    pub const CT_IBEAM: Type = 3;
+    pub const CT_WAIT: Type = 4;
+    pub const CT_HELP: Type = 5;
+    pub const CT_EASTRESIZE: Type = 6;
+    pub const CT_NORTHRESIZE: Type = 7;
+    pub const CT_NORTHEASTRESIZE: Type = 8;
+    pub const CT_NORTHWESTRESIZE: Type = 9;
+    pub const CT_SOUTHRESIZE: Type = 10;
+    pub const CT_SOUTHEASTRESIZE: Type = 11;
+    pub const CT_SOUTHWESTRESIZE: Type = 12;
+    pub const CT_WESTRESIZE: Type = 13;
+    pub const CT_NORTHSOUTHRESIZE: Type = 14;
+    pub const CT_EASTWESTRESIZE: Type = 15;
+    pub const CT_NORTHEASTSOUTHWESTRESIZE: Type = 16;
+    pub const CT_NORTHWESTSOUTHEASTRESIZE: Type = 17;
+    pub const CT_COLUMNRESIZE: Type = 18;
+    pub const CT_ROWRESIZE: Type = 19;
+    pub const CT_MIDDLEPANNING: Type = 20;
+    pub const CT_EASTPANNING: Type = 21;
+    pub const CT_NORTHPANNING: Type = 22;
+    pub const CT_NORTHEASTPANNING: Type = 23;
+    pub const CT_NORTHWESTPANNING: Type = 24;
+    pub const CT_SOUTHPANNING: Type = 25;
+    pub const CT_SOUTHEASTPANNING: Type = 26;
+    pub const CT_SOUTHWESTPANNING: Type = 27;
+    pub const CT_WESTPANNING: Type = 28;
+    pub const CT_MOVE: Type = 29;
+    pub const CT_VERTICALTEXT: Type = 30;
+    pub const CT_CELL: Type = 31;
+    pub const CT_CONTEXTMENU: Type = 32;
+    pub const CT_ALIAS: Type = 33;
+    pub const CT_PROGRESS: Type = 34;
+    pub const CT_NODROP: Type = 35;
+    pub const CT_COPY: Type = 36;
+    pub const CT_NONE: Type = 37;
+    pub const CT_NOTALLOWED: Type = 38;
+    pub const CT_ZOOMIN: Type = 39;
+    pub const CT_ZOOMOUT: Type = 40;
+    pub const CT_GRAB: Type = 41;
+    pub const CT_GRABBING: Type = 42;
+    pub const CT_CUSTOM: Type = 43;
+}
 #[repr(C)]
 pub struct _cef_cursor_info_t {
     pub hotspot: cef_point_t,
@@ -10234,11 +10280,13 @@ fn bindgen_test_layout__cef_cursor_info_t() {
     );
 }
 pub type cef_cursor_info_t = _cef_cursor_info_t;
-pub const cef_pdf_print_margin_type_t_PDF_PRINT_MARGIN_DEFAULT: cef_pdf_print_margin_type_t = 0;
-pub const cef_pdf_print_margin_type_t_PDF_PRINT_MARGIN_NONE: cef_pdf_print_margin_type_t = 1;
-pub const cef_pdf_print_margin_type_t_PDF_PRINT_MARGIN_MINIMUM: cef_pdf_print_margin_type_t = 2;
-pub const cef_pdf_print_margin_type_t_PDF_PRINT_MARGIN_CUSTOM: cef_pdf_print_margin_type_t = 3;
-pub type cef_pdf_print_margin_type_t = i32;
+pub mod cef_pdf_print_margin_type_t {
+    pub type Type = i32;
+    pub const PDF_PRINT_MARGIN_DEFAULT: Type = 0;
+    pub const PDF_PRINT_MARGIN_NONE: Type = 1;
+    pub const PDF_PRINT_MARGIN_MINIMUM: Type = 2;
+    pub const PDF_PRINT_MARGIN_CUSTOM: Type = 3;
+}
 #[repr(C)]
 pub struct _cef_pdf_print_settings_t {
     pub header_footer_title: cef_string_t,
@@ -10250,7 +10298,7 @@ pub struct _cef_pdf_print_settings_t {
     pub margin_right: f64,
     pub margin_bottom: f64,
     pub margin_left: f64,
-    pub margin_type: cef_pdf_print_margin_type_t,
+    pub margin_type: cef_pdf_print_margin_type_t::Type,
     pub header_footer_enabled: ::std::os::raw::c_int,
     pub selection_only: ::std::os::raw::c_int,
     pub landscape: ::std::os::raw::c_int,
@@ -10442,87 +10490,101 @@ fn bindgen_test_layout__cef_pdf_print_settings_t() {
         )
     );
 }
-pub const cef_scale_factor_t_SCALE_FACTOR_NONE: cef_scale_factor_t = 0;
-pub const cef_scale_factor_t_SCALE_FACTOR_100P: cef_scale_factor_t = 1;
-pub const cef_scale_factor_t_SCALE_FACTOR_125P: cef_scale_factor_t = 2;
-pub const cef_scale_factor_t_SCALE_FACTOR_133P: cef_scale_factor_t = 3;
-pub const cef_scale_factor_t_SCALE_FACTOR_140P: cef_scale_factor_t = 4;
-pub const cef_scale_factor_t_SCALE_FACTOR_150P: cef_scale_factor_t = 5;
-pub const cef_scale_factor_t_SCALE_FACTOR_180P: cef_scale_factor_t = 6;
-pub const cef_scale_factor_t_SCALE_FACTOR_200P: cef_scale_factor_t = 7;
-pub const cef_scale_factor_t_SCALE_FACTOR_250P: cef_scale_factor_t = 8;
-pub const cef_scale_factor_t_SCALE_FACTOR_300P: cef_scale_factor_t = 9;
-pub type cef_scale_factor_t = i32;
-pub const cef_plugin_policy_t_PLUGIN_POLICY_ALLOW: cef_plugin_policy_t = 0;
-pub const cef_plugin_policy_t_PLUGIN_POLICY_DETECT_IMPORTANT: cef_plugin_policy_t = 1;
-pub const cef_plugin_policy_t_PLUGIN_POLICY_BLOCK: cef_plugin_policy_t = 2;
-pub const cef_plugin_policy_t_PLUGIN_POLICY_DISABLE: cef_plugin_policy_t = 3;
-pub type cef_plugin_policy_t = i32;
-pub const cef_referrer_policy_t_REFERRER_POLICY_CLEAR_REFERRER_ON_TRANSITION_FROM_SECURE_TO_INSECURE : cef_referrer_policy_t = 0 ;
-pub const cef_referrer_policy_t_REFERRER_POLICY_DEFAULT: cef_referrer_policy_t = 0;
-pub const cef_referrer_policy_t_REFERRER_POLICY_REDUCE_REFERRER_GRANULARITY_ON_TRANSITION_CROSS_ORIGIN : cef_referrer_policy_t = 1 ;
-pub const cef_referrer_policy_t_REFERRER_POLICY_ORIGIN_ONLY_ON_TRANSITION_CROSS_ORIGIN:
-    cef_referrer_policy_t = 2;
-pub const cef_referrer_policy_t_REFERRER_POLICY_NEVER_CLEAR_REFERRER: cef_referrer_policy_t = 3;
-pub const cef_referrer_policy_t_REFERRER_POLICY_ORIGIN: cef_referrer_policy_t = 4;
-pub const cef_referrer_policy_t_REFERRER_POLICY_CLEAR_REFERRER_ON_TRANSITION_CROSS_ORIGIN:
-    cef_referrer_policy_t = 5;
-pub const cef_referrer_policy_t_REFERRER_POLICY_ORIGIN_CLEAR_ON_TRANSITION_FROM_SECURE_TO_INSECURE : cef_referrer_policy_t = 6 ;
-pub const cef_referrer_policy_t_REFERRER_POLICY_NO_REFERRER: cef_referrer_policy_t = 7;
-pub const cef_referrer_policy_t_REFERRER_POLICY_LAST_VALUE: cef_referrer_policy_t = 7;
-pub type cef_referrer_policy_t = i32;
-pub const cef_response_filter_status_t_RESPONSE_FILTER_NEED_MORE_DATA:
-    cef_response_filter_status_t = 0;
-pub const cef_response_filter_status_t_RESPONSE_FILTER_DONE: cef_response_filter_status_t = 1;
-pub const cef_response_filter_status_t_RESPONSE_FILTER_ERROR: cef_response_filter_status_t = 2;
-pub type cef_response_filter_status_t = i32;
-pub const cef_color_type_t_CEF_COLOR_TYPE_RGBA_8888: cef_color_type_t = 0;
-pub const cef_color_type_t_CEF_COLOR_TYPE_BGRA_8888: cef_color_type_t = 1;
-pub type cef_color_type_t = i32;
-pub const cef_alpha_type_t_CEF_ALPHA_TYPE_OPAQUE: cef_alpha_type_t = 0;
-pub const cef_alpha_type_t_CEF_ALPHA_TYPE_PREMULTIPLIED: cef_alpha_type_t = 1;
-pub const cef_alpha_type_t_CEF_ALPHA_TYPE_POSTMULTIPLIED: cef_alpha_type_t = 2;
-pub type cef_alpha_type_t = i32;
-pub const cef_menu_color_type_t_CEF_MENU_COLOR_TEXT: cef_menu_color_type_t = 0;
-pub const cef_menu_color_type_t_CEF_MENU_COLOR_TEXT_HOVERED: cef_menu_color_type_t = 1;
-pub const cef_menu_color_type_t_CEF_MENU_COLOR_TEXT_ACCELERATOR: cef_menu_color_type_t = 2;
-pub const cef_menu_color_type_t_CEF_MENU_COLOR_TEXT_ACCELERATOR_HOVERED: cef_menu_color_type_t = 3;
-pub const cef_menu_color_type_t_CEF_MENU_COLOR_BACKGROUND: cef_menu_color_type_t = 4;
-pub const cef_menu_color_type_t_CEF_MENU_COLOR_BACKGROUND_HOVERED: cef_menu_color_type_t = 5;
-pub const cef_menu_color_type_t_CEF_MENU_COLOR_COUNT: cef_menu_color_type_t = 6;
-pub type cef_menu_color_type_t = i32;
-pub const cef_ssl_version_t_SSL_CONNECTION_VERSION_UNKNOWN: cef_ssl_version_t = 0;
-pub const cef_ssl_version_t_SSL_CONNECTION_VERSION_SSL2: cef_ssl_version_t = 1;
-pub const cef_ssl_version_t_SSL_CONNECTION_VERSION_SSL3: cef_ssl_version_t = 2;
-pub const cef_ssl_version_t_SSL_CONNECTION_VERSION_TLS1: cef_ssl_version_t = 3;
-pub const cef_ssl_version_t_SSL_CONNECTION_VERSION_TLS1_1: cef_ssl_version_t = 4;
-pub const cef_ssl_version_t_SSL_CONNECTION_VERSION_TLS1_2: cef_ssl_version_t = 5;
-pub const cef_ssl_version_t_SSL_CONNECTION_VERSION_TLS1_3: cef_ssl_version_t = 6;
-pub const cef_ssl_version_t_SSL_CONNECTION_VERSION_QUIC: cef_ssl_version_t = 7;
-pub type cef_ssl_version_t = i32;
-pub const cef_ssl_content_status_t_SSL_CONTENT_NORMAL_CONTENT: cef_ssl_content_status_t = 0;
-pub const cef_ssl_content_status_t_SSL_CONTENT_DISPLAYED_INSECURE_CONTENT:
-    cef_ssl_content_status_t = 1;
-pub const cef_ssl_content_status_t_SSL_CONTENT_RAN_INSECURE_CONTENT: cef_ssl_content_status_t = 2;
-pub type cef_ssl_content_status_t = i32;
-pub const cef_scheme_options_t_CEF_SCHEME_OPTION_NONE: cef_scheme_options_t = 0;
-pub const cef_scheme_options_t_CEF_SCHEME_OPTION_STANDARD: cef_scheme_options_t = 1;
-pub const cef_scheme_options_t_CEF_SCHEME_OPTION_LOCAL: cef_scheme_options_t = 2;
-pub const cef_scheme_options_t_CEF_SCHEME_OPTION_DISPLAY_ISOLATED: cef_scheme_options_t = 4;
-pub const cef_scheme_options_t_CEF_SCHEME_OPTION_SECURE: cef_scheme_options_t = 8;
-pub const cef_scheme_options_t_CEF_SCHEME_OPTION_CORS_ENABLED: cef_scheme_options_t = 16;
-pub const cef_scheme_options_t_CEF_SCHEME_OPTION_CSP_BYPASSING: cef_scheme_options_t = 32;
-pub const cef_scheme_options_t_CEF_SCHEME_OPTION_FETCH_ENABLED: cef_scheme_options_t = 64;
-pub type cef_scheme_options_t = i32;
-pub const cef_cdm_registration_error_t_CEF_CDM_REGISTRATION_ERROR_NONE:
-    cef_cdm_registration_error_t = 0;
-pub const cef_cdm_registration_error_t_CEF_CDM_REGISTRATION_ERROR_INCORRECT_CONTENTS:
-    cef_cdm_registration_error_t = 1;
-pub const cef_cdm_registration_error_t_CEF_CDM_REGISTRATION_ERROR_INCOMPATIBLE:
-    cef_cdm_registration_error_t = 2;
-pub const cef_cdm_registration_error_t_CEF_CDM_REGISTRATION_ERROR_NOT_SUPPORTED:
-    cef_cdm_registration_error_t = 3;
-pub type cef_cdm_registration_error_t = i32;
+pub mod cef_scale_factor_t {
+    pub type Type = i32;
+    pub const SCALE_FACTOR_NONE: Type = 0;
+    pub const SCALE_FACTOR_100P: Type = 1;
+    pub const SCALE_FACTOR_125P: Type = 2;
+    pub const SCALE_FACTOR_133P: Type = 3;
+    pub const SCALE_FACTOR_140P: Type = 4;
+    pub const SCALE_FACTOR_150P: Type = 5;
+    pub const SCALE_FACTOR_180P: Type = 6;
+    pub const SCALE_FACTOR_200P: Type = 7;
+    pub const SCALE_FACTOR_250P: Type = 8;
+    pub const SCALE_FACTOR_300P: Type = 9;
+}
+pub mod cef_plugin_policy_t {
+    pub type Type = i32;
+    pub const PLUGIN_POLICY_ALLOW: Type = 0;
+    pub const PLUGIN_POLICY_DETECT_IMPORTANT: Type = 1;
+    pub const PLUGIN_POLICY_BLOCK: Type = 2;
+    pub const PLUGIN_POLICY_DISABLE: Type = 3;
+}
+pub mod cef_referrer_policy_t {
+    pub type Type = i32;
+    pub const REFERRER_POLICY_CLEAR_REFERRER_ON_TRANSITION_FROM_SECURE_TO_INSECURE: Type = 0;
+    pub const REFERRER_POLICY_DEFAULT: Type = 0;
+    pub const REFERRER_POLICY_REDUCE_REFERRER_GRANULARITY_ON_TRANSITION_CROSS_ORIGIN: Type = 1;
+    pub const REFERRER_POLICY_ORIGIN_ONLY_ON_TRANSITION_CROSS_ORIGIN: Type = 2;
+    pub const REFERRER_POLICY_NEVER_CLEAR_REFERRER: Type = 3;
+    pub const REFERRER_POLICY_ORIGIN: Type = 4;
+    pub const REFERRER_POLICY_CLEAR_REFERRER_ON_TRANSITION_CROSS_ORIGIN: Type = 5;
+    pub const REFERRER_POLICY_ORIGIN_CLEAR_ON_TRANSITION_FROM_SECURE_TO_INSECURE: Type = 6;
+    pub const REFERRER_POLICY_NO_REFERRER: Type = 7;
+    pub const REFERRER_POLICY_LAST_VALUE: Type = 7;
+}
+pub mod cef_response_filter_status_t {
+    pub type Type = i32;
+    pub const RESPONSE_FILTER_NEED_MORE_DATA: Type = 0;
+    pub const RESPONSE_FILTER_DONE: Type = 1;
+    pub const RESPONSE_FILTER_ERROR: Type = 2;
+}
+pub mod cef_color_type_t {
+    pub type Type = i32;
+    pub const CEF_COLOR_TYPE_RGBA_8888: Type = 0;
+    pub const CEF_COLOR_TYPE_BGRA_8888: Type = 1;
+}
+pub mod cef_alpha_type_t {
+    pub type Type = i32;
+    pub const CEF_ALPHA_TYPE_OPAQUE: Type = 0;
+    pub const CEF_ALPHA_TYPE_PREMULTIPLIED: Type = 1;
+    pub const CEF_ALPHA_TYPE_POSTMULTIPLIED: Type = 2;
+}
+pub mod cef_menu_color_type_t {
+    pub type Type = i32;
+    pub const CEF_MENU_COLOR_TEXT: Type = 0;
+    pub const CEF_MENU_COLOR_TEXT_HOVERED: Type = 1;
+    pub const CEF_MENU_COLOR_TEXT_ACCELERATOR: Type = 2;
+    pub const CEF_MENU_COLOR_TEXT_ACCELERATOR_HOVERED: Type = 3;
+    pub const CEF_MENU_COLOR_BACKGROUND: Type = 4;
+    pub const CEF_MENU_COLOR_BACKGROUND_HOVERED: Type = 5;
+    pub const CEF_MENU_COLOR_COUNT: Type = 6;
+}
+pub mod cef_ssl_version_t {
+    pub type Type = i32;
+    pub const SSL_CONNECTION_VERSION_UNKNOWN: Type = 0;
+    pub const SSL_CONNECTION_VERSION_SSL2: Type = 1;
+    pub const SSL_CONNECTION_VERSION_SSL3: Type = 2;
+    pub const SSL_CONNECTION_VERSION_TLS1: Type = 3;
+    pub const SSL_CONNECTION_VERSION_TLS1_1: Type = 4;
+    pub const SSL_CONNECTION_VERSION_TLS1_2: Type = 5;
+    pub const SSL_CONNECTION_VERSION_TLS1_3: Type = 6;
+    pub const SSL_CONNECTION_VERSION_QUIC: Type = 7;
+}
+pub mod cef_ssl_content_status_t {
+    pub type Type = i32;
+    pub const SSL_CONTENT_NORMAL_CONTENT: Type = 0;
+    pub const SSL_CONTENT_DISPLAYED_INSECURE_CONTENT: Type = 1;
+    pub const SSL_CONTENT_RAN_INSECURE_CONTENT: Type = 2;
+}
+pub mod cef_scheme_options_t {
+    pub type Type = i32;
+    pub const CEF_SCHEME_OPTION_NONE: Type = 0;
+    pub const CEF_SCHEME_OPTION_STANDARD: Type = 1;
+    pub const CEF_SCHEME_OPTION_LOCAL: Type = 2;
+    pub const CEF_SCHEME_OPTION_DISPLAY_ISOLATED: Type = 4;
+    pub const CEF_SCHEME_OPTION_SECURE: Type = 8;
+    pub const CEF_SCHEME_OPTION_CORS_ENABLED: Type = 16;
+    pub const CEF_SCHEME_OPTION_CSP_BYPASSING: Type = 32;
+    pub const CEF_SCHEME_OPTION_FETCH_ENABLED: Type = 64;
+}
+pub mod cef_cdm_registration_error_t {
+    pub type Type = i32;
+    pub const CEF_CDM_REGISTRATION_ERROR_NONE: Type = 0;
+    pub const CEF_CDM_REGISTRATION_ERROR_INCORRECT_CONTENTS: Type = 1;
+    pub const CEF_CDM_REGISTRATION_ERROR_INCOMPATIBLE: Type = 2;
+    pub const CEF_CDM_REGISTRATION_ERROR_NOT_SUPPORTED: Type = 3;
+}
 #[repr(C)]
 pub struct _cef_composition_underline_t {
     pub range: cef_range_t,
@@ -10593,42 +10655,43 @@ fn bindgen_test_layout__cef_composition_underline_t() {
     );
 }
 pub type cef_composition_underline_t = _cef_composition_underline_t;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_NONE: cef_channel_layout_t = 0;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_UNSUPPORTED: cef_channel_layout_t = 1;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_MONO: cef_channel_layout_t = 2;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_STEREO: cef_channel_layout_t = 3;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_2_1: cef_channel_layout_t = 4;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_SURROUND: cef_channel_layout_t = 5;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_4_0: cef_channel_layout_t = 6;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_2_2: cef_channel_layout_t = 7;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_QUAD: cef_channel_layout_t = 8;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_5_0: cef_channel_layout_t = 9;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_5_1: cef_channel_layout_t = 10;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_5_0_BACK: cef_channel_layout_t = 11;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_5_1_BACK: cef_channel_layout_t = 12;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_7_0: cef_channel_layout_t = 13;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_7_1: cef_channel_layout_t = 14;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_7_1_WIDE: cef_channel_layout_t = 15;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_STEREO_DOWNMIX: cef_channel_layout_t = 16;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_2POINT1: cef_channel_layout_t = 17;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_3_1: cef_channel_layout_t = 18;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_4_1: cef_channel_layout_t = 19;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_6_0: cef_channel_layout_t = 20;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_6_0_FRONT: cef_channel_layout_t = 21;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_HEXAGONAL: cef_channel_layout_t = 22;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_6_1: cef_channel_layout_t = 23;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_6_1_BACK: cef_channel_layout_t = 24;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_6_1_FRONT: cef_channel_layout_t = 25;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_7_0_FRONT: cef_channel_layout_t = 26;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_7_1_WIDE_BACK: cef_channel_layout_t = 27;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_OCTAGONAL: cef_channel_layout_t = 28;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_DISCRETE: cef_channel_layout_t = 29;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_STEREO_AND_KEYBOARD_MIC: cef_channel_layout_t =
-    30;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_4_1_QUAD_SIDE: cef_channel_layout_t = 31;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_BITSTREAM: cef_channel_layout_t = 32;
-pub const cef_channel_layout_t_CEF_CHANNEL_LAYOUT_MAX: cef_channel_layout_t = 32;
-pub type cef_channel_layout_t = i32;
+pub mod cef_channel_layout_t {
+    pub type Type = i32;
+    pub const CEF_CHANNEL_LAYOUT_NONE: Type = 0;
+    pub const CEF_CHANNEL_LAYOUT_UNSUPPORTED: Type = 1;
+    pub const CEF_CHANNEL_LAYOUT_MONO: Type = 2;
+    pub const CEF_CHANNEL_LAYOUT_STEREO: Type = 3;
+    pub const CEF_CHANNEL_LAYOUT_2_1: Type = 4;
+    pub const CEF_CHANNEL_LAYOUT_SURROUND: Type = 5;
+    pub const CEF_CHANNEL_LAYOUT_4_0: Type = 6;
+    pub const CEF_CHANNEL_LAYOUT_2_2: Type = 7;
+    pub const CEF_CHANNEL_LAYOUT_QUAD: Type = 8;
+    pub const CEF_CHANNEL_LAYOUT_5_0: Type = 9;
+    pub const CEF_CHANNEL_LAYOUT_5_1: Type = 10;
+    pub const CEF_CHANNEL_LAYOUT_5_0_BACK: Type = 11;
+    pub const CEF_CHANNEL_LAYOUT_5_1_BACK: Type = 12;
+    pub const CEF_CHANNEL_LAYOUT_7_0: Type = 13;
+    pub const CEF_CHANNEL_LAYOUT_7_1: Type = 14;
+    pub const CEF_CHANNEL_LAYOUT_7_1_WIDE: Type = 15;
+    pub const CEF_CHANNEL_LAYOUT_STEREO_DOWNMIX: Type = 16;
+    pub const CEF_CHANNEL_LAYOUT_2POINT1: Type = 17;
+    pub const CEF_CHANNEL_LAYOUT_3_1: Type = 18;
+    pub const CEF_CHANNEL_LAYOUT_4_1: Type = 19;
+    pub const CEF_CHANNEL_LAYOUT_6_0: Type = 20;
+    pub const CEF_CHANNEL_LAYOUT_6_0_FRONT: Type = 21;
+    pub const CEF_CHANNEL_LAYOUT_HEXAGONAL: Type = 22;
+    pub const CEF_CHANNEL_LAYOUT_6_1: Type = 23;
+    pub const CEF_CHANNEL_LAYOUT_6_1_BACK: Type = 24;
+    pub const CEF_CHANNEL_LAYOUT_6_1_FRONT: Type = 25;
+    pub const CEF_CHANNEL_LAYOUT_7_0_FRONT: Type = 26;
+    pub const CEF_CHANNEL_LAYOUT_7_1_WIDE_BACK: Type = 27;
+    pub const CEF_CHANNEL_LAYOUT_OCTAGONAL: Type = 28;
+    pub const CEF_CHANNEL_LAYOUT_DISCRETE: Type = 29;
+    pub const CEF_CHANNEL_LAYOUT_STEREO_AND_KEYBOARD_MIC: Type = 30;
+    pub const CEF_CHANNEL_LAYOUT_4_1_QUAD_SIDE: Type = 31;
+    pub const CEF_CHANNEL_LAYOUT_BITSTREAM: Type = 32;
+    pub const CEF_CHANNEL_LAYOUT_MAX: Type = 32;
+}
 #[repr(C)]
 pub struct _cef_base_ref_counted_t {
     pub size: usize,
@@ -11111,8 +11174,9 @@ pub struct _cef_value_t {
     >,
     pub copy:
         ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_value_t) -> *mut _cef_value_t>,
-    pub get_type:
-        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_value_t) -> cef_value_type_t>,
+    pub get_type: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_value_t) -> cef_value_type_t::Type,
+    >,
     pub get_bool: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_value_t) -> ::std::os::raw::c_int,
     >,
@@ -11614,7 +11678,7 @@ pub struct _cef_dictionary_value_t {
         unsafe extern "C" fn(
             self_: *mut _cef_dictionary_value_t,
             key: *const cef_string_t,
-        ) -> cef_value_type_t,
+        ) -> cef_value_type_t::Type,
     >,
     pub get_value: ::std::option::Option<
         unsafe extern "C" fn(
@@ -12124,7 +12188,7 @@ pub struct _cef_list_value_t {
         unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: usize) -> ::std::os::raw::c_int,
     >,
     pub get_type: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: usize) -> cef_value_type_t,
+        unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: usize) -> cef_value_type_t::Type,
     >,
     pub get_value: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: usize) -> *mut _cef_value_t,
@@ -12545,8 +12609,8 @@ pub struct _cef_image_t {
             scale_factor: f32,
             pixel_width: ::std::os::raw::c_int,
             pixel_height: ::std::os::raw::c_int,
-            color_type: cef_color_type_t,
-            alpha_type: cef_alpha_type_t,
+            color_type: cef_color_type_t::Type,
+            alpha_type: cef_alpha_type_t::Type,
             pixel_data: *const ::std::os::raw::c_void,
             pixel_data_size: usize,
         ) -> ::std::os::raw::c_int,
@@ -12588,8 +12652,8 @@ pub struct _cef_image_t {
         unsafe extern "C" fn(
             self_: *mut _cef_image_t,
             scale_factor: f32,
-            color_type: cef_color_type_t,
-            alpha_type: cef_alpha_type_t,
+            color_type: cef_color_type_t::Type,
+            alpha_type: cef_alpha_type_t::Type,
             pixel_width: *mut ::std::os::raw::c_int,
             pixel_height: *mut ::std::os::raw::c_int,
         ) -> *mut _cef_binary_value_t,
@@ -13402,7 +13466,7 @@ pub type cef_domvisitor_t = _cef_domvisitor_t;
 pub struct _cef_domdocument_t {
     pub base: cef_base_ref_counted_t,
     pub get_type: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_domdocument_t) -> cef_dom_document_type_t,
+        unsafe extern "C" fn(self_: *mut _cef_domdocument_t) -> cef_dom_document_type_t::Type,
     >,
     pub get_document: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_domdocument_t) -> *mut _cef_domnode_t,
@@ -13638,7 +13702,7 @@ pub type cef_domdocument_t = _cef_domdocument_t;
 pub struct _cef_domnode_t {
     pub base: cef_base_ref_counted_t,
     pub get_type: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_domnode_t) -> cef_dom_node_type_t,
+        unsafe extern "C" fn(self_: *mut _cef_domnode_t) -> cef_dom_node_type_t::Type,
     >,
     pub is_text: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_domnode_t) -> ::std::os::raw::c_int,
@@ -14158,14 +14222,14 @@ pub struct _cef_request_t {
         unsafe extern "C" fn(
             self_: *mut _cef_request_t,
             referrer_url: *const cef_string_t,
-            policy: cef_referrer_policy_t,
+            policy: cef_referrer_policy_t::Type,
         ),
     >,
     pub get_referrer_url: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_request_t) -> cef_string_userfree_t,
     >,
     pub get_referrer_policy: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_request_t) -> cef_referrer_policy_t,
+        unsafe extern "C" fn(self_: *mut _cef_request_t) -> cef_referrer_policy_t::Type,
     >,
     pub get_post_data: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_request_t) -> *mut _cef_post_data_t,
@@ -14215,10 +14279,10 @@ pub struct _cef_request_t {
         unsafe extern "C" fn(self_: *mut _cef_request_t, url: *const cef_string_t),
     >,
     pub get_resource_type: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_request_t) -> cef_resource_type_t,
+        unsafe extern "C" fn(self_: *mut _cef_request_t) -> cef_resource_type_t::Type,
     >,
     pub get_transition_type: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_request_t) -> cef_transition_type_t,
+        unsafe extern "C" fn(self_: *mut _cef_request_t) -> cef_transition_type_t::Type,
     >,
     pub get_identifier:
         ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_request_t) -> uint64>,
@@ -14640,7 +14704,9 @@ pub struct _cef_post_data_element_t {
         ),
     >,
     pub get_type: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_post_data_element_t) -> cef_postdataelement_type_t,
+        unsafe extern "C" fn(
+            self_: *mut _cef_post_data_element_t,
+        ) -> cef_postdataelement_type_t::Type,
     >,
     pub get_file: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_post_data_element_t) -> cef_string_userfree_t,
@@ -14896,7 +14962,7 @@ pub struct _cef_frame_t {
     pub send_process_message: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_frame_t,
-            target_process: cef_process_id_t,
+            target_process: cef_process_id_t::Type,
             message: *mut _cef_process_message_t,
         ),
     >,
@@ -15555,13 +15621,13 @@ pub struct _cef_sslstatus_t {
         unsafe extern "C" fn(self_: *mut _cef_sslstatus_t) -> ::std::os::raw::c_int,
     >,
     pub get_cert_status: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_sslstatus_t) -> cef_cert_status_t,
+        unsafe extern "C" fn(self_: *mut _cef_sslstatus_t) -> cef_cert_status_t::Type,
     >,
     pub get_sslversion: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_sslstatus_t) -> cef_ssl_version_t,
+        unsafe extern "C" fn(self_: *mut _cef_sslstatus_t) -> cef_ssl_version_t::Type,
     >,
     pub get_content_status: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_sslstatus_t) -> cef_ssl_content_status_t,
+        unsafe extern "C" fn(self_: *mut _cef_sslstatus_t) -> cef_ssl_content_status_t::Type,
     >,
     pub get_x509certificate: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_sslstatus_t) -> *mut _cef_x509certificate_t,
@@ -15667,7 +15733,7 @@ pub struct _cef_navigation_entry_t {
         unsafe extern "C" fn(self_: *mut _cef_navigation_entry_t) -> cef_string_userfree_t,
     >,
     pub get_transition_type: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_navigation_entry_t) -> cef_transition_type_t,
+        unsafe extern "C" fn(self_: *mut _cef_navigation_entry_t) -> cef_transition_type_t::Type,
     >,
     pub has_post_data: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_navigation_entry_t) -> ::std::os::raw::c_int,
@@ -16411,7 +16477,7 @@ fn bindgen_test_layout__cef_get_extension_resource_callback_t() {
 pub struct _cef_extension_handler_t {
     pub base: cef_base_ref_counted_t,
     pub on_extension_load_failed: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_extension_handler_t, result: cef_errorcode_t),
+        unsafe extern "C" fn(self_: *mut _cef_extension_handler_t, result: cef_errorcode_t::Type),
     >,
     pub on_extension_loaded: ::std::option::Option<
         unsafe extern "C" fn(
@@ -16608,7 +16674,7 @@ pub struct _cef_resolve_callback_t {
     pub on_resolve_completed: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_resolve_callback_t,
-            result: cef_errorcode_t,
+            result: cef_errorcode_t::Type,
             resolved_ips: cef_string_list_t,
         ),
     >,
@@ -17729,7 +17795,10 @@ pub struct _cef_browser_host_t {
     pub notify_screen_info_changed:
         ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_browser_host_t)>,
     pub invalidate: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_browser_host_t, type_: cef_paint_element_type_t),
+        unsafe extern "C" fn(
+            self_: *mut _cef_browser_host_t,
+            type_: cef_paint_element_type_t::Type,
+        ),
     >,
     pub send_external_begin_frame:
         ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_browser_host_t)>,
@@ -17740,7 +17809,7 @@ pub struct _cef_browser_host_t {
         unsafe extern "C" fn(
             self_: *mut _cef_browser_host_t,
             event: *const _cef_mouse_event_t,
-            type_: cef_mouse_button_type_t,
+            type_: cef_mouse_button_type_t::Type,
             mouseUp: ::std::os::raw::c_int,
             clickCount: ::std::os::raw::c_int,
         ),
@@ -17836,7 +17905,10 @@ pub struct _cef_browser_host_t {
         unsafe extern "C" fn(self_: *mut _cef_browser_host_t) -> *mut _cef_navigation_entry_t,
     >,
     pub set_accessibility_state: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_browser_host_t, accessibility_state: cef_state_t),
+        unsafe extern "C" fn(
+            self_: *mut _cef_browser_host_t,
+            accessibility_state: cef_state_t::Type,
+        ),
     >,
     pub set_auto_resize_enabled: ::std::option::Option<
         unsafe extern "C" fn(
@@ -18688,10 +18760,10 @@ pub struct _cef_print_settings_t {
         unsafe extern "C" fn(self_: *mut _cef_print_settings_t) -> ::std::os::raw::c_int,
     >,
     pub set_color_model: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_print_settings_t, model: cef_color_model_t),
+        unsafe extern "C" fn(self_: *mut _cef_print_settings_t, model: cef_color_model_t::Type),
     >,
     pub get_color_model: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_print_settings_t) -> cef_color_model_t,
+        unsafe extern "C" fn(self_: *mut _cef_print_settings_t) -> cef_color_model_t::Type,
     >,
     pub set_copies: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_print_settings_t, copies: ::std::os::raw::c_int),
@@ -18700,10 +18772,10 @@ pub struct _cef_print_settings_t {
         unsafe extern "C" fn(self_: *mut _cef_print_settings_t) -> ::std::os::raw::c_int,
     >,
     pub set_duplex_mode: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_print_settings_t, mode: cef_duplex_mode_t),
+        unsafe extern "C" fn(self_: *mut _cef_print_settings_t, mode: cef_duplex_mode_t::Type),
     >,
     pub get_duplex_mode: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_print_settings_t) -> cef_duplex_mode_t,
+        unsafe extern "C" fn(self_: *mut _cef_print_settings_t) -> cef_duplex_mode_t::Type,
     >,
 }
 #[test]
@@ -19370,7 +19442,7 @@ pub struct _cef_load_handler_t {
             self_: *mut _cef_load_handler_t,
             browser: *mut _cef_browser_t,
             frame: *mut _cef_frame_t,
-            transition_type: cef_transition_type_t,
+            transition_type: cef_transition_type_t::Type,
         ),
     >,
     pub on_load_end: ::std::option::Option<
@@ -19386,7 +19458,7 @@ pub struct _cef_load_handler_t {
             self_: *mut _cef_load_handler_t,
             browser: *mut _cef_browser_t,
             frame: *mut _cef_frame_t,
-            errorCode: cef_errorcode_t,
+            errorCode: cef_errorcode_t::Type,
             errorText: *const cef_string_t,
             failedUrl: *const cef_string_t,
         ),
@@ -19516,7 +19588,7 @@ pub struct _cef_task_runner_t {
     pub belongs_to_thread: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_task_runner_t,
-            threadId: cef_thread_id_t,
+            threadId: cef_thread_id_t::Type,
         ) -> ::std::os::raw::c_int,
     >,
     pub post_task: ::std::option::Option<
@@ -20320,7 +20392,7 @@ pub struct _cef_v8value_t {
             self_: *mut _cef_v8value_t,
             key: *const cef_string_t,
             value: *mut _cef_v8value_t,
-            attribute: cef_v8_propertyattribute_t,
+            attribute: cef_v8_propertyattribute_t::Type,
         ) -> ::std::os::raw::c_int,
     >,
     pub set_value_byindex: ::std::option::Option<
@@ -20334,8 +20406,8 @@ pub struct _cef_v8value_t {
         unsafe extern "C" fn(
             self_: *mut _cef_v8value_t,
             key: *const cef_string_t,
-            settings: cef_v8_accesscontrol_t,
-            attribute: cef_v8_propertyattribute_t,
+            settings: cef_v8_accesscontrol_t::Type,
+            attribute: cef_v8_propertyattribute_t::Type,
         ) -> ::std::os::raw::c_int,
     >,
     pub get_keys: ::std::option::Option<
@@ -21264,7 +21336,7 @@ pub struct _cef_render_process_handler_t {
             self_: *mut _cef_render_process_handler_t,
             browser: *mut _cef_browser_t,
             frame: *mut _cef_frame_t,
-            source_process: cef_process_id_t,
+            source_process: cef_process_id_t::Type,
             message: *mut _cef_process_message_t,
         ) -> ::std::os::raw::c_int,
     >,
@@ -21447,7 +21519,7 @@ pub struct _cef_resource_bundle_handler_t {
         unsafe extern "C" fn(
             self_: *mut _cef_resource_bundle_handler_t,
             resource_id: ::std::os::raw::c_int,
-            scale_factor: cef_scale_factor_t,
+            scale_factor: cef_scale_factor_t::Type,
             data: *mut *mut ::std::os::raw::c_void,
             data_size: *mut usize,
         ) -> ::std::os::raw::c_int,
@@ -21524,10 +21596,11 @@ pub struct _cef_response_t {
     pub is_read_only: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_response_t) -> ::std::os::raw::c_int,
     >,
-    pub get_error:
-        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_response_t) -> cef_errorcode_t>,
+    pub get_error: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_response_t) -> cef_errorcode_t::Type,
+    >,
     pub set_error: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_response_t, error: cef_errorcode_t),
+        unsafe extern "C" fn(self_: *mut _cef_response_t, error: cef_errorcode_t::Type),
     >,
     pub get_status: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_response_t) -> ::std::os::raw::c_int,
@@ -22255,7 +22328,7 @@ pub struct _cef_audio_handler_t {
             browser: *mut _cef_browser_t,
             audio_stream_id: ::std::os::raw::c_int,
             channels: ::std::os::raw::c_int,
-            channel_layout: cef_channel_layout_t,
+            channel_layout: cef_channel_layout_t::Type,
             sample_rate: ::std::os::raw::c_int,
             frames_per_buffer: ::std::os::raw::c_int,
         ),
@@ -22485,13 +22558,13 @@ pub struct _cef_menu_model_t {
         unsafe extern "C" fn(
             self_: *mut _cef_menu_model_t,
             command_id: ::std::os::raw::c_int,
-        ) -> cef_menu_item_type_t,
+        ) -> cef_menu_item_type_t::Type,
     >,
     pub get_type_at: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_menu_model_t,
             index: ::std::os::raw::c_int,
-        ) -> cef_menu_item_type_t,
+        ) -> cef_menu_item_type_t::Type,
     >,
     pub get_group_id: ::std::option::Option<
         unsafe extern "C" fn(
@@ -22677,7 +22750,7 @@ pub struct _cef_menu_model_t {
         unsafe extern "C" fn(
             self_: *mut _cef_menu_model_t,
             command_id: ::std::os::raw::c_int,
-            color_type: cef_menu_color_type_t,
+            color_type: cef_menu_color_type_t::Type,
             color: cef_color_t,
         ) -> ::std::os::raw::c_int,
     >,
@@ -22685,7 +22758,7 @@ pub struct _cef_menu_model_t {
         unsafe extern "C" fn(
             self_: *mut _cef_menu_model_t,
             index: ::std::os::raw::c_int,
-            color_type: cef_menu_color_type_t,
+            color_type: cef_menu_color_type_t::Type,
             color: cef_color_t,
         ) -> ::std::os::raw::c_int,
     >,
@@ -22693,7 +22766,7 @@ pub struct _cef_menu_model_t {
         unsafe extern "C" fn(
             self_: *mut _cef_menu_model_t,
             command_id: ::std::os::raw::c_int,
-            color_type: cef_menu_color_type_t,
+            color_type: cef_menu_color_type_t::Type,
             color: *mut cef_color_t,
         ) -> ::std::os::raw::c_int,
     >,
@@ -22701,7 +22774,7 @@ pub struct _cef_menu_model_t {
         unsafe extern "C" fn(
             self_: *mut _cef_menu_model_t,
             index: ::std::os::raw::c_int,
-            color_type: cef_menu_color_type_t,
+            color_type: cef_menu_color_type_t::Type,
             color: *mut cef_color_t,
         ) -> ::std::os::raw::c_int,
     >,
@@ -23546,7 +23619,7 @@ pub struct _cef_context_menu_params_t {
     pub get_type_flags: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_context_menu_params_t,
-        ) -> cef_context_menu_type_flags_t,
+        ) -> cef_context_menu_type_flags_t::Type,
     >,
     pub get_link_url: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_context_menu_params_t) -> cef_string_userfree_t,
@@ -23575,12 +23648,12 @@ pub struct _cef_context_menu_params_t {
     pub get_media_type: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_context_menu_params_t,
-        ) -> cef_context_menu_media_type_t,
+        ) -> cef_context_menu_media_type_t::Type,
     >,
     pub get_media_state_flags: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_context_menu_params_t,
-        ) -> cef_context_menu_media_state_flags_t,
+        ) -> cef_context_menu_media_state_flags_t::Type,
     >,
     pub get_selection_text: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_context_menu_params_t) -> cef_string_userfree_t,
@@ -23603,7 +23676,7 @@ pub struct _cef_context_menu_params_t {
     pub get_edit_state_flags: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_context_menu_params_t,
-        ) -> cef_context_menu_edit_state_flags_t,
+        ) -> cef_context_menu_edit_state_flags_t::Type,
     >,
     pub is_custom_menu: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_context_menu_params_t) -> ::std::os::raw::c_int,
@@ -24067,7 +24140,7 @@ pub struct _cef_display_handler_t {
         unsafe extern "C" fn(
             self_: *mut _cef_display_handler_t,
             browser: *mut _cef_browser_t,
-            level: cef_log_severity_t,
+            level: cef_log_severity_t::Type,
             message: *const cef_string_t,
             source: *const cef_string_t,
             line: ::std::os::raw::c_int,
@@ -24824,7 +24897,7 @@ pub struct _cef_focus_handler_t {
         unsafe extern "C" fn(
             self_: *mut _cef_focus_handler_t,
             browser: *mut _cef_browser_t,
-            source: cef_focus_source_t,
+            source: cef_focus_source_t::Type,
         ) -> ::std::os::raw::c_int,
     >,
     pub on_got_focus: ::std::option::Option<
@@ -24943,7 +25016,7 @@ pub struct _cef_jsdialog_handler_t {
             self_: *mut _cef_jsdialog_handler_t,
             browser: *mut _cef_browser_t,
             origin_url: *const cef_string_t,
-            dialog_type: cef_jsdialog_type_t,
+            dialog_type: cef_jsdialog_type_t::Type,
             message_text: *const cef_string_t,
             default_prompt_text: *const cef_string_t,
             callback: *mut _cef_jsdialog_callback_t,
@@ -25121,7 +25194,7 @@ pub struct _cef_life_span_handler_t {
             frame: *mut _cef_frame_t,
             target_url: *const cef_string_t,
             target_frame_name: *const cef_string_t,
-            target_disposition: cef_window_open_disposition_t,
+            target_disposition: cef_window_open_disposition_t::Type,
             user_gesture: ::std::os::raw::c_int,
             popupFeatures: *const _cef_popup_features_t,
             windowInfo: *mut _cef_window_info_t,
@@ -25338,7 +25411,7 @@ pub struct _cef_render_handler_t {
         unsafe extern "C" fn(
             self_: *mut _cef_render_handler_t,
             browser: *mut _cef_browser_t,
-            type_: cef_paint_element_type_t,
+            type_: cef_paint_element_type_t::Type,
             dirtyRectsCount: usize,
             dirtyRects: *const cef_rect_t,
             buffer: *const ::std::os::raw::c_void,
@@ -25350,7 +25423,7 @@ pub struct _cef_render_handler_t {
         unsafe extern "C" fn(
             self_: *mut _cef_render_handler_t,
             browser: *mut _cef_browser_t,
-            type_: cef_paint_element_type_t,
+            type_: cef_paint_element_type_t::Type,
             dirtyRectsCount: usize,
             dirtyRects: *const cef_rect_t,
             shared_handle: *mut ::std::os::raw::c_void,
@@ -25361,7 +25434,7 @@ pub struct _cef_render_handler_t {
             self_: *mut _cef_render_handler_t,
             browser: *mut _cef_browser_t,
             cursor: HCURSOR,
-            type_: cef_cursor_type_t,
+            type_: cef_cursor_type_t::Type,
             custom_cursor_info: *const _cef_cursor_info_t,
         ),
     >,
@@ -25411,7 +25484,7 @@ pub struct _cef_render_handler_t {
         unsafe extern "C" fn(
             self_: *mut _cef_render_handler_t,
             browser: *mut _cef_browser_t,
-            input_mode: cef_text_input_mode_t,
+            input_mode: cef_text_input_mode_t::Type,
         ),
     >,
 }
@@ -25760,7 +25833,7 @@ pub struct _cef_response_filter_t {
             data_out: *mut ::std::os::raw::c_void,
             data_out_size: usize,
             data_out_written: *mut usize,
-        ) -> cef_response_filter_status_t,
+        ) -> cef_response_filter_status_t::Type,
     >,
 }
 #[test]
@@ -25827,7 +25900,7 @@ pub struct _cef_resource_request_handler_t {
             frame: *mut _cef_frame_t,
             request: *mut _cef_request_t,
             callback: *mut _cef_request_callback_t,
-        ) -> cef_return_value_t,
+        ) -> cef_return_value_t::Type,
     >,
     pub get_resource_handler: ::std::option::Option<
         unsafe extern "C" fn(
@@ -25872,7 +25945,7 @@ pub struct _cef_resource_request_handler_t {
             frame: *mut _cef_frame_t,
             request: *mut _cef_request_t,
             response: *mut _cef_response_t,
-            status: cef_urlrequest_status_t,
+            status: cef_urlrequest_status_t::Type,
             received_content_length: int64,
         ),
     >,
@@ -26095,7 +26168,7 @@ pub type cef_cookie_access_filter_t = _cef_cookie_access_filter_t;
 pub struct _cef_sslinfo_t {
     pub base: cef_base_ref_counted_t,
     pub get_cert_status: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_sslinfo_t) -> cef_cert_status_t,
+        unsafe extern "C" fn(self_: *mut _cef_sslinfo_t) -> cef_cert_status_t::Type,
     >,
     pub get_x509certificate: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_sslinfo_t) -> *mut _cef_x509certificate_t,
@@ -26220,7 +26293,7 @@ pub struct _cef_request_handler_t {
             browser: *mut _cef_browser_t,
             frame: *mut _cef_frame_t,
             target_url: *const cef_string_t,
-            target_disposition: cef_window_open_disposition_t,
+            target_disposition: cef_window_open_disposition_t::Type,
             user_gesture: ::std::os::raw::c_int,
         ) -> ::std::os::raw::c_int,
     >,
@@ -26262,7 +26335,7 @@ pub struct _cef_request_handler_t {
         unsafe extern "C" fn(
             self_: *mut _cef_request_handler_t,
             browser: *mut _cef_browser_t,
-            cert_error: cef_errorcode_t,
+            cert_error: cef_errorcode_t::Type,
             request_url: *const cef_string_t,
             ssl_info: *mut _cef_sslinfo_t,
             callback: *mut _cef_request_callback_t,
@@ -26294,7 +26367,7 @@ pub struct _cef_request_handler_t {
         unsafe extern "C" fn(
             self_: *mut _cef_request_handler_t,
             browser: *mut _cef_browser_t,
-            status: cef_termination_status_t,
+            status: cef_termination_status_t::Type,
         ),
     >,
 }
@@ -26500,7 +26573,7 @@ pub struct _cef_client_t {
             self_: *mut _cef_client_t,
             browser: *mut _cef_browser_t,
             frame: *mut _cef_frame_t,
-            source_process: cef_process_id_t,
+            source_process: cef_process_id_t::Type,
             message: *mut _cef_process_message_t,
         ) -> ::std::os::raw::c_int,
     >,
@@ -26710,10 +26783,10 @@ pub struct _cef_urlrequest_t {
         unsafe extern "C" fn(self_: *mut _cef_urlrequest_t) -> *mut _cef_urlrequest_client_t,
     >,
     pub get_request_status: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_urlrequest_t) -> cef_urlrequest_status_t,
+        unsafe extern "C" fn(self_: *mut _cef_urlrequest_t) -> cef_urlrequest_status_t::Type,
     >,
     pub get_request_error: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_urlrequest_t) -> cef_errorcode_t,
+        unsafe extern "C" fn(self_: *mut _cef_urlrequest_t) -> cef_errorcode_t::Type,
     >,
     pub get_response: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_urlrequest_t) -> *mut _cef_response_t,
@@ -27155,7 +27228,7 @@ pub struct _cef_register_cdm_callback_t {
     pub on_cdm_registration_complete: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_register_cdm_callback_t,
-            result: cef_cdm_registration_error_t,
+            result: cef_cdm_registration_error_t::Type,
             error_message: *const cef_string_t,
         ),
     >,
@@ -27237,7 +27310,7 @@ pub struct _cef_request_context_handler_t {
             is_main_frame: ::std::os::raw::c_int,
             top_origin_url: *const cef_string_t,
             plugin_info: *mut _cef_web_plugin_info_t,
-            plugin_policy: *mut cef_plugin_policy_t,
+            plugin_policy: *mut cef_plugin_policy_t::Type,
         ) -> ::std::os::raw::c_int,
     >,
     pub get_resource_request_handler: ::std::option::Option<
