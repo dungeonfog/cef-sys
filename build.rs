@@ -233,7 +233,7 @@ fn main() {
         .derive_copy(false)
         .derive_debug(false)
         .derive_hash(false)
-        .derive_default(false)
+        // .derive_default(false)
         .generate_comments(false)
         .default_enum_style(bindgen::EnumVariation::ModuleConsts)
         .rustfmt_bindings(true)
