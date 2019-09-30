@@ -9029,24 +9029,80 @@ pub mod cef_resource_type_t {
     pub const RT_CSP_REPORT: Type = 16;
     pub const RT_PLUGIN_RESOURCE: Type = 17;
 }
-pub mod cef_transition_type_t {
-    pub type Type = i32;
-    pub const TT_LINK: Type = 0;
-    pub const TT_EXPLICIT: Type = 1;
-    pub const TT_AUTO_SUBFRAME: Type = 3;
-    pub const TT_MANUAL_SUBFRAME: Type = 4;
-    pub const TT_FORM_SUBMIT: Type = 7;
-    pub const TT_RELOAD: Type = 8;
-    pub const TT_SOURCE_MASK: Type = 255;
-    pub const TT_BLOCKED_FLAG: Type = 8388608;
-    pub const TT_FORWARD_BACK_FLAG: Type = 16777216;
-    pub const TT_CHAIN_START_FLAG: Type = 268435456;
-    pub const TT_CHAIN_END_FLAG: Type = 536870912;
-    pub const TT_CLIENT_REDIRECT_FLAG: Type = 1073741824;
-    pub const TT_SERVER_REDIRECT_FLAG: Type = -2147483648;
-    pub const TT_IS_REDIRECT_MASK: Type = -1073741824;
-    pub const TT_QUALIFIER_MASK: Type = -256;
+impl cef_transition_type_t {
+    pub const TT_LINK: cef_transition_type_t = cef_transition_type_t(0);
 }
+impl cef_transition_type_t {
+    pub const TT_EXPLICIT: cef_transition_type_t = cef_transition_type_t(1);
+}
+impl cef_transition_type_t {
+    pub const TT_AUTO_SUBFRAME: cef_transition_type_t = cef_transition_type_t(3);
+}
+impl cef_transition_type_t {
+    pub const TT_MANUAL_SUBFRAME: cef_transition_type_t = cef_transition_type_t(4);
+}
+impl cef_transition_type_t {
+    pub const TT_FORM_SUBMIT: cef_transition_type_t = cef_transition_type_t(7);
+}
+impl cef_transition_type_t {
+    pub const TT_RELOAD: cef_transition_type_t = cef_transition_type_t(8);
+}
+impl cef_transition_type_t {
+    pub const TT_SOURCE_MASK: cef_transition_type_t = cef_transition_type_t(255);
+}
+impl cef_transition_type_t {
+    pub const TT_BLOCKED_FLAG: cef_transition_type_t = cef_transition_type_t(8388608);
+}
+impl cef_transition_type_t {
+    pub const TT_FORWARD_BACK_FLAG: cef_transition_type_t = cef_transition_type_t(16777216);
+}
+impl cef_transition_type_t {
+    pub const TT_CHAIN_START_FLAG: cef_transition_type_t = cef_transition_type_t(268435456);
+}
+impl cef_transition_type_t {
+    pub const TT_CHAIN_END_FLAG: cef_transition_type_t = cef_transition_type_t(536870912);
+}
+impl cef_transition_type_t {
+    pub const TT_CLIENT_REDIRECT_FLAG: cef_transition_type_t = cef_transition_type_t(1073741824);
+}
+impl cef_transition_type_t {
+    pub const TT_SERVER_REDIRECT_FLAG: cef_transition_type_t = cef_transition_type_t(-2147483648);
+}
+impl cef_transition_type_t {
+    pub const TT_IS_REDIRECT_MASK: cef_transition_type_t = cef_transition_type_t(-1073741824);
+}
+impl cef_transition_type_t {
+    pub const TT_QUALIFIER_MASK: cef_transition_type_t = cef_transition_type_t(-256);
+}
+impl ::std::ops::BitOr<cef_transition_type_t> for cef_transition_type_t {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        cef_transition_type_t(self.0 | other.0)
+    }
+}
+impl ::std::ops::BitOrAssign for cef_transition_type_t {
+    #[inline]
+    fn bitor_assign(&mut self, rhs: cef_transition_type_t) {
+        self.0 |= rhs.0;
+    }
+}
+impl ::std::ops::BitAnd<cef_transition_type_t> for cef_transition_type_t {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        cef_transition_type_t(self.0 & other.0)
+    }
+}
+impl ::std::ops::BitAndAssign for cef_transition_type_t {
+    #[inline]
+    fn bitand_assign(&mut self, rhs: cef_transition_type_t) {
+        self.0 &= rhs.0;
+    }
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct cef_transition_type_t(pub i32);
 pub mod cef_urlrequest_status_t {
     pub type Type = i32;
     pub const UR_UNKNOWN: Type = 0;
@@ -14282,7 +14338,7 @@ pub struct _cef_request_t {
         unsafe extern "C" fn(self_: *mut _cef_request_t) -> cef_resource_type_t::Type,
     >,
     pub get_transition_type: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_request_t) -> cef_transition_type_t::Type,
+        unsafe extern "C" fn(self_: *mut _cef_request_t) -> cef_transition_type_t,
     >,
     pub get_identifier:
         ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_request_t) -> uint64>,
@@ -15733,7 +15789,7 @@ pub struct _cef_navigation_entry_t {
         unsafe extern "C" fn(self_: *mut _cef_navigation_entry_t) -> cef_string_userfree_t,
     >,
     pub get_transition_type: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_navigation_entry_t) -> cef_transition_type_t::Type,
+        unsafe extern "C" fn(self_: *mut _cef_navigation_entry_t) -> cef_transition_type_t,
     >,
     pub has_post_data: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_navigation_entry_t) -> ::std::os::raw::c_int,
@@ -19442,7 +19498,7 @@ pub struct _cef_load_handler_t {
             self_: *mut _cef_load_handler_t,
             browser: *mut _cef_browser_t,
             frame: *mut _cef_frame_t,
-            transition_type: cef_transition_type_t::Type,
+            transition_type: cef_transition_type_t,
         ),
     >,
     pub on_load_end: ::std::option::Option<
