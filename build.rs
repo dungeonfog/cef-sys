@@ -213,6 +213,7 @@ fn main() {
         .whitelist_type("cef_run_file_dialog_callback_t")
         .whitelist_type("cef_image_t")
         .whitelist_type("cef_navigation_entry_t")
+        .whitelist_function("cef_drag_data_create")
         .whitelist_var("IDR_.*")
         .whitelist_var(".*_JS")
         .whitelist_var(".*_JS_2")
