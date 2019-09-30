@@ -15921,6 +15921,7 @@ fn bindgen_test_layout__cef_navigation_entry_t() {
         )
     );
 }
+pub type cef_navigation_entry_t = _cef_navigation_entry_t;
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_callback_t {
