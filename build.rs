@@ -228,9 +228,10 @@ fn main() {
         .parse_callbacks(Box::new(ParseCallbacks()))
         .derive_copy(false)
         .derive_debug(false)
-        .derive_default(true)
+        .derive_hash(false)
+        .derive_default(false)
         .generate_comments(false)
-        .default_enum_style(bindgen::EnumVariation::Rust { non_exhaustive: false })
+        .default_enum_style(bindgen::EnumVariation::Consts)
         .rustfmt_bindings(true)
         // Finish the builder and generate the bindings.
         .generate()
