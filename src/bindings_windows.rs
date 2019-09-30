@@ -13438,6 +13438,9 @@ fn bindgen_test_layout__cef_drag_data_t() {
     );
 }
 pub type cef_drag_data_t = _cef_drag_data_t;
+extern "C" {
+    pub fn cef_drag_data_create() -> *mut cef_drag_data_t;
+}
 #[repr(C)]
 #[derive(Default)]
 pub struct _cef_domvisitor_t {
