@@ -234,7 +234,7 @@ fn main() {
         .derive_hash(false)
         .derive_default(false)
         .generate_comments(false)
-        .default_enum_style(bindgen::EnumVariation::Consts)
+        .default_enum_style(bindgen::EnumVariation::ModuleConsts)
         .rustfmt_bindings(true)
         // Finish the builder and generate the bindings.
         .generate()
