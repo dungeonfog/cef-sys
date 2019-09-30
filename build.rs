@@ -212,6 +212,7 @@ fn main() {
         .whitelist_function("cef_sandbox_info_destroy")
         .whitelist_type("cef_run_file_dialog_callback_t")
         .whitelist_type("cef_image_t")
+        .whitelist_type("cef_navigation_entry_t")
         .whitelist_var("IDR_.*")
         .whitelist_var(".*_JS")
         .whitelist_var(".*_JS_2")
