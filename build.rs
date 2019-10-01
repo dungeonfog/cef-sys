@@ -5,7 +5,7 @@ fn main() {
 
     match target_os.as_ref().map(|x| &**x) {
         Ok("windows") => {
-            println!("cargo:rustc-link-lib=cef_sandbox");
+            // println!("cargo:rustc-link-lib=cef_sandbox");
             println!("cargo:rustc-link-lib=libcef");
         },
         Ok("linux") => {
