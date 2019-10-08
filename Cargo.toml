@@ -7,3 +7,7 @@ links = "cef"
 build = "build.rs"
 
 [dependencies]
+
+[target.'cfg(windows)'.dependencies]
+# CEF requires us to link to all these winapi dlls to work.
+winapi = { version = "0.3", features = ["winuser", "libloaderapi", "winver", "ole2", "oleauto", "setupapi", "powerbase", "shellapi", "timeapi", "dbghelp"] }
