@@ -16650,6 +16650,7 @@ fn bindgen_test_layout__cef_extension_handler_t() {
         )
     );
 }
+pub type cef_extension_handler_t = _cef_extension_handler_t;
 #[repr(C)]
 pub struct _cef_resolve_callback_t {
     pub base: cef_base_ref_counted_t,
