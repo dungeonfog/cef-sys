@@ -212,6 +212,7 @@ fn main() {
         .whitelist_type("cef_run_file_dialog_callback_t")
         .whitelist_type("cef_download_image_callback_t")
         .whitelist_type("cef_pdf_print_callback_t")
+        .whitelist_type("cef_pdf_print_settings_t")
         .whitelist_type("cef_navigation_entry_visitor_t")
         .whitelist_type("cef_image_t")
         .whitelist_type("cef_navigation_entry_t")
