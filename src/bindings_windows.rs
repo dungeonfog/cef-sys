@@ -10508,6 +10508,7 @@ fn bindgen_test_layout__cef_pdf_print_settings_t() {
         )
     );
 }
+pub type cef_pdf_print_settings_t = _cef_pdf_print_settings_t;
 pub mod cef_scale_factor_t {
     pub type Type = i32;
     pub const SCALE_FACTOR_NONE: Type = 0;
