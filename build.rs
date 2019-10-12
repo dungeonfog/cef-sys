@@ -71,7 +71,6 @@ fn main() {
         .whitelist_type("cef_browser_settings_t")
         .whitelist_type("cef_browser_host_t")
         .whitelist_type("cef_client_t")
-        .whitelist_type("cef_audio_handler_t")
         .whitelist_type("cef_context_menu_handler_t")
         .whitelist_type("cef_dialog_handler_t")
         .whitelist_type("cef_display_handler_t")
