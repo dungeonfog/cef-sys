@@ -17556,6 +17556,7 @@ fn bindgen_test_layout__cef_navigation_entry_visitor_t() {
         )
     );
 }
+pub type cef_navigation_entry_visitor_t = _cef_navigation_entry_visitor_t;
 #[repr(C)]
 pub struct _cef_pdf_print_callback_t {
     pub base: cef_base_ref_counted_t,
@@ -17603,6 +17604,7 @@ fn bindgen_test_layout__cef_pdf_print_callback_t() {
         )
     );
 }
+pub type cef_pdf_print_callback_t = _cef_pdf_print_callback_t;
 #[repr(C)]
 pub struct _cef_download_image_callback_t {
     pub base: cef_base_ref_counted_t,
@@ -17653,6 +17655,7 @@ fn bindgen_test_layout__cef_download_image_callback_t() {
         )
     );
 }
+pub type cef_download_image_callback_t = _cef_download_image_callback_t;
 #[repr(C)]
 pub struct _cef_browser_host_t {
     pub base: cef_base_ref_counted_t,
