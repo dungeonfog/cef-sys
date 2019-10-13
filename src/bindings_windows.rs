@@ -9533,6 +9533,7 @@ fn bindgen_test_layout__cef_mouse_event_t() {
         )
     );
 }
+pub type cef_mouse_event_t = _cef_mouse_event_t;
 pub mod cef_touch_event_type_t {
     pub type Type = i32;
     pub const CEF_TET_RELEASED: Type = 0;
@@ -9676,6 +9677,7 @@ fn bindgen_test_layout__cef_touch_event_t() {
         )
     );
 }
+pub type cef_touch_event_t = _cef_touch_event_t;
 pub mod cef_paint_element_type_t {
     pub type Type = i32;
     pub const PET_VIEW: Type = 0;
