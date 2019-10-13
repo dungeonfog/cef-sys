@@ -230,6 +230,8 @@ fn main() {
         .whitelist_var("CONTENT_INVALID_.*")
         .blacklist_type("HINSTANCE")
         .blacklist_type("HINSTANCE__")
+        .blacklist_type("cef_touch_event_t")
+        .blacklist_type("cef_mouse_event_t")
         .bitfield_enum("cef_event_flags_t")
         .bitfield_enum("cef_file_dialog_mode_t")
         .bitfield_enum("cef_drag_operations_mask_t")
