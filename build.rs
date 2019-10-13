@@ -221,6 +221,7 @@ fn main() {
         .whitelist_function("cef_drag_data_create")
         .whitelist_type("cef_touch_event_t")
         .whitelist_type("cef_mouse_event_t")
+        .whitelist_function("cef_is_cert_status_error")
         .whitelist_var("IDR_.*")
         .whitelist_var(".*_JS")
         .whitelist_var(".*_JS_2")
