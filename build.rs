@@ -236,6 +236,7 @@ fn main() {
         .bitfield_enum("cef_file_dialog_mode_t")
         .bitfield_enum("cef_drag_operations_mask_t")
         .bitfield_enum("cef_transition_type_t")
+        .bitfield_enum("cef_cert_status_t")
         .parse_callbacks(Box::new(ParseCallbacks()))
         .derive_copy(false)
         .derive_debug(false)
