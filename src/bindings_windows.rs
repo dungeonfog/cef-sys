@@ -8850,27 +8850,89 @@ pub mod cef_errorcode_t {
     pub const ERR_DNS_SORT_ERROR: Type = -806;
     pub const ERR_DNS_HTTP_FAILED: Type = -807;
 }
-pub mod cef_cert_status_t {
-    pub type Type = i32;
-    pub const CERT_STATUS_NONE: Type = 0;
-    pub const CERT_STATUS_COMMON_NAME_INVALID: Type = 1;
-    pub const CERT_STATUS_DATE_INVALID: Type = 2;
-    pub const CERT_STATUS_AUTHORITY_INVALID: Type = 4;
-    pub const CERT_STATUS_NO_REVOCATION_MECHANISM: Type = 16;
-    pub const CERT_STATUS_UNABLE_TO_CHECK_REVOCATION: Type = 32;
-    pub const CERT_STATUS_REVOKED: Type = 64;
-    pub const CERT_STATUS_INVALID: Type = 128;
-    pub const CERT_STATUS_WEAK_SIGNATURE_ALGORITHM: Type = 256;
-    pub const CERT_STATUS_NON_UNIQUE_NAME: Type = 1024;
-    pub const CERT_STATUS_WEAK_KEY: Type = 2048;
-    pub const CERT_STATUS_PINNED_KEY_MISSING: Type = 8192;
-    pub const CERT_STATUS_NAME_CONSTRAINT_VIOLATION: Type = 16384;
-    pub const CERT_STATUS_VALIDITY_TOO_LONG: Type = 32768;
-    pub const CERT_STATUS_IS_EV: Type = 65536;
-    pub const CERT_STATUS_REV_CHECKING_ENABLED: Type = 131072;
-    pub const CERT_STATUS_SHA1_SIGNATURE_PRESENT: Type = 524288;
-    pub const CERT_STATUS_CT_COMPLIANCE_FAILED: Type = 1048576;
+impl cef_cert_status_t {
+    pub const CERT_STATUS_NONE: cef_cert_status_t = cef_cert_status_t(0);
 }
+impl cef_cert_status_t {
+    pub const CERT_STATUS_COMMON_NAME_INVALID: cef_cert_status_t = cef_cert_status_t(1);
+}
+impl cef_cert_status_t {
+    pub const CERT_STATUS_DATE_INVALID: cef_cert_status_t = cef_cert_status_t(2);
+}
+impl cef_cert_status_t {
+    pub const CERT_STATUS_AUTHORITY_INVALID: cef_cert_status_t = cef_cert_status_t(4);
+}
+impl cef_cert_status_t {
+    pub const CERT_STATUS_NO_REVOCATION_MECHANISM: cef_cert_status_t = cef_cert_status_t(16);
+}
+impl cef_cert_status_t {
+    pub const CERT_STATUS_UNABLE_TO_CHECK_REVOCATION: cef_cert_status_t = cef_cert_status_t(32);
+}
+impl cef_cert_status_t {
+    pub const CERT_STATUS_REVOKED: cef_cert_status_t = cef_cert_status_t(64);
+}
+impl cef_cert_status_t {
+    pub const CERT_STATUS_INVALID: cef_cert_status_t = cef_cert_status_t(128);
+}
+impl cef_cert_status_t {
+    pub const CERT_STATUS_WEAK_SIGNATURE_ALGORITHM: cef_cert_status_t = cef_cert_status_t(256);
+}
+impl cef_cert_status_t {
+    pub const CERT_STATUS_NON_UNIQUE_NAME: cef_cert_status_t = cef_cert_status_t(1024);
+}
+impl cef_cert_status_t {
+    pub const CERT_STATUS_WEAK_KEY: cef_cert_status_t = cef_cert_status_t(2048);
+}
+impl cef_cert_status_t {
+    pub const CERT_STATUS_PINNED_KEY_MISSING: cef_cert_status_t = cef_cert_status_t(8192);
+}
+impl cef_cert_status_t {
+    pub const CERT_STATUS_NAME_CONSTRAINT_VIOLATION: cef_cert_status_t = cef_cert_status_t(16384);
+}
+impl cef_cert_status_t {
+    pub const CERT_STATUS_VALIDITY_TOO_LONG: cef_cert_status_t = cef_cert_status_t(32768);
+}
+impl cef_cert_status_t {
+    pub const CERT_STATUS_IS_EV: cef_cert_status_t = cef_cert_status_t(65536);
+}
+impl cef_cert_status_t {
+    pub const CERT_STATUS_REV_CHECKING_ENABLED: cef_cert_status_t = cef_cert_status_t(131072);
+}
+impl cef_cert_status_t {
+    pub const CERT_STATUS_SHA1_SIGNATURE_PRESENT: cef_cert_status_t = cef_cert_status_t(524288);
+}
+impl cef_cert_status_t {
+    pub const CERT_STATUS_CT_COMPLIANCE_FAILED: cef_cert_status_t = cef_cert_status_t(1048576);
+}
+impl ::std::ops::BitOr<cef_cert_status_t> for cef_cert_status_t {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        cef_cert_status_t(self.0 | other.0)
+    }
+}
+impl ::std::ops::BitOrAssign for cef_cert_status_t {
+    #[inline]
+    fn bitor_assign(&mut self, rhs: cef_cert_status_t) {
+        self.0 |= rhs.0;
+    }
+}
+impl ::std::ops::BitAnd<cef_cert_status_t> for cef_cert_status_t {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        cef_cert_status_t(self.0 & other.0)
+    }
+}
+impl ::std::ops::BitAndAssign for cef_cert_status_t {
+    #[inline]
+    fn bitand_assign(&mut self, rhs: cef_cert_status_t) {
+        self.0 &= rhs.0;
+    }
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct cef_cert_status_t(pub i32);
 pub mod cef_window_open_disposition_t {
     pub type Type = i32;
     pub const WOD_UNKNOWN: Type = 0;
@@ -15605,7 +15667,7 @@ pub struct _cef_sslstatus_t {
         unsafe extern "C" fn(self_: *mut _cef_sslstatus_t) -> ::std::os::raw::c_int,
     >,
     pub get_cert_status: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_sslstatus_t) -> cef_cert_status_t::Type,
+        unsafe extern "C" fn(self_: *mut _cef_sslstatus_t) -> cef_cert_status_t,
     >,
     pub get_sslversion: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_sslstatus_t) -> cef_ssl_version_t::Type,
@@ -26062,7 +26124,7 @@ pub type cef_cookie_access_filter_t = _cef_cookie_access_filter_t;
 pub struct _cef_sslinfo_t {
     pub base: cef_base_ref_counted_t,
     pub get_cert_status: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_sslinfo_t) -> cef_cert_status_t::Type,
+        unsafe extern "C" fn(self_: *mut _cef_sslinfo_t) -> cef_cert_status_t,
     >,
     pub get_x509certificate: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_sslinfo_t) -> *mut _cef_x509certificate_t,
@@ -27216,65 +27278,3 @@ fn bindgen_test_layout__cef_request_context_handler_t() {
     );
     assert_eq!(
         ::std::mem::align_of::<_cef_request_context_handler_t>(),
-        8usize,
-        concat!("Alignment of ", stringify!(_cef_request_context_handler_t))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<_cef_request_context_handler_t>())).base as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_cef_request_context_handler_t),
-            "::",
-            stringify!(base)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<_cef_request_context_handler_t>()))
-                .on_request_context_initialized as *const _ as usize
-        },
-        40usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_cef_request_context_handler_t),
-            "::",
-            stringify!(on_request_context_initialized)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<_cef_request_context_handler_t>())).on_before_plugin_load
-                as *const _ as usize
-        },
-        48usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_cef_request_context_handler_t),
-            "::",
-            stringify!(on_before_plugin_load)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<_cef_request_context_handler_t>())).get_resource_request_handler
-                as *const _ as usize
-        },
-        56usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_cef_request_context_handler_t),
-            "::",
-            stringify!(get_resource_request_handler)
-        )
-    );
-}
-pub type cef_request_context_handler_t = _cef_request_context_handler_t;
-extern "C" {
-    pub fn cef_sandbox_info_create() -> *mut ::std::os::raw::c_void;
-}
-extern "C" {
-    pub fn cef_sandbox_info_destroy(sandbox_info: *mut ::std::os::raw::c_void);
-}
