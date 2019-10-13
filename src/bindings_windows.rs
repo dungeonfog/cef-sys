@@ -26175,6 +26175,9 @@ fn bindgen_test_layout__cef_sslinfo_t() {
         )
     );
 }
+extern "C" {
+    pub fn cef_is_cert_status_error(status: cef_cert_status_t) -> ::std::os::raw::c_int;
+}
 #[repr(C)]
 pub struct _cef_select_client_certificate_callback_t {
     pub base: cef_base_ref_counted_t,
@@ -27278,3 +27281,65 @@ fn bindgen_test_layout__cef_request_context_handler_t() {
     );
     assert_eq!(
         ::std::mem::align_of::<_cef_request_context_handler_t>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_cef_request_context_handler_t))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_request_context_handler_t>())).base as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_request_context_handler_t),
+            "::",
+            stringify!(base)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_request_context_handler_t>()))
+                .on_request_context_initialized as *const _ as usize
+        },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_request_context_handler_t),
+            "::",
+            stringify!(on_request_context_initialized)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_request_context_handler_t>())).on_before_plugin_load
+                as *const _ as usize
+        },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_request_context_handler_t),
+            "::",
+            stringify!(on_before_plugin_load)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_request_context_handler_t>())).get_resource_request_handler
+                as *const _ as usize
+        },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_request_context_handler_t),
+            "::",
+            stringify!(get_resource_request_handler)
+        )
+    );
+}
+pub type cef_request_context_handler_t = _cef_request_context_handler_t;
+extern "C" {
+    pub fn cef_sandbox_info_create() -> *mut ::std::os::raw::c_void;
+}
+extern "C" {
+    pub fn cef_sandbox_info_destroy(sandbox_info: *mut ::std::os::raw::c_void);
+}
