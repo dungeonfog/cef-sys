@@ -238,6 +238,8 @@ fn main() {
         .bitfield_enum("cef_drag_operations_mask_t")
         .bitfield_enum("cef_transition_type_t")
         .bitfield_enum("cef_cert_status_t")
+        .bitfield_enum("cef_v8_propertyattribute_t")
+        .bitfield_enum("cef_v8_accesscontrol_t")
         .parse_callbacks(Box::new(ParseCallbacks()))
         .derive_copy(false)
         .derive_debug(false)
