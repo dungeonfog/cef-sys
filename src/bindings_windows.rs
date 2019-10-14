@@ -9012,20 +9012,93 @@ pub mod cef_text_input_mode_t {
     pub const CEF_TEXT_INPUT_MODE_SEARCH: Type = 8;
     pub const CEF_TEXT_INPUT_MODE_MAX: Type = 8;
 }
-pub mod cef_v8_accesscontrol_t {
-    pub type Type = i32;
-    pub const V8_ACCESS_CONTROL_DEFAULT: Type = 0;
-    pub const V8_ACCESS_CONTROL_ALL_CAN_READ: Type = 1;
-    pub const V8_ACCESS_CONTROL_ALL_CAN_WRITE: Type = 2;
-    pub const V8_ACCESS_CONTROL_PROHIBITS_OVERWRITING: Type = 4;
+impl cef_v8_accesscontrol_t {
+    pub const V8_ACCESS_CONTROL_DEFAULT: cef_v8_accesscontrol_t = cef_v8_accesscontrol_t(0);
 }
-pub mod cef_v8_propertyattribute_t {
-    pub type Type = i32;
-    pub const V8_PROPERTY_ATTRIBUTE_NONE: Type = 0;
-    pub const V8_PROPERTY_ATTRIBUTE_READONLY: Type = 1;
-    pub const V8_PROPERTY_ATTRIBUTE_DONTENUM: Type = 2;
-    pub const V8_PROPERTY_ATTRIBUTE_DONTDELETE: Type = 4;
+impl cef_v8_accesscontrol_t {
+    pub const V8_ACCESS_CONTROL_ALL_CAN_READ: cef_v8_accesscontrol_t = cef_v8_accesscontrol_t(1);
 }
+impl cef_v8_accesscontrol_t {
+    pub const V8_ACCESS_CONTROL_ALL_CAN_WRITE: cef_v8_accesscontrol_t = cef_v8_accesscontrol_t(2);
+}
+impl cef_v8_accesscontrol_t {
+    pub const V8_ACCESS_CONTROL_PROHIBITS_OVERWRITING: cef_v8_accesscontrol_t =
+        cef_v8_accesscontrol_t(4);
+}
+impl ::std::ops::BitOr<cef_v8_accesscontrol_t> for cef_v8_accesscontrol_t {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        cef_v8_accesscontrol_t(self.0 | other.0)
+    }
+}
+impl ::std::ops::BitOrAssign for cef_v8_accesscontrol_t {
+    #[inline]
+    fn bitor_assign(&mut self, rhs: cef_v8_accesscontrol_t) {
+        self.0 |= rhs.0;
+    }
+}
+impl ::std::ops::BitAnd<cef_v8_accesscontrol_t> for cef_v8_accesscontrol_t {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        cef_v8_accesscontrol_t(self.0 & other.0)
+    }
+}
+impl ::std::ops::BitAndAssign for cef_v8_accesscontrol_t {
+    #[inline]
+    fn bitand_assign(&mut self, rhs: cef_v8_accesscontrol_t) {
+        self.0 &= rhs.0;
+    }
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct cef_v8_accesscontrol_t(pub i32);
+impl cef_v8_propertyattribute_t {
+    pub const V8_PROPERTY_ATTRIBUTE_NONE: cef_v8_propertyattribute_t =
+        cef_v8_propertyattribute_t(0);
+}
+impl cef_v8_propertyattribute_t {
+    pub const V8_PROPERTY_ATTRIBUTE_READONLY: cef_v8_propertyattribute_t =
+        cef_v8_propertyattribute_t(1);
+}
+impl cef_v8_propertyattribute_t {
+    pub const V8_PROPERTY_ATTRIBUTE_DONTENUM: cef_v8_propertyattribute_t =
+        cef_v8_propertyattribute_t(2);
+}
+impl cef_v8_propertyattribute_t {
+    pub const V8_PROPERTY_ATTRIBUTE_DONTDELETE: cef_v8_propertyattribute_t =
+        cef_v8_propertyattribute_t(4);
+}
+impl ::std::ops::BitOr<cef_v8_propertyattribute_t> for cef_v8_propertyattribute_t {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        cef_v8_propertyattribute_t(self.0 | other.0)
+    }
+}
+impl ::std::ops::BitOrAssign for cef_v8_propertyattribute_t {
+    #[inline]
+    fn bitor_assign(&mut self, rhs: cef_v8_propertyattribute_t) {
+        self.0 |= rhs.0;
+    }
+}
+impl ::std::ops::BitAnd<cef_v8_propertyattribute_t> for cef_v8_propertyattribute_t {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        cef_v8_propertyattribute_t(self.0 & other.0)
+    }
+}
+impl ::std::ops::BitAndAssign for cef_v8_propertyattribute_t {
+    #[inline]
+    fn bitand_assign(&mut self, rhs: cef_v8_propertyattribute_t) {
+        self.0 &= rhs.0;
+    }
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct cef_v8_propertyattribute_t(pub i32);
 pub mod cef_postdataelement_type_t {
     pub type Type = i32;
     pub const PDE_TYPE_EMPTY: Type = 0;
@@ -20443,7 +20516,7 @@ pub struct _cef_v8value_t {
             self_: *mut _cef_v8value_t,
             key: *const cef_string_t,
             value: *mut _cef_v8value_t,
-            attribute: cef_v8_propertyattribute_t::Type,
+            attribute: cef_v8_propertyattribute_t,
         ) -> ::std::os::raw::c_int,
     >,
     pub set_value_byindex: ::std::option::Option<
@@ -20457,8 +20530,8 @@ pub struct _cef_v8value_t {
         unsafe extern "C" fn(
             self_: *mut _cef_v8value_t,
             key: *const cef_string_t,
-            settings: cef_v8_accesscontrol_t::Type,
-            attribute: cef_v8_propertyattribute_t::Type,
+            settings: cef_v8_accesscontrol_t,
+            attribute: cef_v8_propertyattribute_t,
         ) -> ::std::os::raw::c_int,
     >,
     pub get_keys: ::std::option::Option<
