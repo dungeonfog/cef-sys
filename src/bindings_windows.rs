@@ -12954,6 +12954,9 @@ fn bindgen_test_layout__cef_image_t() {
     );
 }
 pub type cef_image_t = _cef_image_t;
+extern "C" {
+    pub fn cef_image_create() -> *mut cef_image_t;
+}
 #[repr(C)]
 pub struct _cef_stream_reader_t {
     pub base: cef_base_ref_counted_t,
