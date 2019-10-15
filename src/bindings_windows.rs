@@ -19966,6 +19966,15 @@ fn bindgen_test_layout__cef_v8context_t() {
     );
 }
 pub type cef_v8context_t = _cef_v8context_t;
+extern "C" {
+    pub fn cef_v8context_get_current_context() -> *mut cef_v8context_t;
+}
+extern "C" {
+    pub fn cef_v8context_get_entered_context() -> *mut cef_v8context_t;
+}
+extern "C" {
+    pub fn cef_v8context_in_context() -> ::std::os::raw::c_int;
+}
 #[repr(C)]
 pub struct _cef_v8handler_t {
     pub base: cef_base_ref_counted_t,
