@@ -19697,6 +19697,7 @@ fn bindgen_test_layout__cef_task_t() {
         )
     );
 }
+pub type cef_task_t = _cef_task_t;
 #[repr(C)]
 pub struct _cef_task_runner_t {
     pub base: cef_base_ref_counted_t,
@@ -19808,6 +19809,31 @@ fn bindgen_test_layout__cef_task_runner_t() {
             stringify!(post_delayed_task)
         )
     );
+}
+pub type cef_task_runner_t = _cef_task_runner_t;
+extern "C" {
+    pub fn cef_task_runner_get_for_current_thread() -> *mut cef_task_runner_t;
+}
+extern "C" {
+    pub fn cef_task_runner_get_for_thread(
+        threadId: cef_thread_id_t::Type,
+    ) -> *mut cef_task_runner_t;
+}
+extern "C" {
+    pub fn cef_currently_on(threadId: cef_thread_id_t::Type) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn cef_post_task(
+        threadId: cef_thread_id_t::Type,
+        task: *mut cef_task_t,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn cef_post_delayed_task(
+        threadId: cef_thread_id_t::Type,
+        task: *mut cef_task_t,
+        delay_ms: int64,
+    ) -> ::std::os::raw::c_int;
 }
 #[repr(C)]
 pub struct _cef_v8context_t {
