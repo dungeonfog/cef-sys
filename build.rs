@@ -34,7 +34,7 @@ fn main() {
         // The input header we would like to generate
         // bindings for.
         .header("wrapper.hpp")
-        .clang_arg("-I../cef")
+        .clang_args(vec!["-I../cef", "-x", "c++"])
         .whitelist_type("cef_life_span_handler_t")
         .whitelist_type("cef_app_t")
         .whitelist_type("cef_command_line_t")
