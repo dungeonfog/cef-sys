@@ -22468,9 +22468,6 @@ extern "C" {
 extern "C" {
     pub fn cef_set_osmodal_loop(osModalLoop: ::std::os::raw::c_int);
 }
-extern "C" {
-    pub fn cef_enable_highdpi_support();
-}
 #[repr(C)]
 pub struct _cef_menu_model_t {
     pub base: cef_base_ref_counted_t,
