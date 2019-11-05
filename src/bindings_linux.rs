@@ -22444,7 +22444,6 @@ extern "C" {
     pub fn cef_execute_process(
         args: *const _cef_main_args_t,
         application: *mut cef_app_t,
-        windows_sandbox_info: *mut ::std::os::raw::c_void,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
@@ -22452,7 +22451,6 @@ extern "C" {
         args: *const _cef_main_args_t,
         settings: *const _cef_settings_t,
         application: *mut cef_app_t,
-        windows_sandbox_info: *mut ::std::os::raw::c_void,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
