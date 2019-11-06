@@ -24,8 +24,18 @@ fn main() {
             println!("cargo:rustc-link-lib=GLESv2");
             println!(r"cargo:rustc-link-search=../cef/Debug");
         }
-        _ => {},
+        Ok("macos") => {
+            println!("cargo:rustc-link-lib=cef");
+
+            // When generating, do replace the path here and also in
+            // `clang_args` below with your actual cef binary path
+            println!(r"cargo:rustc-link-search=../../lib/cef_binary_78.2.11+g69b6271+chromium-78.0.3904.87_macosx64");
+        }
+        _ => (),
     }
+
+    // Tell cargo to invalidate the built crate whenever the wrapper changes
+    println!("cargo:rerun-if-changed=wrapper.hpp");
 
     // The bindgen::Builder is the main entry point
     // to bindgen, and lets you build up options for
