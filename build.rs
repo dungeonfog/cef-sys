@@ -31,7 +31,7 @@ fn main() {
             // `clang_args` below with your actual cef binary path
             println!(r"cargo:rustc-link-search=../../lib/cef_binary_78.2.11+g69b6271+chromium-78.0.3904.87_macosx64");
         }
-        _ => (),
+        _ => panic!("Unsupported build target"),
     }
 
     // Tell cargo to invalidate the built crate whenever the wrapper changes
