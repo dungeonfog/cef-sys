@@ -5,6 +5,8 @@ fn main() {
         .whitelist_type("_?cef_.*")
         .whitelist_function("_?cef_.*")
         .whitelist_var("_?cef_.*")
+        .blacklist_type("H[A-Z]+")
+        .blacklist_type("MSG'")
         .default_enum_style(bindgen::EnumVariation::ModuleConsts)
         .bitfield_enum("cef_transition_type_t")
         .bitfield_enum("cef_v8_propertyattribute_t")
