@@ -2335,60 +2335,17 @@ pub mod cef_window_open_disposition_t {
     pub const WOD_OFF_THE_RECORD: Type = 8;
     pub const WOD_IGNORE_ACTION: Type = 9;
 }
-impl cef_drag_operations_mask_t {
-    pub const DRAG_OPERATION_NONE: cef_drag_operations_mask_t = cef_drag_operations_mask_t(0);
+pub mod cef_drag_operations_mask_t {
+    pub type Type = u32;
+    pub const DRAG_OPERATION_NONE: Type = 0;
+    pub const DRAG_OPERATION_COPY: Type = 1;
+    pub const DRAG_OPERATION_LINK: Type = 2;
+    pub const DRAG_OPERATION_GENERIC: Type = 4;
+    pub const DRAG_OPERATION_PRIVATE: Type = 8;
+    pub const DRAG_OPERATION_MOVE: Type = 16;
+    pub const DRAG_OPERATION_DELETE: Type = 32;
+    pub const DRAG_OPERATION_EVERY: Type = 4294967295;
 }
-impl cef_drag_operations_mask_t {
-    pub const DRAG_OPERATION_COPY: cef_drag_operations_mask_t = cef_drag_operations_mask_t(1);
-}
-impl cef_drag_operations_mask_t {
-    pub const DRAG_OPERATION_LINK: cef_drag_operations_mask_t = cef_drag_operations_mask_t(2);
-}
-impl cef_drag_operations_mask_t {
-    pub const DRAG_OPERATION_GENERIC: cef_drag_operations_mask_t = cef_drag_operations_mask_t(4);
-}
-impl cef_drag_operations_mask_t {
-    pub const DRAG_OPERATION_PRIVATE: cef_drag_operations_mask_t = cef_drag_operations_mask_t(8);
-}
-impl cef_drag_operations_mask_t {
-    pub const DRAG_OPERATION_MOVE: cef_drag_operations_mask_t = cef_drag_operations_mask_t(16);
-}
-impl cef_drag_operations_mask_t {
-    pub const DRAG_OPERATION_DELETE: cef_drag_operations_mask_t = cef_drag_operations_mask_t(32);
-}
-impl cef_drag_operations_mask_t {
-    pub const DRAG_OPERATION_EVERY: cef_drag_operations_mask_t =
-        cef_drag_operations_mask_t(4294967295);
-}
-impl ::std::ops::BitOr<cef_drag_operations_mask_t> for cef_drag_operations_mask_t {
-    type Output = Self;
-    #[inline]
-    fn bitor(self, other: Self) -> Self {
-        cef_drag_operations_mask_t(self.0 | other.0)
-    }
-}
-impl ::std::ops::BitOrAssign for cef_drag_operations_mask_t {
-    #[inline]
-    fn bitor_assign(&mut self, rhs: cef_drag_operations_mask_t) {
-        self.0 |= rhs.0;
-    }
-}
-impl ::std::ops::BitAnd<cef_drag_operations_mask_t> for cef_drag_operations_mask_t {
-    type Output = Self;
-    #[inline]
-    fn bitand(self, other: Self) -> Self {
-        cef_drag_operations_mask_t(self.0 & other.0)
-    }
-}
-impl ::std::ops::BitAndAssign for cef_drag_operations_mask_t {
-    #[inline]
-    fn bitand_assign(&mut self, rhs: cef_drag_operations_mask_t) {
-        self.0 &= rhs.0;
-    }
-}
-#[repr(transparent)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct cef_drag_operations_mask_t(pub u32);
 pub mod cef_text_input_mode_t {
     pub type Type = u32;
     pub const CEF_TEXT_INPUT_MODE_DEFAULT: Type = 0;
@@ -2402,48 +2359,13 @@ pub mod cef_text_input_mode_t {
     pub const CEF_TEXT_INPUT_MODE_SEARCH: Type = 8;
     pub const CEF_TEXT_INPUT_MODE_MAX: Type = 8;
 }
-impl cef_v8_accesscontrol_t {
-    pub const V8_ACCESS_CONTROL_DEFAULT: cef_v8_accesscontrol_t = cef_v8_accesscontrol_t(0);
+pub mod cef_v8_accesscontrol_t {
+    pub type Type = u32;
+    pub const V8_ACCESS_CONTROL_DEFAULT: Type = 0;
+    pub const V8_ACCESS_CONTROL_ALL_CAN_READ: Type = 1;
+    pub const V8_ACCESS_CONTROL_ALL_CAN_WRITE: Type = 2;
+    pub const V8_ACCESS_CONTROL_PROHIBITS_OVERWRITING: Type = 4;
 }
-impl cef_v8_accesscontrol_t {
-    pub const V8_ACCESS_CONTROL_ALL_CAN_READ: cef_v8_accesscontrol_t = cef_v8_accesscontrol_t(1);
-}
-impl cef_v8_accesscontrol_t {
-    pub const V8_ACCESS_CONTROL_ALL_CAN_WRITE: cef_v8_accesscontrol_t = cef_v8_accesscontrol_t(2);
-}
-impl cef_v8_accesscontrol_t {
-    pub const V8_ACCESS_CONTROL_PROHIBITS_OVERWRITING: cef_v8_accesscontrol_t =
-        cef_v8_accesscontrol_t(4);
-}
-impl ::std::ops::BitOr<cef_v8_accesscontrol_t> for cef_v8_accesscontrol_t {
-    type Output = Self;
-    #[inline]
-    fn bitor(self, other: Self) -> Self {
-        cef_v8_accesscontrol_t(self.0 | other.0)
-    }
-}
-impl ::std::ops::BitOrAssign for cef_v8_accesscontrol_t {
-    #[inline]
-    fn bitor_assign(&mut self, rhs: cef_v8_accesscontrol_t) {
-        self.0 |= rhs.0;
-    }
-}
-impl ::std::ops::BitAnd<cef_v8_accesscontrol_t> for cef_v8_accesscontrol_t {
-    type Output = Self;
-    #[inline]
-    fn bitand(self, other: Self) -> Self {
-        cef_v8_accesscontrol_t(self.0 & other.0)
-    }
-}
-impl ::std::ops::BitAndAssign for cef_v8_accesscontrol_t {
-    #[inline]
-    fn bitand_assign(&mut self, rhs: cef_v8_accesscontrol_t) {
-        self.0 &= rhs.0;
-    }
-}
-#[repr(transparent)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct cef_v8_accesscontrol_t(pub u32);
 impl cef_v8_propertyattribute_t {
     pub const V8_PROPERTY_ATTRIBUTE_NONE: cef_v8_propertyattribute_t =
         cef_v8_propertyattribute_t(0);
@@ -2516,80 +2438,24 @@ pub mod cef_resource_type_t {
     pub const RT_CSP_REPORT: Type = 16;
     pub const RT_PLUGIN_RESOURCE: Type = 17;
 }
-impl cef_transition_type_t {
-    pub const TT_LINK: cef_transition_type_t = cef_transition_type_t(0);
+pub mod cef_transition_type_t {
+    pub type Type = u32;
+    pub const TT_LINK: Type = 0;
+    pub const TT_EXPLICIT: Type = 1;
+    pub const TT_AUTO_SUBFRAME: Type = 3;
+    pub const TT_MANUAL_SUBFRAME: Type = 4;
+    pub const TT_FORM_SUBMIT: Type = 7;
+    pub const TT_RELOAD: Type = 8;
+    pub const TT_SOURCE_MASK: Type = 255;
+    pub const TT_BLOCKED_FLAG: Type = 8388608;
+    pub const TT_FORWARD_BACK_FLAG: Type = 16777216;
+    pub const TT_CHAIN_START_FLAG: Type = 268435456;
+    pub const TT_CHAIN_END_FLAG: Type = 536870912;
+    pub const TT_CLIENT_REDIRECT_FLAG: Type = 1073741824;
+    pub const TT_SERVER_REDIRECT_FLAG: Type = 2147483648;
+    pub const TT_IS_REDIRECT_MASK: Type = 3221225472;
+    pub const TT_QUALIFIER_MASK: Type = 4294967040;
 }
-impl cef_transition_type_t {
-    pub const TT_EXPLICIT: cef_transition_type_t = cef_transition_type_t(1);
-}
-impl cef_transition_type_t {
-    pub const TT_AUTO_SUBFRAME: cef_transition_type_t = cef_transition_type_t(3);
-}
-impl cef_transition_type_t {
-    pub const TT_MANUAL_SUBFRAME: cef_transition_type_t = cef_transition_type_t(4);
-}
-impl cef_transition_type_t {
-    pub const TT_FORM_SUBMIT: cef_transition_type_t = cef_transition_type_t(7);
-}
-impl cef_transition_type_t {
-    pub const TT_RELOAD: cef_transition_type_t = cef_transition_type_t(8);
-}
-impl cef_transition_type_t {
-    pub const TT_SOURCE_MASK: cef_transition_type_t = cef_transition_type_t(255);
-}
-impl cef_transition_type_t {
-    pub const TT_BLOCKED_FLAG: cef_transition_type_t = cef_transition_type_t(8388608);
-}
-impl cef_transition_type_t {
-    pub const TT_FORWARD_BACK_FLAG: cef_transition_type_t = cef_transition_type_t(16777216);
-}
-impl cef_transition_type_t {
-    pub const TT_CHAIN_START_FLAG: cef_transition_type_t = cef_transition_type_t(268435456);
-}
-impl cef_transition_type_t {
-    pub const TT_CHAIN_END_FLAG: cef_transition_type_t = cef_transition_type_t(536870912);
-}
-impl cef_transition_type_t {
-    pub const TT_CLIENT_REDIRECT_FLAG: cef_transition_type_t = cef_transition_type_t(1073741824);
-}
-impl cef_transition_type_t {
-    pub const TT_SERVER_REDIRECT_FLAG: cef_transition_type_t = cef_transition_type_t(2147483648);
-}
-impl cef_transition_type_t {
-    pub const TT_IS_REDIRECT_MASK: cef_transition_type_t = cef_transition_type_t(3221225472);
-}
-impl cef_transition_type_t {
-    pub const TT_QUALIFIER_MASK: cef_transition_type_t = cef_transition_type_t(4294967040);
-}
-impl ::std::ops::BitOr<cef_transition_type_t> for cef_transition_type_t {
-    type Output = Self;
-    #[inline]
-    fn bitor(self, other: Self) -> Self {
-        cef_transition_type_t(self.0 | other.0)
-    }
-}
-impl ::std::ops::BitOrAssign for cef_transition_type_t {
-    #[inline]
-    fn bitor_assign(&mut self, rhs: cef_transition_type_t) {
-        self.0 |= rhs.0;
-    }
-}
-impl ::std::ops::BitAnd<cef_transition_type_t> for cef_transition_type_t {
-    type Output = Self;
-    #[inline]
-    fn bitand(self, other: Self) -> Self {
-        cef_transition_type_t(self.0 & other.0)
-    }
-}
-impl ::std::ops::BitAndAssign for cef_transition_type_t {
-    #[inline]
-    fn bitand_assign(&mut self, rhs: cef_transition_type_t) {
-        self.0 &= rhs.0;
-    }
-}
-#[repr(transparent)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct cef_transition_type_t(pub u32);
 impl cef_urlrequest_flags_t {
     pub const UR_FLAG_NONE: cef_urlrequest_flags_t = cef_urlrequest_flags_t(0);
 }
@@ -3969,58 +3835,16 @@ pub mod cef_dom_node_type_t {
     pub const DOM_NODE_TYPE_DOCUMENT_TYPE: Type = 8;
     pub const DOM_NODE_TYPE_DOCUMENT_FRAGMENT: Type = 9;
 }
-impl cef_file_dialog_mode_t {
-    pub const FILE_DIALOG_OPEN: cef_file_dialog_mode_t = cef_file_dialog_mode_t(0);
+pub mod cef_file_dialog_mode_t {
+    pub type Type = u32;
+    pub const FILE_DIALOG_OPEN: Type = 0;
+    pub const FILE_DIALOG_OPEN_MULTIPLE: Type = 1;
+    pub const FILE_DIALOG_OPEN_FOLDER: Type = 2;
+    pub const FILE_DIALOG_SAVE: Type = 3;
+    pub const FILE_DIALOG_TYPE_MASK: Type = 255;
+    pub const FILE_DIALOG_OVERWRITEPROMPT_FLAG: Type = 16777216;
+    pub const FILE_DIALOG_HIDEREADONLY_FLAG: Type = 33554432;
 }
-impl cef_file_dialog_mode_t {
-    pub const FILE_DIALOG_OPEN_MULTIPLE: cef_file_dialog_mode_t = cef_file_dialog_mode_t(1);
-}
-impl cef_file_dialog_mode_t {
-    pub const FILE_DIALOG_OPEN_FOLDER: cef_file_dialog_mode_t = cef_file_dialog_mode_t(2);
-}
-impl cef_file_dialog_mode_t {
-    pub const FILE_DIALOG_SAVE: cef_file_dialog_mode_t = cef_file_dialog_mode_t(3);
-}
-impl cef_file_dialog_mode_t {
-    pub const FILE_DIALOG_TYPE_MASK: cef_file_dialog_mode_t = cef_file_dialog_mode_t(255);
-}
-impl cef_file_dialog_mode_t {
-    pub const FILE_DIALOG_OVERWRITEPROMPT_FLAG: cef_file_dialog_mode_t =
-        cef_file_dialog_mode_t(16777216);
-}
-impl cef_file_dialog_mode_t {
-    pub const FILE_DIALOG_HIDEREADONLY_FLAG: cef_file_dialog_mode_t =
-        cef_file_dialog_mode_t(33554432);
-}
-impl ::std::ops::BitOr<cef_file_dialog_mode_t> for cef_file_dialog_mode_t {
-    type Output = Self;
-    #[inline]
-    fn bitor(self, other: Self) -> Self {
-        cef_file_dialog_mode_t(self.0 | other.0)
-    }
-}
-impl ::std::ops::BitOrAssign for cef_file_dialog_mode_t {
-    #[inline]
-    fn bitor_assign(&mut self, rhs: cef_file_dialog_mode_t) {
-        self.0 |= rhs.0;
-    }
-}
-impl ::std::ops::BitAnd<cef_file_dialog_mode_t> for cef_file_dialog_mode_t {
-    type Output = Self;
-    #[inline]
-    fn bitand(self, other: Self) -> Self {
-        cef_file_dialog_mode_t(self.0 & other.0)
-    }
-}
-impl ::std::ops::BitAndAssign for cef_file_dialog_mode_t {
-    #[inline]
-    fn bitand_assign(&mut self, rhs: cef_file_dialog_mode_t) {
-        self.0 &= rhs.0;
-    }
-}
-#[repr(transparent)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub struct cef_file_dialog_mode_t(pub u32);
 pub mod cef_color_model_t {
     pub type Type = u32;
     pub const COLOR_MODEL_UNKNOWN: Type = 0;
@@ -4163,21 +3987,93 @@ fn bindgen_test_layout__cef_cursor_info_t() {
     );
 }
 pub type cef_cursor_info_t = _cef_cursor_info_t;
-pub mod cef_uri_unescape_rule_t {
-    pub type Type = u32;
-    pub const UU_NONE: Type = 0;
-    pub const UU_NORMAL: Type = 1;
-    pub const UU_SPACES: Type = 2;
-    pub const UU_PATH_SEPARATORS: Type = 4;
-    pub const UU_URL_SPECIAL_CHARS_EXCEPT_PATH_SEPARATORS: Type = 8;
-    pub const UU_SPOOFING_AND_CONTROL_CHARS: Type = 16;
-    pub const UU_REPLACE_PLUS_WITH_SPACE: Type = 32;
+impl cef_uri_unescape_rule_t {
+    pub const UU_NONE: cef_uri_unescape_rule_t = cef_uri_unescape_rule_t(0);
 }
-pub mod cef_json_parser_options_t {
-    pub type Type = u32;
-    pub const JSON_PARSER_RFC: Type = 0;
-    pub const JSON_PARSER_ALLOW_TRAILING_COMMAS: Type = 1;
+impl cef_uri_unescape_rule_t {
+    pub const UU_NORMAL: cef_uri_unescape_rule_t = cef_uri_unescape_rule_t(1);
 }
+impl cef_uri_unescape_rule_t {
+    pub const UU_SPACES: cef_uri_unescape_rule_t = cef_uri_unescape_rule_t(2);
+}
+impl cef_uri_unescape_rule_t {
+    pub const UU_PATH_SEPARATORS: cef_uri_unescape_rule_t = cef_uri_unescape_rule_t(4);
+}
+impl cef_uri_unescape_rule_t {
+    pub const UU_URL_SPECIAL_CHARS_EXCEPT_PATH_SEPARATORS: cef_uri_unescape_rule_t =
+        cef_uri_unescape_rule_t(8);
+}
+impl cef_uri_unescape_rule_t {
+    pub const UU_SPOOFING_AND_CONTROL_CHARS: cef_uri_unescape_rule_t = cef_uri_unescape_rule_t(16);
+}
+impl cef_uri_unescape_rule_t {
+    pub const UU_REPLACE_PLUS_WITH_SPACE: cef_uri_unescape_rule_t = cef_uri_unescape_rule_t(32);
+}
+impl ::std::ops::BitOr<cef_uri_unescape_rule_t> for cef_uri_unescape_rule_t {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        cef_uri_unescape_rule_t(self.0 | other.0)
+    }
+}
+impl ::std::ops::BitOrAssign for cef_uri_unescape_rule_t {
+    #[inline]
+    fn bitor_assign(&mut self, rhs: cef_uri_unescape_rule_t) {
+        self.0 |= rhs.0;
+    }
+}
+impl ::std::ops::BitAnd<cef_uri_unescape_rule_t> for cef_uri_unescape_rule_t {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        cef_uri_unescape_rule_t(self.0 & other.0)
+    }
+}
+impl ::std::ops::BitAndAssign for cef_uri_unescape_rule_t {
+    #[inline]
+    fn bitand_assign(&mut self, rhs: cef_uri_unescape_rule_t) {
+        self.0 &= rhs.0;
+    }
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct cef_uri_unescape_rule_t(pub u32);
+impl cef_json_parser_options_t {
+    pub const JSON_PARSER_RFC: cef_json_parser_options_t = cef_json_parser_options_t(0);
+}
+impl cef_json_parser_options_t {
+    pub const JSON_PARSER_ALLOW_TRAILING_COMMAS: cef_json_parser_options_t =
+        cef_json_parser_options_t(1);
+}
+impl ::std::ops::BitOr<cef_json_parser_options_t> for cef_json_parser_options_t {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        cef_json_parser_options_t(self.0 | other.0)
+    }
+}
+impl ::std::ops::BitOrAssign for cef_json_parser_options_t {
+    #[inline]
+    fn bitor_assign(&mut self, rhs: cef_json_parser_options_t) {
+        self.0 |= rhs.0;
+    }
+}
+impl ::std::ops::BitAnd<cef_json_parser_options_t> for cef_json_parser_options_t {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        cef_json_parser_options_t(self.0 & other.0)
+    }
+}
+impl ::std::ops::BitAndAssign for cef_json_parser_options_t {
+    #[inline]
+    fn bitand_assign(&mut self, rhs: cef_json_parser_options_t) {
+        self.0 &= rhs.0;
+    }
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct cef_json_parser_options_t(pub u32);
 pub mod cef_json_parser_error_t {
     pub type Type = u32;
     pub const JSON_NO_ERROR: Type = 0;
@@ -4191,13 +4087,49 @@ pub mod cef_json_parser_error_t {
     pub const JSON_UNQUOTED_DICTIONARY_KEY: Type = 8;
     pub const JSON_PARSE_ERROR_COUNT: Type = 9;
 }
-pub mod cef_json_writer_options_t {
-    pub type Type = u32;
-    pub const JSON_WRITER_DEFAULT: Type = 0;
-    pub const JSON_WRITER_OMIT_BINARY_VALUES: Type = 1;
-    pub const JSON_WRITER_OMIT_DOUBLE_TYPE_PRESERVATION: Type = 2;
-    pub const JSON_WRITER_PRETTY_PRINT: Type = 4;
+impl cef_json_writer_options_t {
+    pub const JSON_WRITER_DEFAULT: cef_json_writer_options_t = cef_json_writer_options_t(0);
 }
+impl cef_json_writer_options_t {
+    pub const JSON_WRITER_OMIT_BINARY_VALUES: cef_json_writer_options_t =
+        cef_json_writer_options_t(1);
+}
+impl cef_json_writer_options_t {
+    pub const JSON_WRITER_OMIT_DOUBLE_TYPE_PRESERVATION: cef_json_writer_options_t =
+        cef_json_writer_options_t(2);
+}
+impl cef_json_writer_options_t {
+    pub const JSON_WRITER_PRETTY_PRINT: cef_json_writer_options_t = cef_json_writer_options_t(4);
+}
+impl ::std::ops::BitOr<cef_json_writer_options_t> for cef_json_writer_options_t {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        cef_json_writer_options_t(self.0 | other.0)
+    }
+}
+impl ::std::ops::BitOrAssign for cef_json_writer_options_t {
+    #[inline]
+    fn bitor_assign(&mut self, rhs: cef_json_writer_options_t) {
+        self.0 |= rhs.0;
+    }
+}
+impl ::std::ops::BitAnd<cef_json_writer_options_t> for cef_json_writer_options_t {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        cef_json_writer_options_t(self.0 & other.0)
+    }
+}
+impl ::std::ops::BitAndAssign for cef_json_writer_options_t {
+    #[inline]
+    fn bitand_assign(&mut self, rhs: cef_json_writer_options_t) {
+        self.0 &= rhs.0;
+    }
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct cef_json_writer_options_t(pub u32);
 pub mod cef_pdf_print_margin_type_t {
     pub type Type = u32;
     pub const PDF_PRINT_MARGIN_DEFAULT: Type = 0;
@@ -4663,23 +4595,99 @@ pub mod cef_ssl_version_t {
     pub const SSL_CONNECTION_VERSION_TLS1_3: Type = 6;
     pub const SSL_CONNECTION_VERSION_QUIC: Type = 7;
 }
-pub mod cef_ssl_content_status_t {
-    pub type Type = u32;
-    pub const SSL_CONTENT_NORMAL_CONTENT: Type = 0;
-    pub const SSL_CONTENT_DISPLAYED_INSECURE_CONTENT: Type = 1;
-    pub const SSL_CONTENT_RAN_INSECURE_CONTENT: Type = 2;
+impl cef_ssl_content_status_t {
+    pub const SSL_CONTENT_NORMAL_CONTENT: cef_ssl_content_status_t = cef_ssl_content_status_t(0);
 }
-pub mod cef_scheme_options_t {
-    pub type Type = u32;
-    pub const CEF_SCHEME_OPTION_NONE: Type = 0;
-    pub const CEF_SCHEME_OPTION_STANDARD: Type = 1;
-    pub const CEF_SCHEME_OPTION_LOCAL: Type = 2;
-    pub const CEF_SCHEME_OPTION_DISPLAY_ISOLATED: Type = 4;
-    pub const CEF_SCHEME_OPTION_SECURE: Type = 8;
-    pub const CEF_SCHEME_OPTION_CORS_ENABLED: Type = 16;
-    pub const CEF_SCHEME_OPTION_CSP_BYPASSING: Type = 32;
-    pub const CEF_SCHEME_OPTION_FETCH_ENABLED: Type = 64;
+impl cef_ssl_content_status_t {
+    pub const SSL_CONTENT_DISPLAYED_INSECURE_CONTENT: cef_ssl_content_status_t =
+        cef_ssl_content_status_t(1);
 }
+impl cef_ssl_content_status_t {
+    pub const SSL_CONTENT_RAN_INSECURE_CONTENT: cef_ssl_content_status_t =
+        cef_ssl_content_status_t(2);
+}
+impl ::std::ops::BitOr<cef_ssl_content_status_t> for cef_ssl_content_status_t {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        cef_ssl_content_status_t(self.0 | other.0)
+    }
+}
+impl ::std::ops::BitOrAssign for cef_ssl_content_status_t {
+    #[inline]
+    fn bitor_assign(&mut self, rhs: cef_ssl_content_status_t) {
+        self.0 |= rhs.0;
+    }
+}
+impl ::std::ops::BitAnd<cef_ssl_content_status_t> for cef_ssl_content_status_t {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        cef_ssl_content_status_t(self.0 & other.0)
+    }
+}
+impl ::std::ops::BitAndAssign for cef_ssl_content_status_t {
+    #[inline]
+    fn bitand_assign(&mut self, rhs: cef_ssl_content_status_t) {
+        self.0 &= rhs.0;
+    }
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct cef_ssl_content_status_t(pub u32);
+impl cef_scheme_options_t {
+    pub const CEF_SCHEME_OPTION_NONE: cef_scheme_options_t = cef_scheme_options_t(0);
+}
+impl cef_scheme_options_t {
+    pub const CEF_SCHEME_OPTION_STANDARD: cef_scheme_options_t = cef_scheme_options_t(1);
+}
+impl cef_scheme_options_t {
+    pub const CEF_SCHEME_OPTION_LOCAL: cef_scheme_options_t = cef_scheme_options_t(2);
+}
+impl cef_scheme_options_t {
+    pub const CEF_SCHEME_OPTION_DISPLAY_ISOLATED: cef_scheme_options_t = cef_scheme_options_t(4);
+}
+impl cef_scheme_options_t {
+    pub const CEF_SCHEME_OPTION_SECURE: cef_scheme_options_t = cef_scheme_options_t(8);
+}
+impl cef_scheme_options_t {
+    pub const CEF_SCHEME_OPTION_CORS_ENABLED: cef_scheme_options_t = cef_scheme_options_t(16);
+}
+impl cef_scheme_options_t {
+    pub const CEF_SCHEME_OPTION_CSP_BYPASSING: cef_scheme_options_t = cef_scheme_options_t(32);
+}
+impl cef_scheme_options_t {
+    pub const CEF_SCHEME_OPTION_FETCH_ENABLED: cef_scheme_options_t = cef_scheme_options_t(64);
+}
+impl ::std::ops::BitOr<cef_scheme_options_t> for cef_scheme_options_t {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        cef_scheme_options_t(self.0 | other.0)
+    }
+}
+impl ::std::ops::BitOrAssign for cef_scheme_options_t {
+    #[inline]
+    fn bitor_assign(&mut self, rhs: cef_scheme_options_t) {
+        self.0 |= rhs.0;
+    }
+}
+impl ::std::ops::BitAnd<cef_scheme_options_t> for cef_scheme_options_t {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        cef_scheme_options_t(self.0 & other.0)
+    }
+}
+impl ::std::ops::BitAndAssign for cef_scheme_options_t {
+    #[inline]
+    fn bitand_assign(&mut self, rhs: cef_scheme_options_t) {
+        self.0 &= rhs.0;
+    }
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct cef_scheme_options_t(pub u32);
 pub mod cef_cdm_registration_error_t {
     pub type Type = u32;
     pub const CEF_CDM_REGISTRATION_ERROR_NONE: Type = 0;
@@ -6329,17 +6337,13 @@ pub type cef_list_value_t = _cef_list_value_t;
 extern "C" {
     pub fn cef_list_value_create() -> *mut cef_list_value_t;
 }
-#[doc = ""]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_accessibility_handler_t {
-    #[doc = ""]
     pub base: cef_base_ref_counted_t,
-    #[doc = ""]
     pub on_accessibility_tree_change: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_accessibility_handler_t, value: *mut _cef_value_t),
     >,
-    #[doc = ""]
     pub on_accessibility_location_change: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_accessibility_handler_t, value: *mut _cef_value_t),
     >,
@@ -8668,7 +8672,7 @@ pub struct _cef_request_t {
         unsafe extern "C" fn(self_: *mut _cef_request_t) -> cef_resource_type_t::Type,
     >,
     pub get_transition_type: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_request_t) -> cef_transition_type_t,
+        unsafe extern "C" fn(self_: *mut _cef_request_t) -> cef_transition_type_t::Type,
     >,
     pub get_identifier:
         ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_request_t) -> uint64>,
@@ -10022,7 +10026,7 @@ pub struct _cef_sslstatus_t {
         unsafe extern "C" fn(self_: *mut _cef_sslstatus_t) -> cef_ssl_version_t::Type,
     >,
     pub get_content_status: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_sslstatus_t) -> cef_ssl_content_status_t::Type,
+        unsafe extern "C" fn(self_: *mut _cef_sslstatus_t) -> cef_ssl_content_status_t,
     >,
     pub get_x509certificate: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_sslstatus_t) -> *mut _cef_x509certificate_t,
@@ -10130,7 +10134,7 @@ pub struct _cef_navigation_entry_t {
         unsafe extern "C" fn(self_: *mut _cef_navigation_entry_t) -> cef_string_userfree_t,
     >,
     pub get_transition_type: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_navigation_entry_t) -> cef_transition_type_t,
+        unsafe extern "C" fn(self_: *mut _cef_navigation_entry_t) -> cef_transition_type_t::Type,
     >,
     pub has_post_data: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_navigation_entry_t) -> ::std::os::raw::c_int,
@@ -12139,7 +12143,7 @@ pub struct _cef_browser_host_t {
     pub run_file_dialog: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_browser_host_t,
-            mode: cef_file_dialog_mode_t,
+            mode: cef_file_dialog_mode_t::Type,
             title: *const cef_string_t,
             default_file_path: *const cef_string_t,
             accept_filters: cef_string_list_t,
@@ -12309,14 +12313,14 @@ pub struct _cef_browser_host_t {
             self_: *mut _cef_browser_host_t,
             drag_data: *mut _cef_drag_data_t,
             event: *const _cef_mouse_event_t,
-            allowed_ops: cef_drag_operations_mask_t,
+            allowed_ops: cef_drag_operations_mask_t::Type,
         ),
     >,
     pub drag_target_drag_over: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_browser_host_t,
             event: *const _cef_mouse_event_t,
-            allowed_ops: cef_drag_operations_mask_t,
+            allowed_ops: cef_drag_operations_mask_t::Type,
         ),
     >,
     pub drag_target_drag_leave:
@@ -12329,7 +12333,7 @@ pub struct _cef_browser_host_t {
             self_: *mut _cef_browser_host_t,
             x: ::std::os::raw::c_int,
             y: ::std::os::raw::c_int,
-            op: cef_drag_operations_mask_t,
+            op: cef_drag_operations_mask_t::Type,
         ),
     >,
     pub drag_source_system_drag_ended:
@@ -13887,7 +13891,7 @@ pub struct _cef_load_handler_t {
             self_: *mut _cef_load_handler_t,
             browser: *mut _cef_browser_t,
             frame: *mut _cef_frame_t,
-            transition_type: cef_transition_type_t,
+            transition_type: cef_transition_type_t::Type,
         ),
     >,
     pub on_load_end: ::std::option::Option<
@@ -14895,7 +14899,7 @@ pub struct _cef_v8value_t {
         unsafe extern "C" fn(
             self_: *mut _cef_v8value_t,
             key: *const cef_string_t,
-            settings: cef_v8_accesscontrol_t,
+            settings: cef_v8_accesscontrol_t::Type,
             attribute: cef_v8_propertyattribute_t,
         ) -> ::std::os::raw::c_int,
     >,
@@ -16688,13 +16692,10 @@ extern "C" {
 extern "C" {
     pub fn cef_clear_scheme_handler_factories() -> ::std::os::raw::c_int;
 }
-#[doc = ""]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_app_t {
-    #[doc = ""]
     pub base: cef_base_ref_counted_t,
-    #[doc = ""]
     pub on_before_command_line_processing: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_app_t,
@@ -16702,19 +16703,15 @@ pub struct _cef_app_t {
             command_line: *mut _cef_command_line_t,
         ),
     >,
-    #[doc = ""]
     pub on_register_custom_schemes: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_app_t, registrar: *mut _cef_scheme_registrar_t),
     >,
-    #[doc = ""]
     pub get_resource_bundle_handler: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_app_t) -> *mut _cef_resource_bundle_handler_t,
     >,
-    #[doc = ""]
     pub get_browser_process_handler: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_app_t) -> *mut _cef_browser_process_handler_t,
     >,
-    #[doc = ""]
     pub get_render_process_handler: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_app_t) -> *mut _cef_render_process_handler_t,
     >,
@@ -16805,7 +16802,6 @@ fn bindgen_test_layout__cef_app_t() {
 }
 pub type cef_app_t = _cef_app_t;
 extern "C" {
-    #[doc = ""]
     pub fn cef_execute_process(
         args: *const _cef_main_args_t,
         application: *mut cef_app_t,
@@ -16813,7 +16809,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_initialize(
         args: *const _cef_main_args_t,
         settings: *const _cef_settings_t,
@@ -16822,36 +16817,27 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_shutdown();
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_do_message_loop_work();
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_run_message_loop();
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_quit_message_loop();
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_set_osmodal_loop(osModalLoop: ::std::os::raw::c_int);
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_enable_highdpi_support();
 }
-#[doc = ""]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_auth_callback_t {
-    #[doc = ""]
     pub base: cef_base_ref_counted_t,
-    #[doc = ""]
     pub cont: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_auth_callback_t,
@@ -16859,7 +16845,6 @@ pub struct _cef_auth_callback_t {
             password: *const cef_string_t,
         ),
     >,
-    #[doc = ""]
     pub cancel: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_auth_callback_t)>,
 }
 #[test]
@@ -18718,7 +18703,7 @@ pub struct _cef_dialog_handler_t {
         unsafe extern "C" fn(
             self_: *mut _cef_dialog_handler_t,
             browser: *mut _cef_browser_t,
-            mode: cef_file_dialog_mode_t,
+            mode: cef_file_dialog_mode_t::Type,
             title: *const cef_string_t,
             default_file_path: *const cef_string_t,
             accept_filters: cef_string_list_t,
@@ -19452,7 +19437,7 @@ pub struct _cef_drag_handler_t {
             self_: *mut _cef_drag_handler_t,
             browser: *mut _cef_browser_t,
             dragData: *mut _cef_drag_data_t,
-            mask: cef_drag_operations_mask_t,
+            mask: cef_drag_operations_mask_t::Type,
         ) -> ::std::os::raw::c_int,
     >,
     pub on_draggable_regions_changed: ::std::option::Option<
@@ -20071,7 +20056,7 @@ pub struct _cef_render_handler_t {
             self_: *mut _cef_render_handler_t,
             browser: *mut _cef_browser_t,
             drag_data: *mut _cef_drag_data_t,
-            allowed_ops: cef_drag_operations_mask_t,
+            allowed_ops: cef_drag_operations_mask_t::Type,
             x: ::std::os::raw::c_int,
             y: ::std::os::raw::c_int,
         ) -> ::std::os::raw::c_int,
@@ -20080,7 +20065,7 @@ pub struct _cef_render_handler_t {
         unsafe extern "C" fn(
             self_: *mut _cef_render_handler_t,
             browser: *mut _cef_browser_t,
-            operation: cef_drag_operations_mask_t,
+            operation: cef_drag_operations_mask_t::Type,
         ),
     >,
     pub on_scroll_offset_changed: ::std::option::Option<
@@ -21110,65 +21095,49 @@ fn bindgen_test_layout__cef_request_handler_t() {
     );
 }
 pub type cef_request_handler_t = _cef_request_handler_t;
-#[doc = ""]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_client_t {
-    #[doc = ""]
     pub base: cef_base_ref_counted_t,
-    #[doc = ""]
     pub get_context_menu_handler: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_client_t) -> *mut _cef_context_menu_handler_t,
     >,
-    #[doc = ""]
     pub get_dialog_handler: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_client_t) -> *mut _cef_dialog_handler_t,
     >,
-    #[doc = ""]
     pub get_display_handler: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_client_t) -> *mut _cef_display_handler_t,
     >,
-    #[doc = ""]
     pub get_download_handler: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_client_t) -> *mut _cef_download_handler_t,
     >,
-    #[doc = ""]
     pub get_drag_handler: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_client_t) -> *mut _cef_drag_handler_t,
     >,
-    #[doc = ""]
     pub get_find_handler: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_client_t) -> *mut _cef_find_handler_t,
     >,
-    #[doc = ""]
     pub get_focus_handler: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_client_t) -> *mut _cef_focus_handler_t,
     >,
-    #[doc = ""]
     pub get_jsdialog_handler: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_client_t) -> *mut _cef_jsdialog_handler_t,
     >,
-    #[doc = ""]
     pub get_keyboard_handler: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_client_t) -> *mut _cef_keyboard_handler_t,
     >,
-    #[doc = ""]
     pub get_life_span_handler: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_client_t) -> *mut _cef_life_span_handler_t,
     >,
-    #[doc = ""]
     pub get_load_handler: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_client_t) -> *mut _cef_load_handler_t,
     >,
-    #[doc = ""]
     pub get_render_handler: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_client_t) -> *mut _cef_render_handler_t,
     >,
-    #[doc = ""]
     pub get_request_handler: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_client_t) -> *mut _cef_request_handler_t,
     >,
-    #[doc = ""]
     pub on_process_message_received: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_client_t,
@@ -21365,30 +21334,24 @@ fn bindgen_test_layout__cef_client_t() {
 }
 pub type cef_client_t = _cef_client_t;
 extern "C" {
-    #[doc = ""]
     pub fn cef_crash_reporting_enabled() -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_set_crash_key_value(key: *const cef_string_t, value: *const cef_string_t);
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_create_directory(full_path: *const cef_string_t) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_get_temp_directory(temp_dir: *mut cef_string_t) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_create_new_temp_directory(
         prefix: *const cef_string_t,
         new_temp_path: *mut cef_string_t,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_create_temp_directory_in_directory(
         base_dir: *const cef_string_t,
         prefix: *const cef_string_t,
@@ -21396,18 +21359,15 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_directory_exists(path: *const cef_string_t) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_delete_file(
         path: *const cef_string_t,
         recursive: ::std::os::raw::c_int,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_zip_directory(
         src_dir: *const cef_string_t,
         dest_file: *const cef_string_t,
@@ -21415,11 +21375,9 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_load_crlsets_file(path: *const cef_string_t);
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_add_cross_origin_whitelist_entry(
         source_origin: *const cef_string_t,
         target_protocol: *const cef_string_t,
@@ -21428,7 +21386,6 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_remove_cross_origin_whitelist_entry(
         source_origin: *const cef_string_t,
         target_protocol: *const cef_string_t,
@@ -21437,98 +21394,83 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_clear_cross_origin_whitelist() -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_parse_url(
         url: *const cef_string_t,
         parts: *mut _cef_urlparts_t,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_create_url(
         parts: *const _cef_urlparts_t,
         url: *mut cef_string_t,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_format_url_for_security_display(
         origin_url: *const cef_string_t,
     ) -> cef_string_userfree_t;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_get_mime_type(extension: *const cef_string_t) -> cef_string_userfree_t;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_get_extensions_for_mime_type(
         mime_type: *const cef_string_t,
         extensions: cef_string_list_t,
     );
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_base64encode(
         data: *const ::std::os::raw::c_void,
         data_size: usize,
     ) -> cef_string_userfree_t;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_base64decode(data: *const cef_string_t) -> *mut _cef_binary_value_t;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_uriencode(
         text: *const cef_string_t,
         use_plus: ::std::os::raw::c_int,
     ) -> cef_string_userfree_t;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_uridecode(
         text: *const cef_string_t,
         convert_to_utf8: ::std::os::raw::c_int,
-        unescape_rule: cef_uri_unescape_rule_t::Type,
+        unescape_rule: cef_uri_unescape_rule_t,
     ) -> cef_string_userfree_t;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_parse_json(
         json_string: *const cef_string_t,
-        options: cef_json_parser_options_t::Type,
+        options: cef_json_parser_options_t,
     ) -> *mut _cef_value_t;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_parse_jsonand_return_error(
         json_string: *const cef_string_t,
-        options: cef_json_parser_options_t::Type,
+        options: cef_json_parser_options_t,
         error_code_out: *mut cef_json_parser_error_t::Type,
         error_msg_out: *mut cef_string_t,
     ) -> *mut _cef_value_t;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_write_json(
         node: *mut _cef_value_t,
-        options: cef_json_writer_options_t::Type,
+        options: cef_json_writer_options_t,
     ) -> cef_string_userfree_t;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_get_path(
         key: cef_path_key_t::Type,
         path: *mut cef_string_t,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_launch_process(command_line: *mut _cef_command_line_t) -> ::std::os::raw::c_int;
 }
 #[repr(C)]
@@ -21797,20 +21739,16 @@ extern "C" {
         callback: *mut cef_register_cdm_callback_t,
     );
 }
-#[doc = ""]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_request_context_handler_t {
-    #[doc = ""]
     pub base: cef_base_ref_counted_t,
-    #[doc = ""]
     pub on_request_context_initialized: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_request_context_handler_t,
             request_context: *mut _cef_request_context_t,
         ),
     >,
-    #[doc = ""]
     pub on_before_plugin_load: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_request_context_handler_t,
@@ -21822,7 +21760,6 @@ pub struct _cef_request_context_handler_t {
             plugin_policy: *mut cef_plugin_policy_t::Type,
         ) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub get_resource_request_handler: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_request_context_handler_t,
@@ -21901,20 +21838,16 @@ fn bindgen_test_layout__cef_request_context_handler_t() {
     );
 }
 pub type cef_request_context_handler_t = _cef_request_context_handler_t;
-#[doc = ""]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_resource_bundle_t {
-    #[doc = ""]
     pub base: cef_base_ref_counted_t,
-    #[doc = ""]
     pub get_localized_string: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_resource_bundle_t,
             string_id: ::std::os::raw::c_int,
         ) -> cef_string_userfree_t,
     >,
-    #[doc = ""]
     pub get_data_resource: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_resource_bundle_t,
@@ -21923,7 +21856,6 @@ pub struct _cef_resource_bundle_t {
             data_size: *mut usize,
         ) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub get_data_resource_for_scale: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_resource_bundle_t,
@@ -21998,41 +21930,31 @@ fn bindgen_test_layout__cef_resource_bundle_t() {
 }
 pub type cef_resource_bundle_t = _cef_resource_bundle_t;
 extern "C" {
-    #[doc = ""]
     pub fn cef_resource_bundle_get_global() -> *mut cef_resource_bundle_t;
 }
-#[doc = ""]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_server_t {
-    #[doc = ""]
     pub base: cef_base_ref_counted_t,
-    #[doc = ""]
     pub get_task_runner: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_server_t) -> *mut _cef_task_runner_t,
     >,
-    #[doc = ""]
     pub shutdown: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_server_t)>,
-    #[doc = ""]
     pub is_running: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_server_t) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub get_address: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_server_t) -> cef_string_userfree_t,
     >,
-    #[doc = ""]
     pub has_connection: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_server_t) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub is_valid_connection: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_server_t,
             connection_id: ::std::os::raw::c_int,
         ) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub send_http200response: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_server_t,
@@ -22042,11 +21964,9 @@ pub struct _cef_server_t {
             data_size: usize,
         ),
     >,
-    #[doc = ""]
     pub send_http404response: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_server_t, connection_id: ::std::os::raw::c_int),
     >,
-    #[doc = ""]
     pub send_http500response: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_server_t,
@@ -22054,7 +21974,6 @@ pub struct _cef_server_t {
             error_message: *const cef_string_t,
         ),
     >,
-    #[doc = ""]
     pub send_http_response: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_server_t,
@@ -22065,7 +21984,6 @@ pub struct _cef_server_t {
             extra_headers: cef_string_multimap_t,
         ),
     >,
-    #[doc = ""]
     pub send_raw_data: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_server_t,
@@ -22074,11 +21992,9 @@ pub struct _cef_server_t {
             data_size: usize,
         ),
     >,
-    #[doc = ""]
     pub close_connection: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_server_t, connection_id: ::std::os::raw::c_int),
     >,
-    #[doc = ""]
     pub send_web_socket_message: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_server_t,
@@ -22255,7 +22171,6 @@ fn bindgen_test_layout__cef_server_t() {
 }
 pub type cef_server_t = _cef_server_t;
 extern "C" {
-    #[doc = ""]
     pub fn cef_server_create(
         address: *const cef_string_t,
         port: uint16,
@@ -22263,21 +22178,16 @@ extern "C" {
         handler: *mut _cef_server_handler_t,
     );
 }
-#[doc = ""]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_server_handler_t {
-    #[doc = ""]
     pub base: cef_base_ref_counted_t,
-    #[doc = ""]
     pub on_server_created: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_server_handler_t, server: *mut _cef_server_t),
     >,
-    #[doc = ""]
     pub on_server_destroyed: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_server_handler_t, server: *mut _cef_server_t),
     >,
-    #[doc = ""]
     pub on_client_connected: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_server_handler_t,
@@ -22285,7 +22195,6 @@ pub struct _cef_server_handler_t {
             connection_id: ::std::os::raw::c_int,
         ),
     >,
-    #[doc = ""]
     pub on_client_disconnected: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_server_handler_t,
@@ -22293,7 +22202,6 @@ pub struct _cef_server_handler_t {
             connection_id: ::std::os::raw::c_int,
         ),
     >,
-    #[doc = ""]
     pub on_http_request: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_server_handler_t,
@@ -22303,7 +22211,6 @@ pub struct _cef_server_handler_t {
             request: *mut _cef_request_t,
         ),
     >,
-    #[doc = ""]
     pub on_web_socket_request: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_server_handler_t,
@@ -22314,7 +22221,6 @@ pub struct _cef_server_handler_t {
             callback: *mut _cef_callback_t,
         ),
     >,
-    #[doc = ""]
     pub on_web_socket_connected: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_server_handler_t,
@@ -22322,7 +22228,6 @@ pub struct _cef_server_handler_t {
             connection_id: ::std::os::raw::c_int,
         ),
     >,
-    #[doc = ""]
     pub on_web_socket_message: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_server_handler_t,
@@ -22468,23 +22373,17 @@ pub type cef_platform_thread_handle_t = pthread_t;
 extern "C" {
     pub fn cef_get_current_platform_thread_handle() -> cef_platform_thread_handle_t;
 }
-#[doc = ""]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_thread_t {
-    #[doc = ""]
     pub base: cef_base_ref_counted_t,
-    #[doc = ""]
     pub get_task_runner: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_thread_t) -> *mut _cef_task_runner_t,
     >,
-    #[doc = ""]
     pub get_platform_thread_id: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_thread_t) -> cef_platform_thread_id_t,
     >,
-    #[doc = ""]
     pub stop: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_thread_t)>,
-    #[doc = ""]
     pub is_running: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_thread_t) -> ::std::os::raw::c_int,
     >,
@@ -22556,7 +22455,6 @@ fn bindgen_test_layout__cef_thread_t() {
 }
 pub type cef_thread_t = _cef_thread_t;
 extern "C" {
-    #[doc = ""]
     pub fn cef_thread_create(
         display_name: *const cef_string_t,
         priority: cef_thread_priority_t::Type,
@@ -22565,13 +22463,10 @@ extern "C" {
         com_init_mode: cef_com_init_mode_t::Type,
     ) -> *mut cef_thread_t;
 }
-#[doc = ""]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_end_tracing_callback_t {
-    #[doc = ""]
     pub base: cef_base_ref_counted_t,
-    #[doc = ""]
     pub on_end_tracing_complete: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_end_tracing_callback_t,
@@ -22619,54 +22514,42 @@ fn bindgen_test_layout__cef_end_tracing_callback_t() {
 }
 pub type cef_end_tracing_callback_t = _cef_end_tracing_callback_t;
 extern "C" {
-    #[doc = ""]
     pub fn cef_begin_tracing(
         categories: *const cef_string_t,
         callback: *mut _cef_completion_callback_t,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_end_tracing(
         tracing_file: *const cef_string_t,
         callback: *mut cef_end_tracing_callback_t,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_now_from_system_trace_time() -> int64;
 }
-#[doc = ""]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_urlrequest_t {
-    #[doc = ""]
     pub base: cef_base_ref_counted_t,
-    #[doc = ""]
     pub get_request: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_urlrequest_t) -> *mut _cef_request_t,
     >,
-    #[doc = ""]
     pub get_client: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_urlrequest_t) -> *mut _cef_urlrequest_client_t,
     >,
-    #[doc = ""]
     pub get_request_status: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_urlrequest_t) -> cef_urlrequest_status_t::Type,
     >,
-    #[doc = ""]
     pub get_request_error: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_urlrequest_t) -> cef_errorcode_t::Type,
     >,
-    #[doc = ""]
     pub get_response: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_urlrequest_t) -> *mut _cef_response_t,
     >,
-    #[doc = ""]
     pub response_was_cached: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_urlrequest_t) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub cancel: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_urlrequest_t)>,
 }
 #[test]
@@ -22770,24 +22653,19 @@ fn bindgen_test_layout__cef_urlrequest_t() {
 }
 pub type cef_urlrequest_t = _cef_urlrequest_t;
 extern "C" {
-    #[doc = ""]
     pub fn cef_urlrequest_create(
         request: *mut _cef_request_t,
         client: *mut _cef_urlrequest_client_t,
         request_context: *mut _cef_request_context_t,
     ) -> *mut cef_urlrequest_t;
 }
-#[doc = ""]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_urlrequest_client_t {
-    #[doc = ""]
     pub base: cef_base_ref_counted_t,
-    #[doc = ""]
     pub on_request_complete: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_urlrequest_client_t, request: *mut _cef_urlrequest_t),
     >,
-    #[doc = ""]
     pub on_upload_progress: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_urlrequest_client_t,
@@ -22796,7 +22674,6 @@ pub struct _cef_urlrequest_client_t {
             total: int64,
         ),
     >,
-    #[doc = ""]
     pub on_download_progress: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_urlrequest_client_t,
@@ -22805,7 +22682,6 @@ pub struct _cef_urlrequest_client_t {
             total: int64,
         ),
     >,
-    #[doc = ""]
     pub on_download_data: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_urlrequest_client_t,
@@ -22814,7 +22690,6 @@ pub struct _cef_urlrequest_client_t {
             data_length: usize,
         ),
     >,
-    #[doc = ""]
     pub get_auth_credentials: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_urlrequest_client_t,
@@ -22916,23 +22791,16 @@ fn bindgen_test_layout__cef_urlrequest_client_t() {
     );
 }
 pub type cef_urlrequest_client_t = _cef_urlrequest_client_t;
-#[doc = ""]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_waitable_event_t {
-    #[doc = ""]
     pub base: cef_base_ref_counted_t,
-    #[doc = ""]
     pub reset: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_waitable_event_t)>,
-    #[doc = ""]
     pub signal: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_waitable_event_t)>,
-    #[doc = ""]
     pub is_signaled: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_waitable_event_t) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub wait: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_waitable_event_t)>,
-    #[doc = ""]
     pub timed_wait: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_waitable_event_t,
@@ -23019,100 +22887,77 @@ fn bindgen_test_layout__cef_waitable_event_t() {
 }
 pub type cef_waitable_event_t = _cef_waitable_event_t;
 extern "C" {
-    #[doc = ""]
     pub fn cef_waitable_event_create(
         automatic_reset: ::std::os::raw::c_int,
         initially_signaled: ::std::os::raw::c_int,
     ) -> *mut cef_waitable_event_t;
 }
-#[doc = ""]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_xml_reader_t {
-    #[doc = ""]
     pub base: cef_base_ref_counted_t,
-    #[doc = ""]
     pub move_to_next_node: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub close: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub has_error: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub get_error: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> cef_string_userfree_t,
     >,
-    #[doc = ""]
     pub get_type: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> cef_xml_node_type_t::Type,
     >,
-    #[doc = ""]
     pub get_depth: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub get_local_name: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> cef_string_userfree_t,
     >,
-    #[doc = ""]
     pub get_prefix: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> cef_string_userfree_t,
     >,
-    #[doc = ""]
     pub get_qualified_name: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> cef_string_userfree_t,
     >,
-    #[doc = ""]
     pub get_namespace_uri: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> cef_string_userfree_t,
     >,
-    #[doc = ""]
     pub get_base_uri: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> cef_string_userfree_t,
     >,
-    #[doc = ""]
     pub get_xml_lang: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> cef_string_userfree_t,
     >,
-    #[doc = ""]
     pub is_empty_element: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub has_value: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub get_value: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> cef_string_userfree_t,
     >,
-    #[doc = ""]
     pub has_attributes: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub get_attribute_count:
         ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> usize>,
-    #[doc = ""]
     pub get_attribute_byindex: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_xml_reader_t,
             index: ::std::os::raw::c_int,
         ) -> cef_string_userfree_t,
     >,
-    #[doc = ""]
     pub get_attribute_byqname: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_xml_reader_t,
             qualifiedName: *const cef_string_t,
         ) -> cef_string_userfree_t,
     >,
-    #[doc = ""]
     pub get_attribute_bylname: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_xml_reader_t,
@@ -23120,33 +22965,27 @@ pub struct _cef_xml_reader_t {
             namespaceURI: *const cef_string_t,
         ) -> cef_string_userfree_t,
     >,
-    #[doc = ""]
     pub get_inner_xml: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> cef_string_userfree_t,
     >,
-    #[doc = ""]
     pub get_outer_xml: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> cef_string_userfree_t,
     >,
-    #[doc = ""]
     pub get_line_number: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub move_to_attribute_byindex: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_xml_reader_t,
             index: ::std::os::raw::c_int,
         ) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub move_to_attribute_byqname: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_xml_reader_t,
             qualifiedName: *const cef_string_t,
         ) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub move_to_attribute_bylname: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_xml_reader_t,
@@ -23154,15 +22993,12 @@ pub struct _cef_xml_reader_t {
             namespaceURI: *const cef_string_t,
         ) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub move_to_first_attribute: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub move_to_next_attribute: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub move_to_carrying_element: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> ::std::os::raw::c_int,
     >,
@@ -23522,28 +23358,22 @@ fn bindgen_test_layout__cef_xml_reader_t() {
 }
 pub type cef_xml_reader_t = _cef_xml_reader_t;
 extern "C" {
-    #[doc = ""]
     pub fn cef_xml_reader_create(
         stream: *mut _cef_stream_reader_t,
         encodingType: cef_xml_encoding_type_t::Type,
         URI: *const cef_string_t,
     ) -> *mut cef_xml_reader_t;
 }
-#[doc = ""]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_zip_reader_t {
-    #[doc = ""]
     pub base: cef_base_ref_counted_t,
-    #[doc = ""]
     pub move_to_first_file: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_zip_reader_t) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub move_to_next_file: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_zip_reader_t) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub move_to_file: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_zip_reader_t,
@@ -23551,32 +23381,25 @@ pub struct _cef_zip_reader_t {
             caseSensitive: ::std::os::raw::c_int,
         ) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub close: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_zip_reader_t) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub get_file_name: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_zip_reader_t) -> cef_string_userfree_t,
     >,
-    #[doc = ""]
     pub get_file_size:
         ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_zip_reader_t) -> int64>,
-    #[doc = ""]
     pub get_file_last_modified:
         ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_zip_reader_t) -> cef_time_t>,
-    #[doc = ""]
     pub open_file: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_zip_reader_t,
             password: *const cef_string_t,
         ) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub close_file: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_zip_reader_t) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub read_file: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_zip_reader_t,
@@ -23584,9 +23407,7 @@ pub struct _cef_zip_reader_t {
             bufferSize: usize,
         ) -> ::std::os::raw::c_int,
     >,
-    #[doc = ""]
     pub tell: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_zip_reader_t) -> int64>,
-    #[doc = ""]
     pub eof: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_zip_reader_t) -> ::std::os::raw::c_int,
     >,
@@ -23743,30 +23564,24 @@ fn bindgen_test_layout__cef_zip_reader_t() {
 }
 pub type cef_zip_reader_t = _cef_zip_reader_t;
 extern "C" {
-    #[doc = ""]
     pub fn cef_zip_reader_create(stream: *mut _cef_stream_reader_t) -> *mut cef_zip_reader_t;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_api_hash(entry: ::std::os::raw::c_int) -> *const ::std::os::raw::c_char;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_version_info(entry: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_get_min_log_level() -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_get_vlog_level(
         file_start: *const ::std::os::raw::c_char,
         N: usize,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[doc = ""]
     pub fn cef_log(
         file: *const ::std::os::raw::c_char,
         line: ::std::os::raw::c_int,

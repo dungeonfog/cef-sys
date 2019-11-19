@@ -1,6 +1,7 @@
 /target
 **/*.rs.bk
 Cargo.lock
+bindgen_cef/bindings.rs
 
 
 #Added by cargo
