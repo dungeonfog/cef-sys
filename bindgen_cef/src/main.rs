@@ -50,6 +50,8 @@ fn main() {
         .bitfield_enum("cef_json_writer_options_t")
         .bitfield_enum("cef_ssl_content_status_t")
         .bitfield_enum("cef_scheme_options_t")
+        .blacklist_type("H[A-Z]+_*") // blacklist Windows handles
+        .blacklist_type("(tag)?MSG")
         .generate()
         .unwrap();
     bindings.write_to_file("./bindings.rs").unwrap();
