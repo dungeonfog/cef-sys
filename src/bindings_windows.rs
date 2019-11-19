@@ -2389,17 +2389,59 @@ pub mod cef_window_open_disposition_t {
     pub const WOD_OFF_THE_RECORD: Type = 8;
     pub const WOD_IGNORE_ACTION: Type = 9;
 }
-pub mod cef_drag_operations_mask_t {
-    pub type Type = i32;
-    pub const DRAG_OPERATION_NONE: Type = 0;
-    pub const DRAG_OPERATION_COPY: Type = 1;
-    pub const DRAG_OPERATION_LINK: Type = 2;
-    pub const DRAG_OPERATION_GENERIC: Type = 4;
-    pub const DRAG_OPERATION_PRIVATE: Type = 8;
-    pub const DRAG_OPERATION_MOVE: Type = 16;
-    pub const DRAG_OPERATION_DELETE: Type = 32;
-    pub const DRAG_OPERATION_EVERY: Type = -1;
+impl cef_drag_operations_mask_t {
+    pub const DRAG_OPERATION_NONE: cef_drag_operations_mask_t = cef_drag_operations_mask_t(0);
 }
+impl cef_drag_operations_mask_t {
+    pub const DRAG_OPERATION_COPY: cef_drag_operations_mask_t = cef_drag_operations_mask_t(1);
+}
+impl cef_drag_operations_mask_t {
+    pub const DRAG_OPERATION_LINK: cef_drag_operations_mask_t = cef_drag_operations_mask_t(2);
+}
+impl cef_drag_operations_mask_t {
+    pub const DRAG_OPERATION_GENERIC: cef_drag_operations_mask_t = cef_drag_operations_mask_t(4);
+}
+impl cef_drag_operations_mask_t {
+    pub const DRAG_OPERATION_PRIVATE: cef_drag_operations_mask_t = cef_drag_operations_mask_t(8);
+}
+impl cef_drag_operations_mask_t {
+    pub const DRAG_OPERATION_MOVE: cef_drag_operations_mask_t = cef_drag_operations_mask_t(16);
+}
+impl cef_drag_operations_mask_t {
+    pub const DRAG_OPERATION_DELETE: cef_drag_operations_mask_t = cef_drag_operations_mask_t(32);
+}
+impl cef_drag_operations_mask_t {
+    pub const DRAG_OPERATION_EVERY: cef_drag_operations_mask_t = cef_drag_operations_mask_t(-1);
+}
+impl ::std::ops::BitOr<cef_drag_operations_mask_t> for cef_drag_operations_mask_t {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        cef_drag_operations_mask_t(self.0 | other.0)
+    }
+}
+impl ::std::ops::BitOrAssign for cef_drag_operations_mask_t {
+    #[inline]
+    fn bitor_assign(&mut self, rhs: cef_drag_operations_mask_t) {
+        self.0 |= rhs.0;
+    }
+}
+impl ::std::ops::BitAnd<cef_drag_operations_mask_t> for cef_drag_operations_mask_t {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        cef_drag_operations_mask_t(self.0 & other.0)
+    }
+}
+impl ::std::ops::BitAndAssign for cef_drag_operations_mask_t {
+    #[inline]
+    fn bitand_assign(&mut self, rhs: cef_drag_operations_mask_t) {
+        self.0 &= rhs.0;
+    }
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct cef_drag_operations_mask_t(pub i32);
 pub mod cef_text_input_mode_t {
     pub type Type = i32;
     pub const CEF_TEXT_INPUT_MODE_DEFAULT: Type = 0;
@@ -2413,13 +2455,48 @@ pub mod cef_text_input_mode_t {
     pub const CEF_TEXT_INPUT_MODE_SEARCH: Type = 8;
     pub const CEF_TEXT_INPUT_MODE_MAX: Type = 8;
 }
-pub mod cef_v8_accesscontrol_t {
-    pub type Type = i32;
-    pub const V8_ACCESS_CONTROL_DEFAULT: Type = 0;
-    pub const V8_ACCESS_CONTROL_ALL_CAN_READ: Type = 1;
-    pub const V8_ACCESS_CONTROL_ALL_CAN_WRITE: Type = 2;
-    pub const V8_ACCESS_CONTROL_PROHIBITS_OVERWRITING: Type = 4;
+impl cef_v8_accesscontrol_t {
+    pub const V8_ACCESS_CONTROL_DEFAULT: cef_v8_accesscontrol_t = cef_v8_accesscontrol_t(0);
 }
+impl cef_v8_accesscontrol_t {
+    pub const V8_ACCESS_CONTROL_ALL_CAN_READ: cef_v8_accesscontrol_t = cef_v8_accesscontrol_t(1);
+}
+impl cef_v8_accesscontrol_t {
+    pub const V8_ACCESS_CONTROL_ALL_CAN_WRITE: cef_v8_accesscontrol_t = cef_v8_accesscontrol_t(2);
+}
+impl cef_v8_accesscontrol_t {
+    pub const V8_ACCESS_CONTROL_PROHIBITS_OVERWRITING: cef_v8_accesscontrol_t =
+        cef_v8_accesscontrol_t(4);
+}
+impl ::std::ops::BitOr<cef_v8_accesscontrol_t> for cef_v8_accesscontrol_t {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        cef_v8_accesscontrol_t(self.0 | other.0)
+    }
+}
+impl ::std::ops::BitOrAssign for cef_v8_accesscontrol_t {
+    #[inline]
+    fn bitor_assign(&mut self, rhs: cef_v8_accesscontrol_t) {
+        self.0 |= rhs.0;
+    }
+}
+impl ::std::ops::BitAnd<cef_v8_accesscontrol_t> for cef_v8_accesscontrol_t {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        cef_v8_accesscontrol_t(self.0 & other.0)
+    }
+}
+impl ::std::ops::BitAndAssign for cef_v8_accesscontrol_t {
+    #[inline]
+    fn bitand_assign(&mut self, rhs: cef_v8_accesscontrol_t) {
+        self.0 &= rhs.0;
+    }
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct cef_v8_accesscontrol_t(pub i32);
 impl cef_v8_propertyattribute_t {
     pub const V8_PROPERTY_ATTRIBUTE_NONE: cef_v8_propertyattribute_t =
         cef_v8_propertyattribute_t(0);
@@ -2492,24 +2569,80 @@ pub mod cef_resource_type_t {
     pub const RT_CSP_REPORT: Type = 16;
     pub const RT_PLUGIN_RESOURCE: Type = 17;
 }
-pub mod cef_transition_type_t {
-    pub type Type = i32;
-    pub const TT_LINK: Type = 0;
-    pub const TT_EXPLICIT: Type = 1;
-    pub const TT_AUTO_SUBFRAME: Type = 3;
-    pub const TT_MANUAL_SUBFRAME: Type = 4;
-    pub const TT_FORM_SUBMIT: Type = 7;
-    pub const TT_RELOAD: Type = 8;
-    pub const TT_SOURCE_MASK: Type = 255;
-    pub const TT_BLOCKED_FLAG: Type = 8388608;
-    pub const TT_FORWARD_BACK_FLAG: Type = 16777216;
-    pub const TT_CHAIN_START_FLAG: Type = 268435456;
-    pub const TT_CHAIN_END_FLAG: Type = 536870912;
-    pub const TT_CLIENT_REDIRECT_FLAG: Type = 1073741824;
-    pub const TT_SERVER_REDIRECT_FLAG: Type = -2147483648;
-    pub const TT_IS_REDIRECT_MASK: Type = -1073741824;
-    pub const TT_QUALIFIER_MASK: Type = -256;
+impl cef_transition_type_t {
+    pub const TT_LINK: cef_transition_type_t = cef_transition_type_t(0);
 }
+impl cef_transition_type_t {
+    pub const TT_EXPLICIT: cef_transition_type_t = cef_transition_type_t(1);
+}
+impl cef_transition_type_t {
+    pub const TT_AUTO_SUBFRAME: cef_transition_type_t = cef_transition_type_t(3);
+}
+impl cef_transition_type_t {
+    pub const TT_MANUAL_SUBFRAME: cef_transition_type_t = cef_transition_type_t(4);
+}
+impl cef_transition_type_t {
+    pub const TT_FORM_SUBMIT: cef_transition_type_t = cef_transition_type_t(7);
+}
+impl cef_transition_type_t {
+    pub const TT_RELOAD: cef_transition_type_t = cef_transition_type_t(8);
+}
+impl cef_transition_type_t {
+    pub const TT_SOURCE_MASK: cef_transition_type_t = cef_transition_type_t(255);
+}
+impl cef_transition_type_t {
+    pub const TT_BLOCKED_FLAG: cef_transition_type_t = cef_transition_type_t(8388608);
+}
+impl cef_transition_type_t {
+    pub const TT_FORWARD_BACK_FLAG: cef_transition_type_t = cef_transition_type_t(16777216);
+}
+impl cef_transition_type_t {
+    pub const TT_CHAIN_START_FLAG: cef_transition_type_t = cef_transition_type_t(268435456);
+}
+impl cef_transition_type_t {
+    pub const TT_CHAIN_END_FLAG: cef_transition_type_t = cef_transition_type_t(536870912);
+}
+impl cef_transition_type_t {
+    pub const TT_CLIENT_REDIRECT_FLAG: cef_transition_type_t = cef_transition_type_t(1073741824);
+}
+impl cef_transition_type_t {
+    pub const TT_SERVER_REDIRECT_FLAG: cef_transition_type_t = cef_transition_type_t(-2147483648);
+}
+impl cef_transition_type_t {
+    pub const TT_IS_REDIRECT_MASK: cef_transition_type_t = cef_transition_type_t(-1073741824);
+}
+impl cef_transition_type_t {
+    pub const TT_QUALIFIER_MASK: cef_transition_type_t = cef_transition_type_t(-256);
+}
+impl ::std::ops::BitOr<cef_transition_type_t> for cef_transition_type_t {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        cef_transition_type_t(self.0 | other.0)
+    }
+}
+impl ::std::ops::BitOrAssign for cef_transition_type_t {
+    #[inline]
+    fn bitor_assign(&mut self, rhs: cef_transition_type_t) {
+        self.0 |= rhs.0;
+    }
+}
+impl ::std::ops::BitAnd<cef_transition_type_t> for cef_transition_type_t {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        cef_transition_type_t(self.0 & other.0)
+    }
+}
+impl ::std::ops::BitAndAssign for cef_transition_type_t {
+    #[inline]
+    fn bitand_assign(&mut self, rhs: cef_transition_type_t) {
+        self.0 &= rhs.0;
+    }
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct cef_transition_type_t(pub i32);
 impl cef_urlrequest_flags_t {
     pub const UR_FLAG_NONE: cef_urlrequest_flags_t = cef_urlrequest_flags_t(0);
 }
@@ -3889,16 +4022,58 @@ pub mod cef_dom_node_type_t {
     pub const DOM_NODE_TYPE_DOCUMENT_TYPE: Type = 8;
     pub const DOM_NODE_TYPE_DOCUMENT_FRAGMENT: Type = 9;
 }
-pub mod cef_file_dialog_mode_t {
-    pub type Type = i32;
-    pub const FILE_DIALOG_OPEN: Type = 0;
-    pub const FILE_DIALOG_OPEN_MULTIPLE: Type = 1;
-    pub const FILE_DIALOG_OPEN_FOLDER: Type = 2;
-    pub const FILE_DIALOG_SAVE: Type = 3;
-    pub const FILE_DIALOG_TYPE_MASK: Type = 255;
-    pub const FILE_DIALOG_OVERWRITEPROMPT_FLAG: Type = 16777216;
-    pub const FILE_DIALOG_HIDEREADONLY_FLAG: Type = 33554432;
+impl cef_file_dialog_mode_t {
+    pub const FILE_DIALOG_OPEN: cef_file_dialog_mode_t = cef_file_dialog_mode_t(0);
 }
+impl cef_file_dialog_mode_t {
+    pub const FILE_DIALOG_OPEN_MULTIPLE: cef_file_dialog_mode_t = cef_file_dialog_mode_t(1);
+}
+impl cef_file_dialog_mode_t {
+    pub const FILE_DIALOG_OPEN_FOLDER: cef_file_dialog_mode_t = cef_file_dialog_mode_t(2);
+}
+impl cef_file_dialog_mode_t {
+    pub const FILE_DIALOG_SAVE: cef_file_dialog_mode_t = cef_file_dialog_mode_t(3);
+}
+impl cef_file_dialog_mode_t {
+    pub const FILE_DIALOG_TYPE_MASK: cef_file_dialog_mode_t = cef_file_dialog_mode_t(255);
+}
+impl cef_file_dialog_mode_t {
+    pub const FILE_DIALOG_OVERWRITEPROMPT_FLAG: cef_file_dialog_mode_t =
+        cef_file_dialog_mode_t(16777216);
+}
+impl cef_file_dialog_mode_t {
+    pub const FILE_DIALOG_HIDEREADONLY_FLAG: cef_file_dialog_mode_t =
+        cef_file_dialog_mode_t(33554432);
+}
+impl ::std::ops::BitOr<cef_file_dialog_mode_t> for cef_file_dialog_mode_t {
+    type Output = Self;
+    #[inline]
+    fn bitor(self, other: Self) -> Self {
+        cef_file_dialog_mode_t(self.0 | other.0)
+    }
+}
+impl ::std::ops::BitOrAssign for cef_file_dialog_mode_t {
+    #[inline]
+    fn bitor_assign(&mut self, rhs: cef_file_dialog_mode_t) {
+        self.0 |= rhs.0;
+    }
+}
+impl ::std::ops::BitAnd<cef_file_dialog_mode_t> for cef_file_dialog_mode_t {
+    type Output = Self;
+    #[inline]
+    fn bitand(self, other: Self) -> Self {
+        cef_file_dialog_mode_t(self.0 & other.0)
+    }
+}
+impl ::std::ops::BitAndAssign for cef_file_dialog_mode_t {
+    #[inline]
+    fn bitand_assign(&mut self, rhs: cef_file_dialog_mode_t) {
+        self.0 &= rhs.0;
+    }
+}
+#[repr(transparent)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub struct cef_file_dialog_mode_t(pub i32);
 pub mod cef_color_model_t {
     pub type Type = i32;
     pub const COLOR_MODEL_UNKNOWN: Type = 0;
@@ -8726,7 +8901,7 @@ pub struct _cef_request_t {
         unsafe extern "C" fn(self_: *mut _cef_request_t) -> cef_resource_type_t::Type,
     >,
     pub get_transition_type: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_request_t) -> cef_transition_type_t::Type,
+        unsafe extern "C" fn(self_: *mut _cef_request_t) -> cef_transition_type_t,
     >,
     pub get_identifier:
         ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_request_t) -> uint64>,
@@ -10188,7 +10363,7 @@ pub struct _cef_navigation_entry_t {
         unsafe extern "C" fn(self_: *mut _cef_navigation_entry_t) -> cef_string_userfree_t,
     >,
     pub get_transition_type: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_navigation_entry_t) -> cef_transition_type_t::Type,
+        unsafe extern "C" fn(self_: *mut _cef_navigation_entry_t) -> cef_transition_type_t,
     >,
     pub has_post_data: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_navigation_entry_t) -> ::std::os::raw::c_int,
@@ -12195,7 +12370,7 @@ pub struct _cef_browser_host_t {
     pub run_file_dialog: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_browser_host_t,
-            mode: cef_file_dialog_mode_t::Type,
+            mode: cef_file_dialog_mode_t,
             title: *const cef_string_t,
             default_file_path: *const cef_string_t,
             accept_filters: cef_string_list_t,
@@ -12365,14 +12540,14 @@ pub struct _cef_browser_host_t {
             self_: *mut _cef_browser_host_t,
             drag_data: *mut _cef_drag_data_t,
             event: *const _cef_mouse_event_t,
-            allowed_ops: cef_drag_operations_mask_t::Type,
+            allowed_ops: cef_drag_operations_mask_t,
         ),
     >,
     pub drag_target_drag_over: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_browser_host_t,
             event: *const _cef_mouse_event_t,
-            allowed_ops: cef_drag_operations_mask_t::Type,
+            allowed_ops: cef_drag_operations_mask_t,
         ),
     >,
     pub drag_target_drag_leave:
@@ -12385,7 +12560,7 @@ pub struct _cef_browser_host_t {
             self_: *mut _cef_browser_host_t,
             x: ::std::os::raw::c_int,
             y: ::std::os::raw::c_int,
-            op: cef_drag_operations_mask_t::Type,
+            op: cef_drag_operations_mask_t,
         ),
     >,
     pub drag_source_system_drag_ended:
@@ -13943,7 +14118,7 @@ pub struct _cef_load_handler_t {
             self_: *mut _cef_load_handler_t,
             browser: *mut _cef_browser_t,
             frame: *mut _cef_frame_t,
-            transition_type: cef_transition_type_t::Type,
+            transition_type: cef_transition_type_t,
         ),
     >,
     pub on_load_end: ::std::option::Option<
@@ -14951,7 +15126,7 @@ pub struct _cef_v8value_t {
         unsafe extern "C" fn(
             self_: *mut _cef_v8value_t,
             key: *const cef_string_t,
-            settings: cef_v8_accesscontrol_t::Type,
+            settings: cef_v8_accesscontrol_t,
             attribute: cef_v8_propertyattribute_t,
         ) -> ::std::os::raw::c_int,
     >,
@@ -18755,7 +18930,7 @@ pub struct _cef_dialog_handler_t {
         unsafe extern "C" fn(
             self_: *mut _cef_dialog_handler_t,
             browser: *mut _cef_browser_t,
-            mode: cef_file_dialog_mode_t::Type,
+            mode: cef_file_dialog_mode_t,
             title: *const cef_string_t,
             default_file_path: *const cef_string_t,
             accept_filters: cef_string_list_t,
@@ -19489,7 +19664,7 @@ pub struct _cef_drag_handler_t {
             self_: *mut _cef_drag_handler_t,
             browser: *mut _cef_browser_t,
             dragData: *mut _cef_drag_data_t,
-            mask: cef_drag_operations_mask_t::Type,
+            mask: cef_drag_operations_mask_t,
         ) -> ::std::os::raw::c_int,
     >,
     pub on_draggable_regions_changed: ::std::option::Option<
@@ -20108,7 +20283,7 @@ pub struct _cef_render_handler_t {
             self_: *mut _cef_render_handler_t,
             browser: *mut _cef_browser_t,
             drag_data: *mut _cef_drag_data_t,
-            allowed_ops: cef_drag_operations_mask_t::Type,
+            allowed_ops: cef_drag_operations_mask_t,
             x: ::std::os::raw::c_int,
             y: ::std::os::raw::c_int,
         ) -> ::std::os::raw::c_int,
@@ -20117,7 +20292,7 @@ pub struct _cef_render_handler_t {
         unsafe extern "C" fn(
             self_: *mut _cef_render_handler_t,
             browser: *mut _cef_browser_t,
-            operation: cef_drag_operations_mask_t::Type,
+            operation: cef_drag_operations_mask_t,
         ),
     >,
     pub on_scroll_offset_changed: ::std::option::Option<

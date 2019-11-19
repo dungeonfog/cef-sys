@@ -50,6 +50,11 @@ fn main() {
         .bitfield_enum("cef_json_writer_options_t")
         .bitfield_enum("cef_ssl_content_status_t")
         .bitfield_enum("cef_scheme_options_t")
+        .bitfield_enum("cef_transition_type_t")
+        .bitfield_enum("cef_v8_propertyattribute_t")
+        .bitfield_enum("cef_v8_accesscontrol_t")
+        .bitfield_enum("cef_drag_operations_mask_t")
+        .bitfield_enum("cef_file_dialog_mode_t")
         .blacklist_type("H[A-Z]+_*") // blacklist Windows handles
         .blacklist_type("(tag)?MSG")
         .generate()
