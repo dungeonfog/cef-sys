@@ -7,3 +7,8 @@ pub use bindings_windows::*;
 mod bindings_linux;
 #[cfg(target_os = "linux")]
 pub use bindings_linux::*;
+
+#[cfg(target_os = "macos")]
+mod bindings_macos;
+#[cfg(target_os = "macos")]
+pub use bindings_macos::*;

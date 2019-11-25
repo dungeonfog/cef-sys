@@ -69,8 +69,15 @@
 #include <include/capi/cef_xml_reader_capi.h>
 #include <include/capi/cef_zip_reader_capi.h>
 #include <include/cef_api_hash.h>
+
+#if defined(OS_MACOSX)
 #include <include/cef_sandbox_mac.h>
+#endif
+
+#if defined(OS_WIN)
 #include <include/cef_sandbox_win.h>
+#endif
+
 #include <include/cef_version.h>
 #include <include/internal/cef_logging_internal.h>
 #include <include/internal/cef_string_list.h>
@@ -81,6 +88,15 @@
 #include <include/internal/cef_time.h>
 #include <include/internal/cef_trace_event_internal.h>
 #include <include/internal/cef_types.h>
+
+#if defined(OS_LINUX)
 #include <include/internal/cef_types_linux.h>
+#endif
+
+#if defined(OS_MACOSX)
 #include <include/internal/cef_types_mac.h>
+#endif
+
+#if defined(OS_WIN)
 #include <include/internal/cef_types_win.h>
+#endif
