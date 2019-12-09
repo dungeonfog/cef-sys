@@ -908,7 +908,6 @@ pub struct _cef_settings_t {
     pub remote_debugging_port: ::std::os::raw::c_int,
     pub uncaught_exception_stack_size: ::std::os::raw::c_int,
     pub ignore_certificate_errors: ::std::os::raw::c_int,
-    pub enable_net_security_expiration: ::std::os::raw::c_int,
     pub background_color: cef_color_t,
     pub accept_language_list: cef_string_t,
     pub application_client_id_for_file_scanning: cef_string_t,
@@ -1225,22 +1224,9 @@ fn bindgen_test_layout__cef_settings_t() {
     );
     assert_eq!(
         unsafe {
-            &(*(::std::ptr::null::<_cef_settings_t>())).enable_net_security_expiration as *const _
-                as usize
-        },
-        376usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_cef_settings_t),
-            "::",
-            stringify!(enable_net_security_expiration)
-        )
-    );
-    assert_eq!(
-        unsafe {
             &(*(::std::ptr::null::<_cef_settings_t>())).background_color as *const _ as usize
         },
-        380usize,
+        376usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_settings_t),
@@ -1283,7 +1269,6 @@ pub struct _cef_request_context_settings_t {
     pub persist_session_cookies: ::std::os::raw::c_int,
     pub persist_user_preferences: ::std::os::raw::c_int,
     pub ignore_certificate_errors: ::std::os::raw::c_int,
-    pub enable_net_security_expiration: ::std::os::raw::c_int,
     pub accept_language_list: cef_string_t,
 }
 #[test]
@@ -1360,19 +1345,6 @@ fn bindgen_test_layout__cef_request_context_settings_t() {
             stringify!(_cef_request_context_settings_t),
             "::",
             stringify!(ignore_certificate_errors)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<_cef_request_context_settings_t>()))
-                .enable_net_security_expiration as *const _ as usize
-        },
-        44usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_cef_request_context_settings_t),
-            "::",
-            stringify!(enable_net_security_expiration)
         )
     );
     assert_eq!(
@@ -2145,7 +2117,6 @@ pub mod cef_errorcode_t {
     pub const ERR_UPLOAD_STREAM_REWIND_NOT_SUPPORTED: Type = -25;
     pub const ERR_CONTEXT_SHUT_DOWN: Type = -26;
     pub const ERR_BLOCKED_BY_RESPONSE: Type = -27;
-    pub const ERR_BLOCKED_BY_XSS_AUDITOR: Type = -28;
     pub const ERR_CLEARTEXT_NOT_PERMITTED: Type = -29;
     pub const ERR_CONNECTION_CLOSED: Type = -100;
     pub const ERR_CONNECTION_RESET: Type = -101;
@@ -2233,7 +2204,8 @@ pub mod cef_errorcode_t {
     pub const ERR_CERT_VALIDITY_TOO_LONG: Type = -213;
     pub const ERR_CERTIFICATE_TRANSPARENCY_REQUIRED: Type = -214;
     pub const ERR_CERT_SYMANTEC_LEGACY: Type = -215;
-    pub const ERR_CERT_END: Type = -216;
+    pub const ERR_QUIC_CERT_ROOT_NOT_KNOWN: Type = -216;
+    pub const ERR_CERT_END: Type = -217;
     pub const ERR_INVALID_URL: Type = -300;
     pub const ERR_DISALLOWED_URL_SCHEME: Type = -301;
     pub const ERR_UNKNOWN_URL_SCHEME: Type = -302;
@@ -2247,7 +2219,6 @@ pub mod cef_errorcode_t {
     pub const ERR_UNEXPECTED_PROXY_AUTH: Type = -323;
     pub const ERR_EMPTY_RESPONSE: Type = -324;
     pub const ERR_RESPONSE_HEADERS_TOO_BIG: Type = -325;
-    pub const ERR_PAC_STATUS_NOT_OK: Type = -326;
     pub const ERR_PAC_SCRIPT_FAILED: Type = -327;
     pub const ERR_REQUEST_RANGE_NOT_SATISFIABLE: Type = -328;
     pub const ERR_MALFORMED_IDENTITY: Type = -329;
@@ -2295,6 +2266,7 @@ pub mod cef_errorcode_t {
     pub const ERR_HTTP2_STREAM_CLOSED: Type = -376;
     pub const ERR_HTTP2_CLIENT_REFUSED_STREAM: Type = -377;
     pub const ERR_HTTP2_PUSHED_RESPONSE_DOES_NOT_MATCH: Type = -378;
+    pub const ERR_HTTP_RESPONSE_CODE_FAILURE: Type = -379;
     pub const ERR_CACHE_MISS: Type = -400;
     pub const ERR_CACHE_READ_FAILURE: Type = -401;
     pub const ERR_CACHE_WRITE_FAILURE: Type = -402;
@@ -2313,6 +2285,7 @@ pub mod cef_errorcode_t {
     pub const ERR_NO_PRIVATE_KEY_FOR_CERT: Type = -502;
     pub const ERR_ADD_USER_CERT_FAILED: Type = -503;
     pub const ERR_INVALID_SIGNED_EXCHANGE: Type = -504;
+    pub const ERR_INVALID_BUNDLED_EXCHANGES: Type = -505;
     pub const ERR_FTP_FAILED: Type = -601;
     pub const ERR_FTP_SERVICE_UNAVAILABLE: Type = -602;
     pub const ERR_FTP_TRANSFER_ABORTED: Type = -603;
@@ -9585,13 +9558,6 @@ pub struct _cef_frame_t {
     pub load_url: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_frame_t, url: *const cef_string_t),
     >,
-    pub load_string: ::std::option::Option<
-        unsafe extern "C" fn(
-            self_: *mut _cef_frame_t,
-            string_val: *const cef_string_t,
-            url: *const cef_string_t,
-        ),
-    >,
     pub execute_java_script: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_frame_t,
@@ -9644,7 +9610,7 @@ pub struct _cef_frame_t {
 fn bindgen_test_layout__cef_frame_t() {
     assert_eq!(
         ::std::mem::size_of::<_cef_frame_t>(),
-        248usize,
+        240usize,
         concat!("Size of: ", stringify!(_cef_frame_t))
     );
     assert_eq!(
@@ -9793,20 +9759,10 @@ fn bindgen_test_layout__cef_frame_t() {
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_cef_frame_t>())).load_string as *const _ as usize },
-        144usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_cef_frame_t),
-            "::",
-            stringify!(load_string)
-        )
-    );
-    assert_eq!(
         unsafe {
             &(*(::std::ptr::null::<_cef_frame_t>())).execute_java_script as *const _ as usize
         },
-        152usize,
+        144usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_frame_t),
@@ -9816,7 +9772,7 @@ fn bindgen_test_layout__cef_frame_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_frame_t>())).is_main as *const _ as usize },
-        160usize,
+        152usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_frame_t),
@@ -9826,7 +9782,7 @@ fn bindgen_test_layout__cef_frame_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_frame_t>())).is_focused as *const _ as usize },
-        168usize,
+        160usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_frame_t),
@@ -9836,7 +9792,7 @@ fn bindgen_test_layout__cef_frame_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_frame_t>())).get_name as *const _ as usize },
-        176usize,
+        168usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_frame_t),
@@ -9846,7 +9802,7 @@ fn bindgen_test_layout__cef_frame_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_frame_t>())).get_identifier as *const _ as usize },
-        184usize,
+        176usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_frame_t),
@@ -9856,7 +9812,7 @@ fn bindgen_test_layout__cef_frame_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_frame_t>())).get_parent as *const _ as usize },
-        192usize,
+        184usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_frame_t),
@@ -9866,7 +9822,7 @@ fn bindgen_test_layout__cef_frame_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_frame_t>())).get_url as *const _ as usize },
-        200usize,
+        192usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_frame_t),
@@ -9876,7 +9832,7 @@ fn bindgen_test_layout__cef_frame_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_frame_t>())).get_browser as *const _ as usize },
-        208usize,
+        200usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_frame_t),
@@ -9886,7 +9842,7 @@ fn bindgen_test_layout__cef_frame_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_frame_t>())).get_v8context as *const _ as usize },
-        216usize,
+        208usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_frame_t),
@@ -9896,7 +9852,7 @@ fn bindgen_test_layout__cef_frame_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_frame_t>())).visit_dom as *const _ as usize },
-        224usize,
+        216usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_frame_t),
@@ -9906,7 +9862,7 @@ fn bindgen_test_layout__cef_frame_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_frame_t>())).create_urlrequest as *const _ as usize },
-        232usize,
+        224usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_frame_t),
@@ -9918,7 +9874,7 @@ fn bindgen_test_layout__cef_frame_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_frame_t>())).send_process_message as *const _ as usize
         },
-        240usize,
+        232usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_frame_t),
@@ -13416,9 +13372,6 @@ pub struct _cef_print_settings_t {
     pub is_read_only: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_print_settings_t) -> ::std::os::raw::c_int,
     >,
-    pub copy: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_print_settings_t) -> *mut _cef_print_settings_t,
-    >,
     pub set_orientation: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_print_settings_t, landscape: ::std::os::raw::c_int),
     >,
@@ -13499,7 +13452,7 @@ pub struct _cef_print_settings_t {
 fn bindgen_test_layout__cef_print_settings_t() {
     assert_eq!(
         ::std::mem::size_of::<_cef_print_settings_t>(),
-        224usize,
+        216usize,
         concat!("Size of: ", stringify!(_cef_print_settings_t))
     );
     assert_eq!(
@@ -13540,20 +13493,10 @@ fn bindgen_test_layout__cef_print_settings_t() {
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_cef_print_settings_t>())).copy as *const _ as usize },
-        56usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(_cef_print_settings_t),
-            "::",
-            stringify!(copy)
-        )
-    );
-    assert_eq!(
         unsafe {
             &(*(::std::ptr::null::<_cef_print_settings_t>())).set_orientation as *const _ as usize
         },
-        64usize,
+        56usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -13565,7 +13508,7 @@ fn bindgen_test_layout__cef_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_print_settings_t>())).is_landscape as *const _ as usize
         },
-        72usize,
+        64usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -13578,7 +13521,7 @@ fn bindgen_test_layout__cef_print_settings_t() {
             &(*(::std::ptr::null::<_cef_print_settings_t>())).set_printer_printable_area as *const _
                 as usize
         },
-        80usize,
+        72usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -13590,7 +13533,7 @@ fn bindgen_test_layout__cef_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_print_settings_t>())).set_device_name as *const _ as usize
         },
-        88usize,
+        80usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -13602,7 +13545,7 @@ fn bindgen_test_layout__cef_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_print_settings_t>())).get_device_name as *const _ as usize
         },
-        96usize,
+        88usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -13612,7 +13555,7 @@ fn bindgen_test_layout__cef_print_settings_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_print_settings_t>())).set_dpi as *const _ as usize },
-        104usize,
+        96usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -13622,7 +13565,7 @@ fn bindgen_test_layout__cef_print_settings_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_print_settings_t>())).get_dpi as *const _ as usize },
-        112usize,
+        104usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -13634,7 +13577,7 @@ fn bindgen_test_layout__cef_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_print_settings_t>())).set_page_ranges as *const _ as usize
         },
-        120usize,
+        112usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -13647,7 +13590,7 @@ fn bindgen_test_layout__cef_print_settings_t() {
             &(*(::std::ptr::null::<_cef_print_settings_t>())).get_page_ranges_count as *const _
                 as usize
         },
-        128usize,
+        120usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -13659,7 +13602,7 @@ fn bindgen_test_layout__cef_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_print_settings_t>())).get_page_ranges as *const _ as usize
         },
-        136usize,
+        128usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -13672,7 +13615,7 @@ fn bindgen_test_layout__cef_print_settings_t() {
             &(*(::std::ptr::null::<_cef_print_settings_t>())).set_selection_only as *const _
                 as usize
         },
-        144usize,
+        136usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -13684,7 +13627,7 @@ fn bindgen_test_layout__cef_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_print_settings_t>())).is_selection_only as *const _ as usize
         },
-        152usize,
+        144usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -13696,7 +13639,7 @@ fn bindgen_test_layout__cef_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_print_settings_t>())).set_collate as *const _ as usize
         },
-        160usize,
+        152usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -13708,7 +13651,7 @@ fn bindgen_test_layout__cef_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_print_settings_t>())).will_collate as *const _ as usize
         },
-        168usize,
+        160usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -13720,7 +13663,7 @@ fn bindgen_test_layout__cef_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_print_settings_t>())).set_color_model as *const _ as usize
         },
-        176usize,
+        168usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -13732,7 +13675,7 @@ fn bindgen_test_layout__cef_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_print_settings_t>())).get_color_model as *const _ as usize
         },
-        184usize,
+        176usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -13744,7 +13687,7 @@ fn bindgen_test_layout__cef_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_print_settings_t>())).set_copies as *const _ as usize
         },
-        192usize,
+        184usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -13756,7 +13699,7 @@ fn bindgen_test_layout__cef_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_print_settings_t>())).get_copies as *const _ as usize
         },
-        200usize,
+        192usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -13768,7 +13711,7 @@ fn bindgen_test_layout__cef_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_print_settings_t>())).set_duplex_mode as *const _ as usize
         },
-        208usize,
+        200usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -13780,7 +13723,7 @@ fn bindgen_test_layout__cef_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_print_settings_t>())).get_duplex_mode as *const _ as usize
         },
-        216usize,
+        208usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_print_settings_t),
@@ -16403,11 +16346,19 @@ pub struct _cef_response_t {
     pub set_charset: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_response_t, charset: *const cef_string_t),
     >,
-    pub get_header: ::std::option::Option<
+    pub get_header_by_name: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_response_t,
             name: *const cef_string_t,
         ) -> cef_string_userfree_t,
+    >,
+    pub set_header_by_name: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_response_t,
+            name: *const cef_string_t,
+            value: *const cef_string_t,
+            overwrite: ::std::os::raw::c_int,
+        ),
     >,
     pub get_header_map: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_response_t, headerMap: cef_string_multimap_t),
@@ -16426,7 +16377,7 @@ pub struct _cef_response_t {
 fn bindgen_test_layout__cef_response_t() {
     assert_eq!(
         ::std::mem::size_of::<_cef_response_t>(),
-        168usize,
+        176usize,
         concat!("Size of: ", stringify!(_cef_response_t))
     );
     assert_eq!(
@@ -16555,18 +16506,32 @@ fn bindgen_test_layout__cef_response_t() {
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_cef_response_t>())).get_header as *const _ as usize },
+        unsafe {
+            &(*(::std::ptr::null::<_cef_response_t>())).get_header_by_name as *const _ as usize
+        },
         128usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_response_t),
             "::",
-            stringify!(get_header)
+            stringify!(get_header_by_name)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_response_t>())).set_header_by_name as *const _ as usize
+        },
+        136usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_response_t),
+            "::",
+            stringify!(set_header_by_name)
         )
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_response_t>())).get_header_map as *const _ as usize },
-        136usize,
+        144usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_response_t),
@@ -16576,7 +16541,7 @@ fn bindgen_test_layout__cef_response_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_response_t>())).set_header_map as *const _ as usize },
-        144usize,
+        152usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_response_t),
@@ -16586,7 +16551,7 @@ fn bindgen_test_layout__cef_response_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_response_t>())).get_url as *const _ as usize },
-        152usize,
+        160usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_response_t),
@@ -16596,7 +16561,7 @@ fn bindgen_test_layout__cef_response_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_response_t>())).set_url as *const _ as usize },
-        160usize,
+        168usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_response_t),
@@ -21063,9 +21028,6 @@ fn bindgen_test_layout__cef_sslinfo_t() {
 pub type cef_sslinfo_t = _cef_sslinfo_t;
 extern "C" {
     pub fn cef_is_cert_status_error(status: cef_cert_status_t) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    pub fn cef_is_cert_status_minor_error(status: cef_cert_status_t) -> ::std::os::raw::c_int;
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
