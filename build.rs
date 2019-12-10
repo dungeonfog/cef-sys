@@ -17,13 +17,7 @@ fn main() {
             println!("cargo:rustc-link-lib=GLESv2");
         }
         Ok("macos") => {
-            println!("cargo:rustc-link-search=framework=/Library/Frameworks");
-            println!("cargo:rustc-link-search=native=/Library/Frameworks/Chromium Embedded Framework.framework/Libraries");
-
-            println!("cargo:rustc-link-lib=framework=Chromium Embedded Framework");
-
-            println!("cargo:rustc-link-lib=EGL");
-            println!("cargo:rustc-link-lib=GLESv2");
+            println!("cargo:rustc-link-lib=cef_dll_wrapper");
         }
         _ => (),
     }
