@@ -2155,7 +2155,6 @@ pub mod cef_errorcode_t {
     pub const ERR_CERT_VALIDITY_TOO_LONG: Type = -213;
     pub const ERR_CERTIFICATE_TRANSPARENCY_REQUIRED: Type = -214;
     pub const ERR_CERT_SYMANTEC_LEGACY: Type = -215;
-    pub const ERR_QUIC_CERT_ROOT_NOT_KNOWN: Type = -216;
     pub const ERR_CERT_END: Type = -217;
     pub const ERR_INVALID_URL: Type = -300;
     pub const ERR_DISALLOWED_URL_SCHEME: Type = -301;
@@ -2218,6 +2217,7 @@ pub mod cef_errorcode_t {
     pub const ERR_HTTP2_CLIENT_REFUSED_STREAM: Type = -377;
     pub const ERR_HTTP2_PUSHED_RESPONSE_DOES_NOT_MATCH: Type = -378;
     pub const ERR_HTTP_RESPONSE_CODE_FAILURE: Type = -379;
+    pub const ERR_QUIC_CERT_ROOT_NOT_KNOWN: Type = -380;
     pub const ERR_CACHE_MISS: Type = -400;
     pub const ERR_CACHE_READ_FAILURE: Type = -401;
     pub const ERR_CACHE_WRITE_FAILURE: Type = -402;
