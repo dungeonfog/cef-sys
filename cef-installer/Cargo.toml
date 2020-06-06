@@ -1,0 +1,14 @@
+[package]
+name = "cef-installer"
+version = "0.1.0"
+authors = ["Andreas Monitzer <andreas@monitzer.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+urlencoding = "1.0"
+ureq = "1"
+bzip2 = "0.3"
+tar = "0.4"
+regex = "1.3"
