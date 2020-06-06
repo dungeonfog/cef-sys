@@ -134,10 +134,14 @@ pub fn download_cef(
                         if let Some(folder) = path.parent() {
                             let _ = std::fs::create_dir_all(folder);
                         }
-                        if !quiet {
-                            eprintln!("Writing {}...", path.display());
+                        if !path.exists() {
+                            if !quiet {
+                                eprintln!("Writing {}...", path.display());
+                            }
+                            entry.unpack(&filename)?;
+                        } else if !quiet {
+                            eprintln!("{} already exists", path.display());
                         }
-                        entry.unpack(&filename)?;
                         break;
                     }
                 }

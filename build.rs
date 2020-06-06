@@ -5,6 +5,10 @@ use std::io::{Read, Write, Seek, SeekFrom};
 fn main() {
     let target_os = std::env::var("CARGO_CFG_TARGET_OS");
 
+    let lib_dir_env_var = "CARGO_CEF_SYS_LIB_OUT_DIR";
+    println!("cargo:rerun-if-env-changed={}", lib_dir_env_var);
+    let lib_dir_env = std::env::var(lib_dir_env_var).ok();
+
     let cef_version = "79.1.26+g50b44dc+chromium-79.0.3945.117";
     let cef_platform = match std::env::var("CARGO_CFG_TARGET_OS").unwrap().as_str() {
         "windows" => cef_installer::Platform::Windows,
@@ -15,7 +19,10 @@ fn main() {
     let opt_level = cef_installer::OptLevel::Release;
     let out_dir = PathBuf::from(std::env::var("OUT_DIR").unwrap());
     let targz_dir = out_dir.clone();
-    let lib_dir = out_dir.clone();
+    let lib_dir = match lib_dir_env {
+        Some(dir) => PathBuf::from(dir),
+        None => out_dir.clone(),
+    };
     let libcef_dll_project_dir = out_dir.join("libcef_dll");
     let header_dir = libcef_dll_project_dir.join("include");
     let libcef_dll_src_dir = libcef_dll_project_dir.join("libcef_dll");
