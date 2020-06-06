@@ -33,52 +33,52 @@ fn main() {
         false,
     ).unwrap();
 
-    remove_from_cmake(&cmake_macros_dir.join("cef_macros.cmake"));
-    remove_from_cmake(&cmake_macros_dir.join("cef_variables.cmake"));
+    println!("cargo:rustc-link-search=native={}", lib_dir.display());
 
-    let cmake_file = format!("
-        cmake_minimum_required(VERSION 3.0)
-        project(dll_wrapper)
-        set(CMAKE_MODULE_PATH ${{CMAKE_MODULE_PATH}} \"{}\")
-        include(\"cef_macros\")
-        include(\"cef_variables\")
-        include_directories(\"{}\")
-        add_subdirectory(\"{}\")
-        install(TARGETS libcef_dll_wrapper DESTINATION .)
-    ",
-        cmake_macros_dir.display().to_string().replace("\\", "/"),
-        libcef_dll_project_dir.display().to_string().replace("\\", "/"),
-        libcef_dll_src_dir.display().to_string().replace("\\", "/"),
-    );
-    fs::write(&libcef_dll_project_dir.join("CMakeLists.txt"), &cmake_file).unwrap();
+    match target_os.as_ref().map(|x| &**x) {
+        Ok("windows") => {
+            println!("cargo:rustc-link-lib=cef_sandbox");
+            println!("cargo:rustc-link-lib=libcef");
 
-    let dst = cmake::Config::new(&libcef_dll_project_dir).generator("Ninja").build();
-    println!("cargo:rustc-link-search=native={}", dst.display());
-    println!("cargo:rustc-link-lib=static=libcef_dll_wrapper");
+            // These two libraries are winapi libs, but they aren't available through winapi so we
+            // link them here.
+            println!("cargo:rustc-link-lib=wbemuuid");
+            println!("cargo:rustc-link-lib=propsys");
+        },
+        Ok("linux") => {
+            println!("cargo:rustc-link-lib=cef");
+            println!("cargo:rustc-link-lib=EGL");
+            println!("cargo:rustc-link-lib=GLESv2");
+        }
+        Ok("macos") => {
+            remove_find_package_dep(&cmake_macros_dir.join("cef_macros.cmake"));
+            remove_find_package_dep(&cmake_macros_dir.join("cef_variables.cmake"));
 
-    // match target_os.as_ref().map(|x| &**x) {
-    //     Ok("windows") => {
-    //         println!("cargo:rustc-link-lib=cef_sandbox");
-    //         println!("cargo:rustc-link-lib=libcef");
+            let cmake_file = format!("
+                cmake_minimum_required(VERSION 3.0)
+                project(dll_wrapper)
+                set(CMAKE_MODULE_PATH ${{CMAKE_MODULE_PATH}} \"{}\")
+                include(\"cef_macros\")
+                include(\"cef_variables\")
+                include_directories(\"{}\")
+                add_subdirectory(\"{}\")
+                install(TARGETS libcef_dll_wrapper DESTINATION .)
+            ",
+                cmake_macros_dir.display().to_string().replace("\\", "/"),
+                libcef_dll_project_dir.display().to_string().replace("\\", "/"),
+                libcef_dll_src_dir.display().to_string().replace("\\", "/"),
+            );
+            fs::write(&libcef_dll_project_dir.join("CMakeLists.txt"), &cmake_file).unwrap();
 
-    //         // These two libraries are winapi libs, but they aren't available through winapi so we
-    //         // link them here.
-    //         println!("cargo:rustc-link-lib=wbemuuid");
-    //         println!("cargo:rustc-link-lib=propsys");
-    //     },
-    //     Ok("linux") => {
-    //         println!("cargo:rustc-link-lib=cef");
-    //         println!("cargo:rustc-link-lib=EGL");
-    //         println!("cargo:rustc-link-lib=GLESv2");
-    //     }
-    //     Ok("macos") => {
-    //         println!("cargo:rustc-link-lib=cef_dll_wrapper");
-    //     }
-    //     _ => (),
-    // }
+            let dst = cmake::Config::new(&libcef_dll_project_dir).generator("Ninja").build();
+            println!("cargo:rustc-link-search=native={}", dst.display());
+            println!("cargo:rustc-link-lib=static=libcef_dll_wrapper");
+        }
+        _ => (),
+    }
 }
 
-fn remove_from_cmake(path: &Path) {
+fn remove_find_package_dep(path: &Path) {
     let mut cmake_macros_file = fs::OpenOptions::new()
         .read(true)
         .write(true)
