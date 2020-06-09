@@ -20,7 +20,7 @@ impl Platform {
         match self {
             Platform::Windows => "windows",
             Platform::Linux => "linux",
-            Platform::MacOS => "macos",
+            Platform::MacOS => "macosx",
         }
     }
 }

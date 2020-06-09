@@ -79,7 +79,7 @@ fn main() {
 
             let dst = cmake::Config::new(&libcef_dll_project_dir).generator("Ninja").build();
             println!("cargo:rustc-link-search=native={}", dst.display());
-            println!("cargo:rustc-link-lib=static=libcef_dll_wrapper");
+            println!("cargo:rustc-link-lib=static=cef_dll_wrapper");
         }
         _ => (),
     }
@@ -98,7 +98,6 @@ fn remove_find_package_dep(path: &Path) {
     { cmake_macros_str = cmake_macros_str.replace("\r\n", "\n"); }
 
     let new_str = cmake_macros_str.replace(CEF_MACROS_REMOVE, "");
-    assert_ne!(new_str.len(), cmake_macros_str.len());
     cmake_macros_str = new_str;
 
     #[cfg(target_os = "windows")]
