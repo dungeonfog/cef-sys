@@ -80,6 +80,10 @@ fn main() {
             let dst = cmake::Config::new(&libcef_dll_project_dir).generator("Ninja").build();
             println!("cargo:rustc-link-search=native={}", dst.display());
             println!("cargo:rustc-link-lib=static=cef_dll_wrapper");
+
+            let framework_dir = lib_dir.join("Chromium Embedded Framework.framework");
+            assert!(framework_dir.exists());
+            println!("cargo:rustc-env=CEF_SYS_FRAMEWORK_PATH={}", framework_dir.display());
         }
         _ => (),
     }

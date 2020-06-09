@@ -18,3 +18,6 @@ cef-installer = {path = "./cef-installer"}
 
 [workspace]
 members = ["./bindgen_cef", "./cef-installer"]
+
+[features]
+macos_force_debug_framework_path = []
