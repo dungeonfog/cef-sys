@@ -40,7 +40,9 @@ fn main() {
         false,
     ).unwrap();
 
-    println!("cargo:rustc-link-search=native={}", lib_dir.display());
+    let lib_path_display = lib_dir.canonicalize().expect("could not canonicalize lib dir")
+        .display().to_string().replace(r"\\?\", "");
+    println!("cargo:rustc-link-search={}", lib_path_display);
 
     match target_os.as_ref().map(|x| &**x) {
         Ok("windows") => {
