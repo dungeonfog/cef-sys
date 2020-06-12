@@ -44,7 +44,10 @@ fn main() {
 
     match target_os.as_ref().map(|x| &**x) {
         Ok("windows") => {
-            println!("cargo:rustc-link-lib=cef_sandbox");
+            #[cfg(feature = "sandbox")]
+            {
+                println!("cargo:rustc-link-lib=cef_sandbox");
+            }
             println!("cargo:rustc-link-lib=libcef");
 
             // These two libraries are winapi libs, but they aren't available through winapi so we
