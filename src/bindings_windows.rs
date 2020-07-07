@@ -1781,12 +1781,13 @@ pub struct _cef_urlparts_t {
     pub origin: cef_string_t,
     pub path: cef_string_t,
     pub query: cef_string_t,
+    pub fragment: cef_string_t,
 }
 #[test]
 fn bindgen_test_layout__cef_urlparts_t() {
     assert_eq!(
         ::std::mem::size_of::<_cef_urlparts_t>(),
-        216usize,
+        240usize,
         concat!("Size of: ", stringify!(_cef_urlparts_t))
     );
     assert_eq!(
@@ -1884,8 +1885,31 @@ fn bindgen_test_layout__cef_urlparts_t() {
             stringify!(query)
         )
     );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_urlparts_t>())).fragment as *const _ as usize },
+        216usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_urlparts_t),
+            "::",
+            stringify!(fragment)
+        )
+    );
 }
 pub type cef_urlparts_t = _cef_urlparts_t;
+pub mod cef_cookie_priority_t {
+    pub type Type = i32;
+    pub const CEF_COOKIE_PRIORITY_LOW: Type = -1;
+    pub const CEF_COOKIE_PRIORITY_MEDIUM: Type = 0;
+    pub const CEF_COOKIE_PRIORITY_HIGH: Type = 1;
+}
+pub mod cef_cookie_same_site_t {
+    pub type Type = i32;
+    pub const CEF_COOKIE_SAME_SITE_UNSPECIFIED: Type = 0;
+    pub const CEF_COOKIE_SAME_SITE_NO_RESTRICTION: Type = 1;
+    pub const CEF_COOKIE_SAME_SITE_LAX_MODE: Type = 2;
+    pub const CEF_COOKIE_SAME_SITE_STRICT_MODE: Type = 3;
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_cookie_t {
@@ -1899,12 +1923,14 @@ pub struct _cef_cookie_t {
     pub last_access: cef_time_t,
     pub has_expires: ::std::os::raw::c_int,
     pub expires: cef_time_t,
+    pub same_site: cef_cookie_same_site_t::Type,
+    pub priority: cef_cookie_priority_t::Type,
 }
 #[test]
 fn bindgen_test_layout__cef_cookie_t() {
     assert_eq!(
         ::std::mem::size_of::<_cef_cookie_t>(),
-        208usize,
+        216usize,
         concat!("Size of: ", stringify!(_cef_cookie_t))
     );
     assert_eq!(
@@ -2012,6 +2038,26 @@ fn bindgen_test_layout__cef_cookie_t() {
             stringify!(expires)
         )
     );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_cookie_t>())).same_site as *const _ as usize },
+        204usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_cookie_t),
+            "::",
+            stringify!(same_site)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_cookie_t>())).priority as *const _ as usize },
+        208usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_cookie_t),
+            "::",
+            stringify!(priority)
+        )
+    );
 }
 pub type cef_cookie_t = _cef_cookie_t;
 pub mod cef_termination_status_t {
@@ -2097,7 +2143,6 @@ pub mod cef_errorcode_t {
     pub const ERR_SSL_DECOMPRESSION_FAILURE_ALERT: Type = -125;
     pub const ERR_SSL_BAD_RECORD_MAC_ALERT: Type = -126;
     pub const ERR_PROXY_AUTH_REQUESTED: Type = -127;
-    pub const ERR_SSL_WEAK_SERVER_EPHEMERAL_DH_KEY: Type = -129;
     pub const ERR_PROXY_CONNECTION_FAILED: Type = -130;
     pub const ERR_MANDATORY_PROXY_CONFIGURATION_FAILED: Type = -131;
     pub const ERR_PRECONNECT_MAX_SOCKET_LIMIT: Type = -133;
@@ -2155,7 +2200,9 @@ pub mod cef_errorcode_t {
     pub const ERR_CERT_VALIDITY_TOO_LONG: Type = -213;
     pub const ERR_CERTIFICATE_TRANSPARENCY_REQUIRED: Type = -214;
     pub const ERR_CERT_SYMANTEC_LEGACY: Type = -215;
-    pub const ERR_CERT_END: Type = -217;
+    pub const ERR_CERT_KNOWN_INTERCEPTION_BLOCKED: Type = -217;
+    pub const ERR_SSL_OBSOLETE_VERSION: Type = -218;
+    pub const ERR_CERT_END: Type = -219;
     pub const ERR_INVALID_URL: Type = -300;
     pub const ERR_DISALLOWED_URL_SCHEME: Type = -301;
     pub const ERR_UNKNOWN_URL_SCHEME: Type = -302;
@@ -2236,7 +2283,9 @@ pub mod cef_errorcode_t {
     pub const ERR_NO_PRIVATE_KEY_FOR_CERT: Type = -502;
     pub const ERR_ADD_USER_CERT_FAILED: Type = -503;
     pub const ERR_INVALID_SIGNED_EXCHANGE: Type = -504;
-    pub const ERR_INVALID_BUNDLED_EXCHANGES: Type = -505;
+    pub const ERR_INVALID_WEB_BUNDLE: Type = -505;
+    pub const ERR_TRUST_TOKEN_OPERATION_FAILED: Type = -506;
+    pub const ERR_TRUST_TOKEN_OPERATION_CACHE_HIT: Type = -507;
     pub const ERR_FTP_FAILED: Type = -601;
     pub const ERR_FTP_SERVICE_UNAVAILABLE: Type = -602;
     pub const ERR_FTP_TRANSFER_ABORTED: Type = -603;
@@ -2264,7 +2313,7 @@ pub mod cef_errorcode_t {
     pub const ERR_DNS_CACHE_MISS: Type = -804;
     pub const ERR_DNS_SEARCH_EMPTY: Type = -805;
     pub const ERR_DNS_SORT_ERROR: Type = -806;
-    pub const ERR_DNS_HTTP_FAILED: Type = -807;
+    pub const ERR_DNS_SECURE_RESOLVER_HOSTNAME_RESOLUTION_FAILED: Type = -808;
 }
 impl cef_cert_status_t {
     pub const CERT_STATUS_NONE: cef_cert_status_t = cef_cert_status_t(0);
@@ -2568,6 +2617,9 @@ impl cef_transition_type_t {
 }
 impl cef_transition_type_t {
     pub const TT_FORWARD_BACK_FLAG: cef_transition_type_t = cef_transition_type_t(16777216);
+}
+impl cef_transition_type_t {
+    pub const TT_DIRECT_LOAD_FLAG: cef_transition_type_t = cef_transition_type_t(33554432);
 }
 impl cef_transition_type_t {
     pub const TT_CHAIN_START_FLAG: cef_transition_type_t = cef_transition_type_t(268435456);
@@ -3387,6 +3439,9 @@ impl cef_event_flags_t {
 impl cef_event_flags_t {
     pub const EVENTFLAG_IS_RIGHT: cef_event_flags_t = cef_event_flags_t(2048);
 }
+impl cef_event_flags_t {
+    pub const EVENTFLAG_ALTGR_DOWN: cef_event_flags_t = cef_event_flags_t(4096);
+}
 impl ::std::ops::BitOr<cef_event_flags_t> for cef_event_flags_t {
     type Output = Self;
     #[inline]
@@ -4123,7 +4178,13 @@ pub mod cef_cursor_type_t {
     pub const CT_ZOOMOUT: Type = 40;
     pub const CT_GRAB: Type = 41;
     pub const CT_GRABBING: Type = 42;
-    pub const CT_CUSTOM: Type = 43;
+    pub const CT_MIDDLE_PANNING_VERTICAL: Type = 43;
+    pub const CT_MIDDLE_PANNING_HORIZONTAL: Type = 44;
+    pub const CT_CUSTOM: Type = 45;
+    pub const CT_DND_NONE: Type = 46;
+    pub const CT_DND_MOVE: Type = 47;
+    pub const CT_DND_COPY: Type = 48;
+    pub const CT_DND_LINK: Type = 49;
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -4206,10 +4267,7 @@ impl cef_uri_unescape_rule_t {
         cef_uri_unescape_rule_t(8);
 }
 impl cef_uri_unescape_rule_t {
-    pub const UU_SPOOFING_AND_CONTROL_CHARS: cef_uri_unescape_rule_t = cef_uri_unescape_rule_t(16);
-}
-impl cef_uri_unescape_rule_t {
-    pub const UU_REPLACE_PLUS_WITH_SPACE: cef_uri_unescape_rule_t = cef_uri_unescape_rule_t(32);
+    pub const UU_REPLACE_PLUS_WITH_SPACE: cef_uri_unescape_rule_t = cef_uri_unescape_rule_t(16);
 }
 impl ::std::ops::BitOr<cef_uri_unescape_rule_t> for cef_uri_unescape_rule_t {
     type Output = Self;
@@ -4347,10 +4405,10 @@ pub struct _cef_pdf_print_settings_t {
     pub page_width: ::std::os::raw::c_int,
     pub page_height: ::std::os::raw::c_int,
     pub scale_factor: ::std::os::raw::c_int,
-    pub margin_top: f64,
-    pub margin_right: f64,
-    pub margin_bottom: f64,
-    pub margin_left: f64,
+    pub margin_top: ::std::os::raw::c_int,
+    pub margin_right: ::std::os::raw::c_int,
+    pub margin_bottom: ::std::os::raw::c_int,
+    pub margin_left: ::std::os::raw::c_int,
     pub margin_type: cef_pdf_print_margin_type_t::Type,
     pub header_footer_enabled: ::std::os::raw::c_int,
     pub selection_only: ::std::os::raw::c_int,
@@ -4361,7 +4419,7 @@ pub struct _cef_pdf_print_settings_t {
 fn bindgen_test_layout__cef_pdf_print_settings_t() {
     assert_eq!(
         ::std::mem::size_of::<_cef_pdf_print_settings_t>(),
-        120usize,
+        96usize,
         concat!("Size of: ", stringify!(_cef_pdf_print_settings_t))
     );
     assert_eq!(
@@ -4435,7 +4493,7 @@ fn bindgen_test_layout__cef_pdf_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_pdf_print_settings_t>())).margin_top as *const _ as usize
         },
-        64usize,
+        60usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_pdf_print_settings_t),
@@ -4447,7 +4505,7 @@ fn bindgen_test_layout__cef_pdf_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_pdf_print_settings_t>())).margin_right as *const _ as usize
         },
-        72usize,
+        64usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_pdf_print_settings_t),
@@ -4459,7 +4517,7 @@ fn bindgen_test_layout__cef_pdf_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_pdf_print_settings_t>())).margin_bottom as *const _ as usize
         },
-        80usize,
+        68usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_pdf_print_settings_t),
@@ -4471,7 +4529,7 @@ fn bindgen_test_layout__cef_pdf_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_pdf_print_settings_t>())).margin_left as *const _ as usize
         },
-        88usize,
+        72usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_pdf_print_settings_t),
@@ -4483,7 +4541,7 @@ fn bindgen_test_layout__cef_pdf_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_pdf_print_settings_t>())).margin_type as *const _ as usize
         },
-        96usize,
+        76usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_pdf_print_settings_t),
@@ -4496,7 +4554,7 @@ fn bindgen_test_layout__cef_pdf_print_settings_t() {
             &(*(::std::ptr::null::<_cef_pdf_print_settings_t>())).header_footer_enabled as *const _
                 as usize
         },
-        100usize,
+        80usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_pdf_print_settings_t),
@@ -4509,7 +4567,7 @@ fn bindgen_test_layout__cef_pdf_print_settings_t() {
             &(*(::std::ptr::null::<_cef_pdf_print_settings_t>())).selection_only as *const _
                 as usize
         },
-        104usize,
+        84usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_pdf_print_settings_t),
@@ -4521,7 +4579,7 @@ fn bindgen_test_layout__cef_pdf_print_settings_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_pdf_print_settings_t>())).landscape as *const _ as usize
         },
-        108usize,
+        88usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_pdf_print_settings_t),
@@ -4534,7 +4592,7 @@ fn bindgen_test_layout__cef_pdf_print_settings_t() {
             &(*(::std::ptr::null::<_cef_pdf_print_settings_t>())).backgrounds_enabled as *const _
                 as usize
         },
-        112usize,
+        92usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_pdf_print_settings_t),
@@ -4897,6 +4955,13 @@ pub mod cef_cdm_registration_error_t {
     pub const CEF_CDM_REGISTRATION_ERROR_INCOMPATIBLE: Type = 2;
     pub const CEF_CDM_REGISTRATION_ERROR_NOT_SUPPORTED: Type = 3;
 }
+pub mod cef_composition_underline_style_t {
+    pub type Type = i32;
+    pub const CEF_CUS_SOLID: Type = 0;
+    pub const CEF_CUS_DOT: Type = 1;
+    pub const CEF_CUS_DASH: Type = 2;
+    pub const CEF_CUS_NONE: Type = 3;
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_composition_underline_t {
@@ -4904,12 +4969,13 @@ pub struct _cef_composition_underline_t {
     pub color: cef_color_t,
     pub background_color: cef_color_t,
     pub thick: ::std::os::raw::c_int,
+    pub style: cef_composition_underline_style_t::Type,
 }
 #[test]
 fn bindgen_test_layout__cef_composition_underline_t() {
     assert_eq!(
         ::std::mem::size_of::<_cef_composition_underline_t>(),
-        20usize,
+        24usize,
         concat!("Size of: ", stringify!(_cef_composition_underline_t))
     );
     assert_eq!(
@@ -4966,8 +5032,148 @@ fn bindgen_test_layout__cef_composition_underline_t() {
             stringify!(thick)
         )
     );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_composition_underline_t>())).style as *const _ as usize
+        },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_composition_underline_t),
+            "::",
+            stringify!(style)
+        )
+    );
 }
 pub type cef_composition_underline_t = _cef_composition_underline_t;
+pub mod cef_channel_layout_t {
+    pub type Type = i32;
+    pub const CEF_CHANNEL_LAYOUT_NONE: Type = 0;
+    pub const CEF_CHANNEL_LAYOUT_UNSUPPORTED: Type = 1;
+    pub const CEF_CHANNEL_LAYOUT_MONO: Type = 2;
+    pub const CEF_CHANNEL_LAYOUT_STEREO: Type = 3;
+    pub const CEF_CHANNEL_LAYOUT_2_1: Type = 4;
+    pub const CEF_CHANNEL_LAYOUT_SURROUND: Type = 5;
+    pub const CEF_CHANNEL_LAYOUT_4_0: Type = 6;
+    pub const CEF_CHANNEL_LAYOUT_2_2: Type = 7;
+    pub const CEF_CHANNEL_LAYOUT_QUAD: Type = 8;
+    pub const CEF_CHANNEL_LAYOUT_5_0: Type = 9;
+    pub const CEF_CHANNEL_LAYOUT_5_1: Type = 10;
+    pub const CEF_CHANNEL_LAYOUT_5_0_BACK: Type = 11;
+    pub const CEF_CHANNEL_LAYOUT_5_1_BACK: Type = 12;
+    pub const CEF_CHANNEL_LAYOUT_7_0: Type = 13;
+    pub const CEF_CHANNEL_LAYOUT_7_1: Type = 14;
+    pub const CEF_CHANNEL_LAYOUT_7_1_WIDE: Type = 15;
+    pub const CEF_CHANNEL_LAYOUT_STEREO_DOWNMIX: Type = 16;
+    pub const CEF_CHANNEL_LAYOUT_2POINT1: Type = 17;
+    pub const CEF_CHANNEL_LAYOUT_3_1: Type = 18;
+    pub const CEF_CHANNEL_LAYOUT_4_1: Type = 19;
+    pub const CEF_CHANNEL_LAYOUT_6_0: Type = 20;
+    pub const CEF_CHANNEL_LAYOUT_6_0_FRONT: Type = 21;
+    pub const CEF_CHANNEL_LAYOUT_HEXAGONAL: Type = 22;
+    pub const CEF_CHANNEL_LAYOUT_6_1: Type = 23;
+    pub const CEF_CHANNEL_LAYOUT_6_1_BACK: Type = 24;
+    pub const CEF_CHANNEL_LAYOUT_6_1_FRONT: Type = 25;
+    pub const CEF_CHANNEL_LAYOUT_7_0_FRONT: Type = 26;
+    pub const CEF_CHANNEL_LAYOUT_7_1_WIDE_BACK: Type = 27;
+    pub const CEF_CHANNEL_LAYOUT_OCTAGONAL: Type = 28;
+    pub const CEF_CHANNEL_LAYOUT_DISCRETE: Type = 29;
+    pub const CEF_CHANNEL_LAYOUT_STEREO_AND_KEYBOARD_MIC: Type = 30;
+    pub const CEF_CHANNEL_LAYOUT_4_1_QUAD_SIDE: Type = 31;
+    pub const CEF_CHANNEL_LAYOUT_BITSTREAM: Type = 32;
+    pub const CEF_CHANNEL_LAYOUT_MAX: Type = 32;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _cef_audio_parameters_t {
+    pub channel_layout: cef_channel_layout_t::Type,
+    pub sample_rate: ::std::os::raw::c_int,
+    pub frames_per_buffer: ::std::os::raw::c_int,
+}
+#[test]
+fn bindgen_test_layout__cef_audio_parameters_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_audio_parameters_t>(),
+        12usize,
+        concat!("Size of: ", stringify!(_cef_audio_parameters_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_audio_parameters_t>(),
+        4usize,
+        concat!("Alignment of ", stringify!(_cef_audio_parameters_t))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_audio_parameters_t>())).channel_layout as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_audio_parameters_t),
+            "::",
+            stringify!(channel_layout)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_audio_parameters_t>())).sample_rate as *const _ as usize
+        },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_audio_parameters_t),
+            "::",
+            stringify!(sample_rate)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_audio_parameters_t>())).frames_per_buffer as *const _
+                as usize
+        },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_audio_parameters_t),
+            "::",
+            stringify!(frames_per_buffer)
+        )
+    );
+}
+pub type cef_audio_parameters_t = _cef_audio_parameters_t;
+pub mod cef_media_route_create_result_t {
+    pub type Type = i32;
+    pub const CEF_MRCR_UNKNOWN_ERROR: Type = 0;
+    pub const CEF_MRCR_OK: Type = 1;
+    pub const CEF_MRCR_TIMED_OUT: Type = 2;
+    pub const CEF_MRCR_ROUTE_NOT_FOUND: Type = 3;
+    pub const CEF_MRCR_SINK_NOT_FOUND: Type = 4;
+    pub const CEF_MRCR_INVALID_ORIGIN: Type = 5;
+    pub const CEF_MRCR_NO_SUPPORTED_PROVIDER: Type = 7;
+    pub const CEF_MRCR_CANCELLED: Type = 8;
+    pub const CEF_MRCR_ROUTE_ALREADY_EXISTS: Type = 9;
+    pub const CEF_MRCR_TOTAL_COUNT: Type = 11;
+}
+pub mod cef_media_route_connection_state_t {
+    pub type Type = i32;
+    pub const CEF_MRCS_UNKNOWN: Type = 0;
+    pub const CEF_MRCS_CONNECTING: Type = 1;
+    pub const CEF_MRCS_CONNECTED: Type = 2;
+    pub const CEF_MRCS_CLOSED: Type = 3;
+    pub const CEF_MRCS_TERMINATED: Type = 4;
+}
+pub mod cef_media_sink_icon_type_t {
+    pub type Type = i32;
+    pub const CEF_MSIT_CAST: Type = 0;
+    pub const CEF_MSIT_CAST_AUDIO_GROUP: Type = 1;
+    pub const CEF_MSIT_CAST_AUDIO: Type = 2;
+    pub const CEF_MSIT_MEETING: Type = 3;
+    pub const CEF_MSIT_HANGOUT: Type = 4;
+    pub const CEF_MSIT_EDUCATION: Type = 5;
+    pub const CEF_MSIT_WIRED_DISPLAY: Type = 6;
+    pub const CEF_MSIT_GENERIC: Type = 7;
+    pub const CEF_MSIT_TOTAL_COUNT: Type = 8;
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_base_ref_counted_t {
@@ -6937,6 +7143,144 @@ extern "C" {
 extern "C" {
     pub fn cef_command_line_get_global() -> *mut cef_command_line_t;
 }
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _cef_dev_tools_message_observer_t {
+    pub base: cef_base_ref_counted_t,
+    pub on_dev_tools_message: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_dev_tools_message_observer_t,
+            browser: *mut _cef_browser_t,
+            message: *const ::std::os::raw::c_void,
+            message_size: usize,
+        ) -> ::std::os::raw::c_int,
+    >,
+    pub on_dev_tools_method_result: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_dev_tools_message_observer_t,
+            browser: *mut _cef_browser_t,
+            message_id: ::std::os::raw::c_int,
+            success: ::std::os::raw::c_int,
+            result: *const ::std::os::raw::c_void,
+            result_size: usize,
+        ),
+    >,
+    pub on_dev_tools_event: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_dev_tools_message_observer_t,
+            browser: *mut _cef_browser_t,
+            method: *const cef_string_t,
+            params: *const ::std::os::raw::c_void,
+            params_size: usize,
+        ),
+    >,
+    pub on_dev_tools_agent_attached: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_dev_tools_message_observer_t,
+            browser: *mut _cef_browser_t,
+        ),
+    >,
+    pub on_dev_tools_agent_detached: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_dev_tools_message_observer_t,
+            browser: *mut _cef_browser_t,
+        ),
+    >,
+}
+#[test]
+fn bindgen_test_layout__cef_dev_tools_message_observer_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_dev_tools_message_observer_t>(),
+        80usize,
+        concat!("Size of: ", stringify!(_cef_dev_tools_message_observer_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_dev_tools_message_observer_t>(),
+        8usize,
+        concat!(
+            "Alignment of ",
+            stringify!(_cef_dev_tools_message_observer_t)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_dev_tools_message_observer_t>())).base as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_dev_tools_message_observer_t),
+            "::",
+            stringify!(base)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_dev_tools_message_observer_t>())).on_dev_tools_message
+                as *const _ as usize
+        },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_dev_tools_message_observer_t),
+            "::",
+            stringify!(on_dev_tools_message)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_dev_tools_message_observer_t>())).on_dev_tools_method_result
+                as *const _ as usize
+        },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_dev_tools_message_observer_t),
+            "::",
+            stringify!(on_dev_tools_method_result)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_dev_tools_message_observer_t>())).on_dev_tools_event
+                as *const _ as usize
+        },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_dev_tools_message_observer_t),
+            "::",
+            stringify!(on_dev_tools_event)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_dev_tools_message_observer_t>()))
+                .on_dev_tools_agent_attached as *const _ as usize
+        },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_dev_tools_message_observer_t),
+            "::",
+            stringify!(on_dev_tools_agent_attached)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_dev_tools_message_observer_t>()))
+                .on_dev_tools_agent_detached as *const _ as usize
+        },
+        72usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_dev_tools_message_observer_t),
+            "::",
+            stringify!(on_dev_tools_agent_detached)
+        )
+    );
+}
+pub type cef_dev_tools_message_observer_t = _cef_dev_tools_message_observer_t;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_image_t {
@@ -10482,6 +10826,35 @@ fn bindgen_test_layout__cef_navigation_entry_t() {
 pub type cef_navigation_entry_t = _cef_navigation_entry_t;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+pub struct _cef_registration_t {
+    pub base: cef_base_ref_counted_t,
+}
+#[test]
+fn bindgen_test_layout__cef_registration_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_registration_t>(),
+        40usize,
+        concat!("Size of: ", stringify!(_cef_registration_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_registration_t>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_cef_registration_t))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_registration_t>())).base as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_registration_t),
+            "::",
+            stringify!(base)
+        )
+    );
+}
+pub type cef_registration_t = _cef_registration_t;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
 pub struct _cef_callback_t {
     pub base: cef_base_ref_counted_t,
     pub cont: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_callback_t)>,
@@ -11278,6 +11651,604 @@ fn bindgen_test_layout__cef_extension_handler_t() {
 pub type cef_extension_handler_t = _cef_extension_handler_t;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+pub struct _cef_media_router_t {
+    pub base: cef_base_ref_counted_t,
+    pub add_observer: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_media_router_t,
+            observer: *mut _cef_media_observer_t,
+        ) -> *mut _cef_registration_t,
+    >,
+    pub get_source: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_media_router_t,
+            urn: *const cef_string_t,
+        ) -> *mut _cef_media_source_t,
+    >,
+    pub notify_current_sinks:
+        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_media_router_t)>,
+    pub create_route: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_media_router_t,
+            source: *mut _cef_media_source_t,
+            sink: *mut _cef_media_sink_t,
+            callback: *mut _cef_media_route_create_callback_t,
+        ),
+    >,
+    pub notify_current_routes:
+        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_media_router_t)>,
+}
+#[test]
+fn bindgen_test_layout__cef_media_router_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_media_router_t>(),
+        80usize,
+        concat!("Size of: ", stringify!(_cef_media_router_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_media_router_t>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_cef_media_router_t))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_router_t>())).base as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_router_t),
+            "::",
+            stringify!(base)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_media_router_t>())).add_observer as *const _ as usize
+        },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_router_t),
+            "::",
+            stringify!(add_observer)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_router_t>())).get_source as *const _ as usize },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_router_t),
+            "::",
+            stringify!(get_source)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_media_router_t>())).notify_current_sinks as *const _
+                as usize
+        },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_router_t),
+            "::",
+            stringify!(notify_current_sinks)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_media_router_t>())).create_route as *const _ as usize
+        },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_router_t),
+            "::",
+            stringify!(create_route)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_media_router_t>())).notify_current_routes as *const _
+                as usize
+        },
+        72usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_router_t),
+            "::",
+            stringify!(notify_current_routes)
+        )
+    );
+}
+pub type cef_media_router_t = _cef_media_router_t;
+extern "C" {
+    pub fn cef_media_router_get_global() -> *mut cef_media_router_t;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _cef_media_observer_t {
+    pub base: cef_base_ref_counted_t,
+    pub on_sinks: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_media_observer_t,
+            sinksCount: usize,
+            sinks: *const *mut _cef_media_sink_t,
+        ),
+    >,
+    pub on_routes: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_media_observer_t,
+            routesCount: usize,
+            routes: *const *mut _cef_media_route_t,
+        ),
+    >,
+    pub on_route_state_changed: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_media_observer_t,
+            route: *mut _cef_media_route_t,
+            state: cef_media_route_connection_state_t::Type,
+        ),
+    >,
+    pub on_route_message_received: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_media_observer_t,
+            route: *mut _cef_media_route_t,
+            message: *const ::std::os::raw::c_void,
+            message_size: usize,
+        ),
+    >,
+}
+#[test]
+fn bindgen_test_layout__cef_media_observer_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_media_observer_t>(),
+        72usize,
+        concat!("Size of: ", stringify!(_cef_media_observer_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_media_observer_t>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_cef_media_observer_t))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_observer_t>())).base as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_observer_t),
+            "::",
+            stringify!(base)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_observer_t>())).on_sinks as *const _ as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_observer_t),
+            "::",
+            stringify!(on_sinks)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_observer_t>())).on_routes as *const _ as usize },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_observer_t),
+            "::",
+            stringify!(on_routes)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_media_observer_t>())).on_route_state_changed as *const _
+                as usize
+        },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_observer_t),
+            "::",
+            stringify!(on_route_state_changed)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_media_observer_t>())).on_route_message_received as *const _
+                as usize
+        },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_observer_t),
+            "::",
+            stringify!(on_route_message_received)
+        )
+    );
+}
+pub type cef_media_observer_t = _cef_media_observer_t;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _cef_media_route_t {
+    pub base: cef_base_ref_counted_t,
+    pub get_id: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_media_route_t) -> cef_string_userfree_t,
+    >,
+    pub get_source: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_media_route_t) -> *mut _cef_media_source_t,
+    >,
+    pub get_sink: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_media_route_t) -> *mut _cef_media_sink_t,
+    >,
+    pub send_route_message: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_media_route_t,
+            message: *const ::std::os::raw::c_void,
+            message_size: usize,
+        ),
+    >,
+    pub terminate: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_media_route_t)>,
+}
+#[test]
+fn bindgen_test_layout__cef_media_route_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_media_route_t>(),
+        80usize,
+        concat!("Size of: ", stringify!(_cef_media_route_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_media_route_t>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_cef_media_route_t))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_route_t>())).base as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_route_t),
+            "::",
+            stringify!(base)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_route_t>())).get_id as *const _ as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_route_t),
+            "::",
+            stringify!(get_id)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_route_t>())).get_source as *const _ as usize },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_route_t),
+            "::",
+            stringify!(get_source)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_route_t>())).get_sink as *const _ as usize },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_route_t),
+            "::",
+            stringify!(get_sink)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_media_route_t>())).send_route_message as *const _ as usize
+        },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_route_t),
+            "::",
+            stringify!(send_route_message)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_route_t>())).terminate as *const _ as usize },
+        72usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_route_t),
+            "::",
+            stringify!(terminate)
+        )
+    );
+}
+pub type cef_media_route_t = _cef_media_route_t;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _cef_media_route_create_callback_t {
+    pub base: cef_base_ref_counted_t,
+    pub on_media_route_create_finished: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_media_route_create_callback_t,
+            result: cef_media_route_create_result_t::Type,
+            error: *const cef_string_t,
+            route: *mut _cef_media_route_t,
+        ),
+    >,
+}
+#[test]
+fn bindgen_test_layout__cef_media_route_create_callback_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_media_route_create_callback_t>(),
+        48usize,
+        concat!("Size of: ", stringify!(_cef_media_route_create_callback_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_media_route_create_callback_t>(),
+        8usize,
+        concat!(
+            "Alignment of ",
+            stringify!(_cef_media_route_create_callback_t)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_media_route_create_callback_t>())).base as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_route_create_callback_t),
+            "::",
+            stringify!(base)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_media_route_create_callback_t>()))
+                .on_media_route_create_finished as *const _ as usize
+        },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_route_create_callback_t),
+            "::",
+            stringify!(on_media_route_create_finished)
+        )
+    );
+}
+pub type cef_media_route_create_callback_t = _cef_media_route_create_callback_t;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _cef_media_sink_t {
+    pub base: cef_base_ref_counted_t,
+    pub get_id: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_media_sink_t) -> cef_string_userfree_t,
+    >,
+    pub is_valid: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_media_sink_t) -> ::std::os::raw::c_int,
+    >,
+    pub get_name: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_media_sink_t) -> cef_string_userfree_t,
+    >,
+    pub get_description: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_media_sink_t) -> cef_string_userfree_t,
+    >,
+    pub get_icon_type: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_media_sink_t) -> cef_media_sink_icon_type_t::Type,
+    >,
+    pub is_cast_sink: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_media_sink_t) -> ::std::os::raw::c_int,
+    >,
+    pub is_dial_sink: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_media_sink_t) -> ::std::os::raw::c_int,
+    >,
+    pub is_compatible_with: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_media_sink_t,
+            source: *mut _cef_media_source_t,
+        ) -> ::std::os::raw::c_int,
+    >,
+}
+#[test]
+fn bindgen_test_layout__cef_media_sink_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_media_sink_t>(),
+        104usize,
+        concat!("Size of: ", stringify!(_cef_media_sink_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_media_sink_t>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_cef_media_sink_t))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_sink_t>())).base as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_sink_t),
+            "::",
+            stringify!(base)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_sink_t>())).get_id as *const _ as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_sink_t),
+            "::",
+            stringify!(get_id)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_sink_t>())).is_valid as *const _ as usize },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_sink_t),
+            "::",
+            stringify!(is_valid)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_sink_t>())).get_name as *const _ as usize },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_sink_t),
+            "::",
+            stringify!(get_name)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_media_sink_t>())).get_description as *const _ as usize
+        },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_sink_t),
+            "::",
+            stringify!(get_description)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_sink_t>())).get_icon_type as *const _ as usize },
+        72usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_sink_t),
+            "::",
+            stringify!(get_icon_type)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_sink_t>())).is_cast_sink as *const _ as usize },
+        80usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_sink_t),
+            "::",
+            stringify!(is_cast_sink)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_sink_t>())).is_dial_sink as *const _ as usize },
+        88usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_sink_t),
+            "::",
+            stringify!(is_dial_sink)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_media_sink_t>())).is_compatible_with as *const _ as usize
+        },
+        96usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_sink_t),
+            "::",
+            stringify!(is_compatible_with)
+        )
+    );
+}
+pub type cef_media_sink_t = _cef_media_sink_t;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _cef_media_source_t {
+    pub base: cef_base_ref_counted_t,
+    pub get_id: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_media_source_t) -> cef_string_userfree_t,
+    >,
+    pub is_valid: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_media_source_t) -> ::std::os::raw::c_int,
+    >,
+    pub is_cast_source: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_media_source_t) -> ::std::os::raw::c_int,
+    >,
+    pub is_dial_source: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_media_source_t) -> ::std::os::raw::c_int,
+    >,
+}
+#[test]
+fn bindgen_test_layout__cef_media_source_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_media_source_t>(),
+        72usize,
+        concat!("Size of: ", stringify!(_cef_media_source_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_media_source_t>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_cef_media_source_t))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_source_t>())).base as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_source_t),
+            "::",
+            stringify!(base)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_source_t>())).get_id as *const _ as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_source_t),
+            "::",
+            stringify!(get_id)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_source_t>())).is_valid as *const _ as usize },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_source_t),
+            "::",
+            stringify!(is_valid)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_media_source_t>())).is_cast_source as *const _ as usize
+        },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_source_t),
+            "::",
+            stringify!(is_cast_source)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_media_source_t>())).is_dial_source as *const _ as usize
+        },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_source_t),
+            "::",
+            stringify!(is_dial_source)
+        )
+    );
+}
+pub type cef_media_source_t = _cef_media_source_t;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
 pub struct _cef_resolve_callback_t {
     pub base: cef_base_ref_counted_t,
     pub on_resolve_completed: ::std::option::Option<
@@ -11464,12 +12435,15 @@ pub struct _cef_request_context_t {
             extension_id: *const cef_string_t,
         ) -> *mut _cef_extension_t,
     >,
+    pub get_media_router: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_request_context_t) -> *mut _cef_media_router_t,
+    >,
 }
 #[test]
 fn bindgen_test_layout__cef_request_context_t() {
     assert_eq!(
         ::std::mem::size_of::<_cef_request_context_t>(),
-        224usize,
+        232usize,
         concat!("Size of: ", stringify!(_cef_request_context_t))
     );
     assert_eq!(
@@ -11769,6 +12743,18 @@ fn bindgen_test_layout__cef_request_context_t() {
             stringify!(_cef_request_context_t),
             "::",
             stringify!(get_extension)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_request_context_t>())).get_media_router as *const _ as usize
+        },
+        224usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_request_context_t),
+            "::",
+            stringify!(get_media_router)
         )
     );
 }
@@ -12386,6 +13372,27 @@ pub struct _cef_browser_host_t {
     pub has_dev_tools: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_browser_host_t) -> ::std::os::raw::c_int,
     >,
+    pub send_dev_tools_message: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_browser_host_t,
+            message: *const ::std::os::raw::c_void,
+            message_size: usize,
+        ) -> ::std::os::raw::c_int,
+    >,
+    pub execute_dev_tools_method: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_browser_host_t,
+            message_id: ::std::os::raw::c_int,
+            method: *const cef_string_t,
+            params: *mut _cef_dictionary_value_t,
+        ) -> ::std::os::raw::c_int,
+    >,
+    pub add_dev_tools_message_observer: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_browser_host_t,
+            observer: *mut _cef_dev_tools_message_observer_t,
+        ) -> *mut _cef_registration_t,
+    >,
     pub get_navigation_entries: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_browser_host_t,
@@ -12555,7 +13562,7 @@ pub struct _cef_browser_host_t {
 fn bindgen_test_layout__cef_browser_host_t() {
     assert_eq!(
         ::std::mem::size_of::<_cef_browser_host_t>(),
-        512usize,
+        536usize,
         concat!("Size of: ", stringify!(_cef_browser_host_t))
     );
     assert_eq!(
@@ -12816,10 +13823,49 @@ fn bindgen_test_layout__cef_browser_host_t() {
     );
     assert_eq!(
         unsafe {
-            &(*(::std::ptr::null::<_cef_browser_host_t>())).get_navigation_entries as *const _
+            &(*(::std::ptr::null::<_cef_browser_host_t>())).send_dev_tools_message as *const _
                 as usize
         },
         208usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_browser_host_t),
+            "::",
+            stringify!(send_dev_tools_message)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_browser_host_t>())).execute_dev_tools_method as *const _
+                as usize
+        },
+        216usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_browser_host_t),
+            "::",
+            stringify!(execute_dev_tools_method)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_browser_host_t>())).add_dev_tools_message_observer
+                as *const _ as usize
+        },
+        224usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_browser_host_t),
+            "::",
+            stringify!(add_dev_tools_message_observer)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_browser_host_t>())).get_navigation_entries as *const _
+                as usize
+        },
+        232usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -12832,7 +13878,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).set_mouse_cursor_change_disabled
                 as *const _ as usize
         },
-        216usize,
+        240usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -12845,7 +13891,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).is_mouse_cursor_change_disabled
                 as *const _ as usize
         },
-        224usize,
+        248usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -12857,7 +13903,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).replace_misspelling as *const _ as usize
         },
-        232usize,
+        256usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -12870,7 +13916,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).add_word_to_dictionary as *const _
                 as usize
         },
-        240usize,
+        264usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -12883,7 +13929,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).is_window_rendering_disabled as *const _
                 as usize
         },
-        248usize,
+        272usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -12893,7 +13939,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_browser_host_t>())).was_resized as *const _ as usize },
-        256usize,
+        280usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -12903,7 +13949,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_browser_host_t>())).was_hidden as *const _ as usize },
-        264usize,
+        288usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -12916,7 +13962,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).notify_screen_info_changed as *const _
                 as usize
         },
-        272usize,
+        296usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -12926,7 +13972,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_browser_host_t>())).invalidate as *const _ as usize },
-        280usize,
+        304usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -12939,7 +13985,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).send_external_begin_frame as *const _
                 as usize
         },
-        288usize,
+        312usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -12951,7 +13997,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).send_key_event as *const _ as usize
         },
-        296usize,
+        320usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -12964,7 +14010,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).send_mouse_click_event as *const _
                 as usize
         },
-        304usize,
+        328usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -12977,7 +14023,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).send_mouse_move_event as *const _
                 as usize
         },
-        312usize,
+        336usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -12990,7 +14036,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).send_mouse_wheel_event as *const _
                 as usize
         },
-        320usize,
+        344usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13002,7 +14048,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).send_touch_event as *const _ as usize
         },
-        328usize,
+        352usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13014,7 +14060,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).send_focus_event as *const _ as usize
         },
-        336usize,
+        360usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13027,7 +14073,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).send_capture_lost_event as *const _
                 as usize
         },
-        344usize,
+        368usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13040,7 +14086,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).notify_move_or_resize_started
                 as *const _ as usize
         },
-        352usize,
+        376usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13053,7 +14099,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).get_windowless_frame_rate as *const _
                 as usize
         },
-        360usize,
+        384usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13066,7 +14112,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).set_windowless_frame_rate as *const _
                 as usize
         },
-        368usize,
+        392usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13078,7 +14124,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).ime_set_composition as *const _ as usize
         },
-        376usize,
+        400usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13090,7 +14136,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).ime_commit_text as *const _ as usize
         },
-        384usize,
+        408usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13103,7 +14149,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).ime_finish_composing_text as *const _
                 as usize
         },
-        392usize,
+        416usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13116,7 +14162,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).ime_cancel_composition as *const _
                 as usize
         },
-        400usize,
+        424usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13129,7 +14175,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).drag_target_drag_enter as *const _
                 as usize
         },
-        408usize,
+        432usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13142,7 +14188,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).drag_target_drag_over as *const _
                 as usize
         },
-        416usize,
+        440usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13155,7 +14201,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).drag_target_drag_leave as *const _
                 as usize
         },
-        424usize,
+        448usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13167,7 +14213,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).drag_target_drop as *const _ as usize
         },
-        432usize,
+        456usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13180,7 +14226,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).drag_source_ended_at as *const _
                 as usize
         },
-        440usize,
+        464usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13193,7 +14239,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).drag_source_system_drag_ended
                 as *const _ as usize
         },
-        448usize,
+        472usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13206,7 +14252,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).get_visible_navigation_entry as *const _
                 as usize
         },
-        456usize,
+        480usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13219,7 +14265,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).set_accessibility_state as *const _
                 as usize
         },
-        464usize,
+        488usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13232,7 +14278,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).set_auto_resize_enabled as *const _
                 as usize
         },
-        472usize,
+        496usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13244,7 +14290,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).get_extension as *const _ as usize
         },
-        480usize,
+        504usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13256,7 +14302,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).is_background_host as *const _ as usize
         },
-        488usize,
+        512usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13268,7 +14314,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).set_audio_muted as *const _ as usize
         },
-        496usize,
+        520usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -13280,7 +14326,7 @@ fn bindgen_test_layout__cef_browser_host_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_browser_host_t>())).is_audio_muted as *const _ as usize
         },
-        504usize,
+        528usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_browser_host_t),
@@ -17083,6 +18129,134 @@ fn bindgen_test_layout__cef_auth_callback_t() {
     );
 }
 pub type cef_auth_callback_t = _cef_auth_callback_t;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _cef_audio_handler_t {
+    pub base: cef_base_ref_counted_t,
+    pub get_audio_parameters: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_audio_handler_t,
+            browser: *mut _cef_browser_t,
+            params: *mut cef_audio_parameters_t,
+        ) -> ::std::os::raw::c_int,
+    >,
+    pub on_audio_stream_started: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_audio_handler_t,
+            browser: *mut _cef_browser_t,
+            params: *const cef_audio_parameters_t,
+            channels: ::std::os::raw::c_int,
+        ),
+    >,
+    pub on_audio_stream_packet: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_audio_handler_t,
+            browser: *mut _cef_browser_t,
+            data: *mut *const f32,
+            frames: ::std::os::raw::c_int,
+            pts: int64,
+        ),
+    >,
+    pub on_audio_stream_stopped: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_audio_handler_t, browser: *mut _cef_browser_t),
+    >,
+    pub on_audio_stream_error: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_audio_handler_t,
+            browser: *mut _cef_browser_t,
+            message: *const cef_string_t,
+        ),
+    >,
+}
+#[test]
+fn bindgen_test_layout__cef_audio_handler_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_audio_handler_t>(),
+        80usize,
+        concat!("Size of: ", stringify!(_cef_audio_handler_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_audio_handler_t>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_cef_audio_handler_t))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_audio_handler_t>())).base as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_audio_handler_t),
+            "::",
+            stringify!(base)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_audio_handler_t>())).get_audio_parameters as *const _
+                as usize
+        },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_audio_handler_t),
+            "::",
+            stringify!(get_audio_parameters)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_audio_handler_t>())).on_audio_stream_started as *const _
+                as usize
+        },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_audio_handler_t),
+            "::",
+            stringify!(on_audio_stream_started)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_audio_handler_t>())).on_audio_stream_packet as *const _
+                as usize
+        },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_audio_handler_t),
+            "::",
+            stringify!(on_audio_stream_packet)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_audio_handler_t>())).on_audio_stream_stopped as *const _
+                as usize
+        },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_audio_handler_t),
+            "::",
+            stringify!(on_audio_stream_stopped)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_audio_handler_t>())).on_audio_stream_error as *const _
+                as usize
+        },
+        72usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_audio_handler_t),
+            "::",
+            stringify!(on_audio_stream_error)
+        )
+    );
+}
+pub type cef_audio_handler_t = _cef_audio_handler_t;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_menu_model_delegate_t {
@@ -21131,12 +22305,15 @@ pub struct _cef_request_handler_t {
             status: cef_termination_status_t::Type,
         ),
     >,
+    pub on_document_available_in_main_frame: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_request_handler_t, browser: *mut _cef_browser_t),
+    >,
 }
 #[test]
 fn bindgen_test_layout__cef_request_handler_t() {
     assert_eq!(
         ::std::mem::size_of::<_cef_request_handler_t>(),
-        120usize,
+        128usize,
         concat!("Size of: ", stringify!(_cef_request_handler_t))
     );
     assert_eq!(
@@ -21282,12 +22459,28 @@ fn bindgen_test_layout__cef_request_handler_t() {
             stringify!(on_render_process_terminated)
         )
     );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_request_handler_t>())).on_document_available_in_main_frame
+                as *const _ as usize
+        },
+        120usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_request_handler_t),
+            "::",
+            stringify!(on_document_available_in_main_frame)
+        )
+    );
 }
 pub type cef_request_handler_t = _cef_request_handler_t;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_client_t {
     pub base: cef_base_ref_counted_t,
+    pub get_audio_handler: ::std::option::Option<
+        unsafe extern "C" fn(self_: *mut _cef_client_t) -> *mut _cef_audio_handler_t,
+    >,
     pub get_context_menu_handler: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_client_t) -> *mut _cef_context_menu_handler_t,
     >,
@@ -21341,7 +22534,7 @@ pub struct _cef_client_t {
 fn bindgen_test_layout__cef_client_t() {
     assert_eq!(
         ::std::mem::size_of::<_cef_client_t>(),
-        152usize,
+        160usize,
         concat!("Size of: ", stringify!(_cef_client_t))
     );
     assert_eq!(
@@ -21360,10 +22553,20 @@ fn bindgen_test_layout__cef_client_t() {
         )
     );
     assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_client_t>())).get_audio_handler as *const _ as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_client_t),
+            "::",
+            stringify!(get_audio_handler)
+        )
+    );
+    assert_eq!(
         unsafe {
             &(*(::std::ptr::null::<_cef_client_t>())).get_context_menu_handler as *const _ as usize
         },
-        40usize,
+        48usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_client_t),
@@ -21375,7 +22578,7 @@ fn bindgen_test_layout__cef_client_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_client_t>())).get_dialog_handler as *const _ as usize
         },
-        48usize,
+        56usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_client_t),
@@ -21387,7 +22590,7 @@ fn bindgen_test_layout__cef_client_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_client_t>())).get_display_handler as *const _ as usize
         },
-        56usize,
+        64usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_client_t),
@@ -21399,7 +22602,7 @@ fn bindgen_test_layout__cef_client_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_client_t>())).get_download_handler as *const _ as usize
         },
-        64usize,
+        72usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_client_t),
@@ -21409,7 +22612,7 @@ fn bindgen_test_layout__cef_client_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_client_t>())).get_drag_handler as *const _ as usize },
-        72usize,
+        80usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_client_t),
@@ -21419,7 +22622,7 @@ fn bindgen_test_layout__cef_client_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_client_t>())).get_find_handler as *const _ as usize },
-        80usize,
+        88usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_client_t),
@@ -21429,7 +22632,7 @@ fn bindgen_test_layout__cef_client_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_client_t>())).get_focus_handler as *const _ as usize },
-        88usize,
+        96usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_client_t),
@@ -21441,7 +22644,7 @@ fn bindgen_test_layout__cef_client_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_client_t>())).get_jsdialog_handler as *const _ as usize
         },
-        96usize,
+        104usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_client_t),
@@ -21453,7 +22656,7 @@ fn bindgen_test_layout__cef_client_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_client_t>())).get_keyboard_handler as *const _ as usize
         },
-        104usize,
+        112usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_client_t),
@@ -21465,7 +22668,7 @@ fn bindgen_test_layout__cef_client_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_client_t>())).get_life_span_handler as *const _ as usize
         },
-        112usize,
+        120usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_client_t),
@@ -21475,7 +22678,7 @@ fn bindgen_test_layout__cef_client_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_client_t>())).get_load_handler as *const _ as usize },
-        120usize,
+        128usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_client_t),
@@ -21487,7 +22690,7 @@ fn bindgen_test_layout__cef_client_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_client_t>())).get_render_handler as *const _ as usize
         },
-        128usize,
+        136usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_client_t),
@@ -21499,7 +22702,7 @@ fn bindgen_test_layout__cef_client_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_client_t>())).get_request_handler as *const _ as usize
         },
-        136usize,
+        144usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_client_t),
@@ -21512,7 +22715,7 @@ fn bindgen_test_layout__cef_client_t() {
             &(*(::std::ptr::null::<_cef_client_t>())).on_process_message_received as *const _
                 as usize
         },
-        144usize,
+        152usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_client_t),
@@ -21636,6 +22839,13 @@ extern "C" {
 extern "C" {
     pub fn cef_parse_json(
         json_string: *const cef_string_t,
+        options: cef_json_parser_options_t,
+    ) -> *mut _cef_value_t;
+}
+extern "C" {
+    pub fn cef_parse_json_buffer(
+        json: *const ::std::os::raw::c_void,
+        json_size: usize,
         options: cef_json_parser_options_t,
     ) -> *mut _cef_value_t;
 }

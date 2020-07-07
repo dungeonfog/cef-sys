@@ -3,16 +3,14 @@ use std::env;
 use std::iter;
 use std::path::Path;
 fn main() {
-    let chromium_path = env::args()
+    let include_path = env::args()
         .skip(1)
         .next()
-        .expect("Must pass chromium src path as first argument");
-    let chromium_path = dunce::canonicalize(Path::new(&*chromium_path)).unwrap();
-    let cef_path = chromium_path.join("cef");
+        .expect("Must pass extracted CEF distribution path as first argument");
+    let include_path = dunce::canonicalize(Path::new(&*include_path)).unwrap();
 
     let include_paths = vec![
-        cef_path.to_string_lossy().into_owned(),
-        chromium_path.to_string_lossy().into_owned(),
+        include_path.to_string_lossy().into_owned(),
     ];
     #[cfg(target_os = "windows")]
     let include = "INCLUDE";

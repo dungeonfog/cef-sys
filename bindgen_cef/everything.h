@@ -70,6 +70,11 @@
 #include <include/capi/cef_zip_reader_capi.h>
 #include <include/cef_api_hash.h>
 
+#include <include/capi/cef_audio_handler_capi.h>
+#include <include/capi/cef_devtools_message_observer_capi.h>
+#include <include/capi/cef_media_router_capi.h>
+#include <include/capi/cef_registration_capi.h>
+
 #if defined(OS_MACOSX)
 #include <include/cef_sandbox_mac.h>
 #endif
