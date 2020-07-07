@@ -37,14 +37,14 @@ fn main() {
     let targz_dir = match archive_dir_env_var {
         Some(dir) => {
             std::fs::create_dir_all(&dir).expect("could not create targz dir");
-            PathBuf::from(&dir).canonicalize().expect("could not canonicalize archive dir")
+            dunce::canonicalize(PathBuf::from(&dir)).expect("could not canonicalize archive dir")
         },
         None => out_dir.clone()
     };
     let lib_dir = match lib_dir_env {
         Some(dir) => {
             std::fs::create_dir_all(&dir).expect("could not create lib dir");
-            PathBuf::from(&dir).canonicalize().expect("could not canonicalize lib dir")
+            dunce::canonicalize(PathBuf::from(&dir)).expect("could not canonicalize lib dir")
         },
         None => out_dir.clone(),
     };
@@ -82,8 +82,7 @@ fn main() {
         fs::write(&unpack_sentinel_path, &unpack_sentinel_file_contents).ok();
     }
 
-    let lib_path_display = lib_dir.display().to_string().replace(r"\\?\", "");
-    println!("cargo:rustc-link-search={}", lib_path_display);
+    println!("cargo:rustc-link-search={}", lib_dir.display());
 
     match target_os {
         Ok("windows") => {

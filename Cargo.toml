@@ -15,6 +15,7 @@ winapi = { version = "0.3", features = ["winuser", "libloaderapi", "winver", "ol
 [build-dependencies]
 cmake = "0.1"
 cef-installer = {path = "./cef-installer"}
+dunce = "1"
 
 [workspace]
 members = ["./bindgen_cef", "./cef-installer"]
