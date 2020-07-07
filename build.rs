@@ -4,6 +4,7 @@ use std::io::{Read, Write, Seek, SeekFrom};
 
 fn main() {
     let target_os = std::env::var("CARGO_CFG_TARGET_OS");
+    let target_os = target_os.as_ref().map(|x| &**x);
 
     let lib_dir_env_var = "CARGO_CEF_SYS_LIB_OUT_DIR";
     let archive_dir_env_var = "CARGO_CEF_SYS_ARCHIVE_OUT_DIR";
@@ -32,32 +33,34 @@ fn main() {
         Some(path) => PathBuf::from(path),
         None => out_dir.join("unpack_sentinel"),
     };
+
+    let targz_dir = match archive_dir_env_var {
+        Some(dir) => PathBuf::from(dir).canonicalize().expect("could not canonicalize archive dir"),
+        None => out_dir.clone()
+    };
+    let lib_dir = match lib_dir_env {
+        Some(dir) => PathBuf::from(dir).canonicalize().expect("could not canonicalize lib dir"),
+        None => out_dir.clone(),
+    };
     let unpack_sentinel_file_contents = format!(
         "{};{};{}",
         cef_version,
-        lib_dir_env.as_deref().unwrap_or(""),
-        archive_dir_env_var.as_deref().unwrap_or("")
+        targz_dir.display(),
+        lib_dir.display(),
     );
     if let Ok(actual_contents) = fs::read_to_string(&unpack_sentinel_path) {
         if unpack_sentinel_file_contents == actual_contents {
             unpack_cef = false;
         }
     }
-
-    let targz_dir = match archive_dir_env_var {
-        Some(dir) => PathBuf::from(dir),
-        None => out_dir.clone()
-    };
-    let lib_dir = match lib_dir_env {
-        Some(dir) => PathBuf::from(dir),
-        None => out_dir.clone(),
-    };
     let libcef_dll_project_dir = out_dir.join("libcef_dll");
     let header_dir = libcef_dll_project_dir.join("include");
     let libcef_dll_src_dir = libcef_dll_project_dir.join("libcef_dll");
     let cmake_macros_dir = libcef_dll_project_dir.join("cmake");
 
-    if unpack_cef {
+    // we ignore the unpack sentinel on macos because it needs to unpack the archive to build
+    // ibcef_dll_wrapper
+    if unpack_cef && target_os != Ok("macos") {
         cef_installer::download_cef(
             cef_version,
             cef_platform,
@@ -73,11 +76,10 @@ fn main() {
         fs::write(&unpack_sentinel_path, &unpack_sentinel_file_contents).ok();
     }
 
-    let lib_path_display = lib_dir.canonicalize().expect("could not canonicalize lib dir")
-        .display().to_string().replace(r"\\?\", "");
+    let lib_path_display = lib_dir.display().to_string().replace(r"\\?\", "");
     println!("cargo:rustc-link-search={}", lib_path_display);
 
-    match target_os.as_ref().map(|x| &**x) {
+    match target_os {
         Ok("windows") => {
             #[cfg(feature = "sandbox")]
             {
