@@ -45,7 +45,12 @@ pub fn download_cef(
             .and_then(|path| fs::File::open(path).ok());
 
         match targz_file {
-            Some(file) => Box::new(BufReader::new(file)),
+            Some(file) => {
+                if !quiet {
+                    eprintln!("CEF archive {} already exists", targz_path.unwrap().display());
+                }
+                Box::new(BufReader::new(file))
+            },
             None => {
                 let url = format!(
                     "http://opensource.spotify.com/cefbuilds/{}",

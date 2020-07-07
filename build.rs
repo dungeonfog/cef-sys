@@ -6,8 +6,15 @@ fn main() {
     let target_os = std::env::var("CARGO_CFG_TARGET_OS");
 
     let lib_dir_env_var = "CARGO_CEF_SYS_LIB_OUT_DIR";
+    let archive_dir_env_var = "CARGO_CEF_SYS_ARCHIVE_OUT_DIR";
+    let unpack_sentinel_env_var = "CARGO_CEF_SYS_UNPACK_SENTINEL";
     println!("cargo:rerun-if-env-changed={}", lib_dir_env_var);
+    println!("cargo:rerun-if-env-changed={}", archive_dir_env_var);
+    println!("cargo:rerun-if-env-changed={}", unpack_sentinel_env_var);
     let lib_dir_env = std::env::var(lib_dir_env_var).ok();
+    let archive_dir_env_var = std::env::var(archive_dir_env_var).ok();
+    let unpack_sentinel_env_var = std::env::var(unpack_sentinel_env_var).ok();
+
 
     let cef_version = "79.1.26+g50b44dc+chromium-79.0.3945.117";
     let cef_platform = match std::env::var("CARGO_CFG_TARGET_OS").unwrap().as_str() {
@@ -18,7 +25,29 @@ fn main() {
     };
     let opt_level = cef_installer::OptLevel::Release;
     let out_dir = PathBuf::from(std::env::var("OUT_DIR").unwrap());
-    let targz_dir = out_dir.clone();
+
+    let mut unpack_cef = true;
+
+    let unpack_sentinel_path = match unpack_sentinel_env_var {
+        Some(path) => PathBuf::from(path),
+        None => out_dir.join("unpack_sentinel"),
+    };
+    let unpack_sentinel_file_contents = format!(
+        "{};{};{}",
+        cef_version,
+        lib_dir_env.as_deref().unwrap_or(""),
+        archive_dir_env_var.as_deref().unwrap_or("")
+    );
+    if let Ok(actual_contents) = fs::read_to_string(&unpack_sentinel_path) {
+        if unpack_sentinel_file_contents == actual_contents {
+            unpack_cef = false;
+        }
+    }
+
+    let targz_dir = match archive_dir_env_var {
+        Some(dir) => PathBuf::from(dir),
+        None => out_dir.clone()
+    };
     let lib_dir = match lib_dir_env {
         Some(dir) => PathBuf::from(dir),
         None => out_dir.clone(),
@@ -28,17 +57,21 @@ fn main() {
     let libcef_dll_src_dir = libcef_dll_project_dir.join("libcef_dll");
     let cmake_macros_dir = libcef_dll_project_dir.join("cmake");
 
-    cef_installer::download_cef(
-        cef_version,
-        cef_platform,
-        opt_level,
-        Some(&targz_dir),
-        Some(&lib_dir),
-        Some(&header_dir),
-        Some(&libcef_dll_src_dir),
-        Some(&cmake_macros_dir),
-        false,
-    ).unwrap();
+    if unpack_cef {
+        cef_installer::download_cef(
+            cef_version,
+            cef_platform,
+            opt_level,
+            Some(&targz_dir),
+            Some(&lib_dir),
+            Some(&header_dir),
+            Some(&libcef_dll_src_dir),
+            Some(&cmake_macros_dir),
+            false,
+        ).unwrap();
+
+        fs::write(&unpack_sentinel_path, &unpack_sentinel_file_contents).ok();
+    }
 
     let lib_path_display = lib_dir.canonicalize().expect("could not canonicalize lib dir")
         .display().to_string().replace(r"\\?\", "");
