@@ -35,11 +35,17 @@ fn main() {
     };
 
     let targz_dir = match archive_dir_env_var {
-        Some(dir) => PathBuf::from(dir).canonicalize().expect("could not canonicalize archive dir"),
+        Some(dir) => {
+            std::fs::create_dir_all(&dir).expect("could not create targz dir");
+            PathBuf::from(&dir).canonicalize().expect("could not canonicalize archive dir")
+        },
         None => out_dir.clone()
     };
     let lib_dir = match lib_dir_env {
-        Some(dir) => PathBuf::from(dir).canonicalize().expect("could not canonicalize lib dir"),
+        Some(dir) => {
+            std::fs::create_dir_all(&dir).expect("could not create lib dir");
+            PathBuf::from(&dir).canonicalize().expect("could not canonicalize lib dir")
+        },
         None => out_dir.clone(),
     };
     let unpack_sentinel_file_contents = format!(
