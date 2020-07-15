@@ -55,6 +55,7 @@ fn main() {
         .bitfield_enum("cef_file_dialog_mode_t")
         .blacklist_type("H[A-Z]+_*") // blacklist Windows handles
         .blacklist_type("(tag)?MSG")
+        .size_t_is_usize(true)
         .generate()
         .unwrap();
     bindings.write_to_file("./bindings.rs").unwrap();

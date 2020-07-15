@@ -123,7 +123,6 @@ fn bindgen_test_layout__opaque_pthread_t() {
     );
 }
 pub type __darwin_pthread_t = *mut _opaque_pthread_t;
-pub type size_t = ::std::os::raw::c_ulong;
 pub type wchar_t = ::std::os::raw::c_int;
 pub type int64 = ::std::os::raw::c_longlong;
 pub type uint64 = ::std::os::raw::c_ulonglong;
@@ -135,7 +134,7 @@ pub type char16 = ::std::os::raw::c_ushort;
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_string_wide_t {
     pub str_: *mut wchar_t,
-    pub length: size_t,
+    pub length: usize,
     pub dtor: ::std::option::Option<unsafe extern "C" fn(str_: *mut wchar_t)>,
 }
 #[test]
@@ -186,7 +185,7 @@ pub type cef_string_wide_t = _cef_string_wide_t;
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_string_utf8_t {
     pub str_: *mut ::std::os::raw::c_char,
-    pub length: size_t,
+    pub length: usize,
     pub dtor: ::std::option::Option<unsafe extern "C" fn(str_: *mut ::std::os::raw::c_char)>,
 }
 #[test]
@@ -237,7 +236,7 @@ pub type cef_string_utf8_t = _cef_string_utf8_t;
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_string_utf16_t {
     pub str_: *mut char16,
-    pub length: size_t,
+    pub length: usize,
     pub dtor: ::std::option::Option<unsafe extern "C" fn(str_: *mut char16)>,
 }
 #[test]
@@ -287,7 +286,7 @@ pub type cef_string_utf16_t = _cef_string_utf16_t;
 extern "C" {
     pub fn cef_string_wide_set(
         src: *const wchar_t,
-        src_len: size_t,
+        src_len: usize,
         output: *mut cef_string_wide_t,
         copy: ::std::os::raw::c_int,
     ) -> ::std::os::raw::c_int;
@@ -295,7 +294,7 @@ extern "C" {
 extern "C" {
     pub fn cef_string_utf8_set(
         src: *const ::std::os::raw::c_char,
-        src_len: size_t,
+        src_len: usize,
         output: *mut cef_string_utf8_t,
         copy: ::std::os::raw::c_int,
     ) -> ::std::os::raw::c_int;
@@ -303,7 +302,7 @@ extern "C" {
 extern "C" {
     pub fn cef_string_utf16_set(
         src: *const char16,
-        src_len: size_t,
+        src_len: usize,
         output: *mut cef_string_utf16_t,
         copy: ::std::os::raw::c_int,
     ) -> ::std::os::raw::c_int;
@@ -338,56 +337,56 @@ extern "C" {
 extern "C" {
     pub fn cef_string_wide_to_utf8(
         src: *const wchar_t,
-        src_len: size_t,
+        src_len: usize,
         output: *mut cef_string_utf8_t,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
     pub fn cef_string_utf8_to_wide(
         src: *const ::std::os::raw::c_char,
-        src_len: size_t,
+        src_len: usize,
         output: *mut cef_string_wide_t,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
     pub fn cef_string_wide_to_utf16(
         src: *const wchar_t,
-        src_len: size_t,
+        src_len: usize,
         output: *mut cef_string_utf16_t,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
     pub fn cef_string_utf16_to_wide(
         src: *const char16,
-        src_len: size_t,
+        src_len: usize,
         output: *mut cef_string_wide_t,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
     pub fn cef_string_utf8_to_utf16(
         src: *const ::std::os::raw::c_char,
-        src_len: size_t,
+        src_len: usize,
         output: *mut cef_string_utf16_t,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
     pub fn cef_string_utf16_to_utf8(
         src: *const char16,
-        src_len: size_t,
+        src_len: usize,
         output: *mut cef_string_utf8_t,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
     pub fn cef_string_ascii_to_wide(
         src: *const ::std::os::raw::c_char,
-        src_len: size_t,
+        src_len: usize,
         output: *mut cef_string_wide_t,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
     pub fn cef_string_ascii_to_utf16(
         src: *const ::std::os::raw::c_char,
-        src_len: size_t,
+        src_len: usize,
         output: *mut cef_string_utf16_t,
     ) -> ::std::os::raw::c_int;
 }
@@ -415,14 +414,14 @@ extern "C" {
 extern "C" {
     pub fn cef_string_utf16_to_lower(
         src: *const char16,
-        src_len: size_t,
+        src_len: usize,
         output: *mut cef_string_utf16_t,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
     pub fn cef_string_utf16_to_upper(
         src: *const char16,
-        src_len: size_t,
+        src_len: usize,
         output: *mut cef_string_utf16_t,
     ) -> ::std::os::raw::c_int;
 }
@@ -434,12 +433,12 @@ extern "C" {
     pub fn cef_string_list_alloc() -> cef_string_list_t;
 }
 extern "C" {
-    pub fn cef_string_list_size(list: cef_string_list_t) -> size_t;
+    pub fn cef_string_list_size(list: cef_string_list_t) -> usize;
 }
 extern "C" {
     pub fn cef_string_list_value(
         list: cef_string_list_t,
-        index: size_t,
+        index: usize,
         value: *mut cef_string_t,
     ) -> ::std::os::raw::c_int;
 }
@@ -460,7 +459,7 @@ extern "C" {
     pub fn cef_string_map_alloc() -> cef_string_map_t;
 }
 extern "C" {
-    pub fn cef_string_map_size(map: cef_string_map_t) -> size_t;
+    pub fn cef_string_map_size(map: cef_string_map_t) -> usize;
 }
 extern "C" {
     pub fn cef_string_map_find(
@@ -472,14 +471,14 @@ extern "C" {
 extern "C" {
     pub fn cef_string_map_key(
         map: cef_string_map_t,
-        index: size_t,
+        index: usize,
         key: *mut cef_string_t,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
     pub fn cef_string_map_value(
         map: cef_string_map_t,
-        index: size_t,
+        index: usize,
         value: *mut cef_string_t,
     ) -> ::std::os::raw::c_int;
 }
@@ -501,33 +500,33 @@ extern "C" {
     pub fn cef_string_multimap_alloc() -> cef_string_multimap_t;
 }
 extern "C" {
-    pub fn cef_string_multimap_size(map: cef_string_multimap_t) -> size_t;
+    pub fn cef_string_multimap_size(map: cef_string_multimap_t) -> usize;
 }
 extern "C" {
     pub fn cef_string_multimap_find_count(
         map: cef_string_multimap_t,
         key: *const cef_string_t,
-    ) -> size_t;
+    ) -> usize;
 }
 extern "C" {
     pub fn cef_string_multimap_enumerate(
         map: cef_string_multimap_t,
         key: *const cef_string_t,
-        value_index: size_t,
+        value_index: usize,
         value: *mut cef_string_t,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
     pub fn cef_string_multimap_key(
         map: cef_string_multimap_t,
-        index: size_t,
+        index: usize,
         key: *mut cef_string_t,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
     pub fn cef_string_multimap_value(
         map: cef_string_multimap_t,
-        index: size_t,
+        index: usize,
         value: *mut cef_string_t,
     ) -> ::std::os::raw::c_int;
 }
@@ -888,7 +887,7 @@ pub mod cef_state_t {
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_settings_t {
-    pub size: size_t,
+    pub size: usize,
     pub no_sandbox: ::std::os::raw::c_int,
     pub browser_subprocess_path: cef_string_t,
     pub framework_dir_path: cef_string_t,
@@ -1270,7 +1269,7 @@ pub type cef_settings_t = _cef_settings_t;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_request_context_settings_t {
-    pub size: size_t,
+    pub size: usize,
     pub cache_path: cef_string_t,
     pub persist_session_cookies: ::std::os::raw::c_int,
     pub persist_user_preferences: ::std::os::raw::c_int,
@@ -1371,7 +1370,7 @@ pub type cef_request_context_settings_t = _cef_request_context_settings_t;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_browser_settings_t {
-    pub size: size_t,
+    pub size: usize,
     pub windowless_frame_rate: ::std::os::raw::c_int,
     pub standard_font_family: cef_string_t,
     pub fixed_font_family: cef_string_t,
@@ -5233,7 +5232,7 @@ pub mod cef_media_sink_icon_type_t {
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_base_ref_counted_t {
-    pub size: size_t,
+    pub size: usize,
     pub add_ref: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_base_ref_counted_t)>,
     pub release: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_base_ref_counted_t) -> ::std::os::raw::c_int,
@@ -5317,7 +5316,7 @@ pub type cef_base_ref_counted_t = _cef_base_ref_counted_t;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_base_scoped_t {
-    pub size: size_t,
+    pub size: usize,
     pub del: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_base_scoped_t)>,
 }
 #[test]
@@ -5719,14 +5718,14 @@ pub struct _cef_binary_value_t {
         unsafe extern "C" fn(self_: *mut _cef_binary_value_t) -> *mut _cef_binary_value_t,
     >,
     pub get_size:
-        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_binary_value_t) -> size_t>,
+        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_binary_value_t) -> usize>,
     pub get_data: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_binary_value_t,
             buffer: *mut ::std::os::raw::c_void,
-            buffer_size: size_t,
-            data_offset: size_t,
-        ) -> size_t,
+            buffer_size: usize,
+            data_offset: usize,
+        ) -> usize,
     >,
 }
 #[test]
@@ -5826,7 +5825,7 @@ pub type cef_binary_value_t = _cef_binary_value_t;
 extern "C" {
     pub fn cef_binary_value_create(
         data: *const ::std::os::raw::c_void,
-        data_size: size_t,
+        data_size: usize,
     ) -> *mut cef_binary_value_t;
 }
 #[repr(C)]
@@ -5861,7 +5860,7 @@ pub struct _cef_dictionary_value_t {
         ) -> *mut _cef_dictionary_value_t,
     >,
     pub get_size:
-        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_dictionary_value_t) -> size_t>,
+        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_dictionary_value_t) -> usize>,
     pub clear: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_dictionary_value_t) -> ::std::os::raw::c_int,
     >,
@@ -6387,111 +6386,105 @@ pub struct _cef_list_value_t {
         unsafe extern "C" fn(self_: *mut _cef_list_value_t) -> *mut _cef_list_value_t,
     >,
     pub set_size: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_list_value_t, size: size_t) -> ::std::os::raw::c_int,
+        unsafe extern "C" fn(self_: *mut _cef_list_value_t, size: usize) -> ::std::os::raw::c_int,
     >,
     pub get_size:
-        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_list_value_t) -> size_t>,
+        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_list_value_t) -> usize>,
     pub clear: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_list_value_t) -> ::std::os::raw::c_int,
     >,
     pub remove: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: size_t) -> ::std::os::raw::c_int,
+        unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: usize) -> ::std::os::raw::c_int,
     >,
     pub get_type: ::std::option::Option<
-        unsafe extern "C" fn(
-            self_: *mut _cef_list_value_t,
-            index: size_t,
-        ) -> cef_value_type_t::Type,
+        unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: usize) -> cef_value_type_t::Type,
     >,
     pub get_value: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: size_t) -> *mut _cef_value_t,
+        unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: usize) -> *mut _cef_value_t,
     >,
     pub get_bool: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: size_t) -> ::std::os::raw::c_int,
+        unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: usize) -> ::std::os::raw::c_int,
     >,
     pub get_int: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: size_t) -> ::std::os::raw::c_int,
+        unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: usize) -> ::std::os::raw::c_int,
     >,
     pub get_double: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: size_t) -> f64,
+        unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: usize) -> f64,
     >,
     pub get_string: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: size_t) -> cef_string_userfree_t,
+        unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: usize) -> cef_string_userfree_t,
     >,
     pub get_binary: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_list_value_t,
-            index: size_t,
+            index: usize,
         ) -> *mut _cef_binary_value_t,
     >,
     pub get_dictionary: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_list_value_t,
-            index: size_t,
+            index: usize,
         ) -> *mut _cef_dictionary_value_t,
     >,
     pub get_list: ::std::option::Option<
-        unsafe extern "C" fn(
-            self_: *mut _cef_list_value_t,
-            index: size_t,
-        ) -> *mut _cef_list_value_t,
+        unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: usize) -> *mut _cef_list_value_t,
     >,
     pub set_value: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_list_value_t,
-            index: size_t,
+            index: usize,
             value: *mut _cef_value_t,
         ) -> ::std::os::raw::c_int,
     >,
     pub set_null: ::std::option::Option<
-        unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: size_t) -> ::std::os::raw::c_int,
+        unsafe extern "C" fn(self_: *mut _cef_list_value_t, index: usize) -> ::std::os::raw::c_int,
     >,
     pub set_bool: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_list_value_t,
-            index: size_t,
+            index: usize,
             value: ::std::os::raw::c_int,
         ) -> ::std::os::raw::c_int,
     >,
     pub set_int: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_list_value_t,
-            index: size_t,
+            index: usize,
             value: ::std::os::raw::c_int,
         ) -> ::std::os::raw::c_int,
     >,
     pub set_double: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_list_value_t,
-            index: size_t,
+            index: usize,
             value: f64,
         ) -> ::std::os::raw::c_int,
     >,
     pub set_string: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_list_value_t,
-            index: size_t,
+            index: usize,
             value: *const cef_string_t,
         ) -> ::std::os::raw::c_int,
     >,
     pub set_binary: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_list_value_t,
-            index: size_t,
+            index: usize,
             value: *mut _cef_binary_value_t,
         ) -> ::std::os::raw::c_int,
     >,
     pub set_dictionary: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_list_value_t,
-            index: size_t,
+            index: usize,
             value: *mut _cef_dictionary_value_t,
         ) -> ::std::os::raw::c_int,
     >,
     pub set_list: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_list_value_t,
-            index: size_t,
+            index: usize,
             value: *mut _cef_list_value_t,
         ) -> ::std::os::raw::c_int,
     >,
@@ -7214,7 +7207,7 @@ pub struct _cef_dev_tools_message_observer_t {
             self_: *mut _cef_dev_tools_message_observer_t,
             browser: *mut _cef_browser_t,
             message: *const ::std::os::raw::c_void,
-            message_size: size_t,
+            message_size: usize,
         ) -> ::std::os::raw::c_int,
     >,
     pub on_dev_tools_method_result: ::std::option::Option<
@@ -7224,7 +7217,7 @@ pub struct _cef_dev_tools_message_observer_t {
             message_id: ::std::os::raw::c_int,
             success: ::std::os::raw::c_int,
             result: *const ::std::os::raw::c_void,
-            result_size: size_t,
+            result_size: usize,
         ),
     >,
     pub on_dev_tools_event: ::std::option::Option<
@@ -7233,7 +7226,7 @@ pub struct _cef_dev_tools_message_observer_t {
             browser: *mut _cef_browser_t,
             method: *const cef_string_t,
             params: *const ::std::os::raw::c_void,
-            params_size: size_t,
+            params_size: usize,
         ),
     >,
     pub on_dev_tools_agent_attached: ::std::option::Option<
@@ -7365,7 +7358,7 @@ pub struct _cef_image_t {
             color_type: cef_color_type_t::Type,
             alpha_type: cef_alpha_type_t::Type,
             pixel_data: *const ::std::os::raw::c_void,
-            pixel_data_size: size_t,
+            pixel_data_size: usize,
         ) -> ::std::os::raw::c_int,
     >,
     pub add_png: ::std::option::Option<
@@ -7373,7 +7366,7 @@ pub struct _cef_image_t {
             self_: *mut _cef_image_t,
             scale_factor: f32,
             png_data: *const ::std::os::raw::c_void,
-            png_data_size: size_t,
+            png_data_size: usize,
         ) -> ::std::os::raw::c_int,
     >,
     pub add_jpeg: ::std::option::Option<
@@ -7381,11 +7374,11 @@ pub struct _cef_image_t {
             self_: *mut _cef_image_t,
             scale_factor: f32,
             jpeg_data: *const ::std::os::raw::c_void,
-            jpeg_data_size: size_t,
+            jpeg_data_size: usize,
         ) -> ::std::os::raw::c_int,
     >,
-    pub get_width: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_image_t) -> size_t>,
-    pub get_height: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_image_t) -> size_t>,
+    pub get_width: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_image_t) -> usize>,
+    pub get_height: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_image_t) -> usize>,
     pub has_representation: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_image_t, scale_factor: f32) -> ::std::os::raw::c_int,
     >,
@@ -7599,9 +7592,9 @@ pub struct _cef_read_handler_t {
         unsafe extern "C" fn(
             self_: *mut _cef_read_handler_t,
             ptr: *mut ::std::os::raw::c_void,
-            size: size_t,
-            n: size_t,
-        ) -> size_t,
+            size: usize,
+            n: usize,
+        ) -> usize,
     >,
     pub seek: ::std::option::Option<
         unsafe extern "C" fn(
@@ -7700,9 +7693,9 @@ pub struct _cef_stream_reader_t {
         unsafe extern "C" fn(
             self_: *mut _cef_stream_reader_t,
             ptr: *mut ::std::os::raw::c_void,
-            size: size_t,
-            n: size_t,
-        ) -> size_t,
+            size: usize,
+            n: usize,
+        ) -> usize,
     >,
     pub seek: ::std::option::Option<
         unsafe extern "C" fn(
@@ -7802,7 +7795,7 @@ extern "C" {
 extern "C" {
     pub fn cef_stream_reader_create_for_data(
         data: *mut ::std::os::raw::c_void,
-        size: size_t,
+        size: usize,
     ) -> *mut cef_stream_reader_t;
 }
 extern "C" {
@@ -7818,9 +7811,9 @@ pub struct _cef_write_handler_t {
         unsafe extern "C" fn(
             self_: *mut _cef_write_handler_t,
             ptr: *const ::std::os::raw::c_void,
-            size: size_t,
-            n: size_t,
-        ) -> size_t,
+            size: usize,
+            n: usize,
+        ) -> usize,
     >,
     pub seek: ::std::option::Option<
         unsafe extern "C" fn(
@@ -7920,9 +7913,9 @@ pub struct _cef_stream_writer_t {
         unsafe extern "C" fn(
             self_: *mut _cef_stream_writer_t,
             ptr: *const ::std::os::raw::c_void,
-            size: size_t,
-            n: size_t,
-        ) -> size_t,
+            size: usize,
+            n: usize,
+        ) -> usize,
     >,
     pub seek: ::std::option::Option<
         unsafe extern "C" fn(
@@ -8068,7 +8061,7 @@ pub struct _cef_drag_data_t {
         unsafe extern "C" fn(
             self_: *mut _cef_drag_data_t,
             writer: *mut _cef_stream_writer_t,
-        ) -> size_t,
+        ) -> usize,
     >,
     pub get_file_names: ::std::option::Option<
         unsafe extern "C" fn(
@@ -9559,11 +9552,11 @@ pub struct _cef_post_data_t {
         unsafe extern "C" fn(self_: *mut _cef_post_data_t) -> ::std::os::raw::c_int,
     >,
     pub get_element_count:
-        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_post_data_t) -> size_t>,
+        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_post_data_t) -> usize>,
     pub get_elements: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_post_data_t,
-            elementsCount: *mut size_t,
+            elementsCount: *mut usize,
             elements: *mut *mut _cef_post_data_element_t,
         ),
     >,
@@ -9699,7 +9692,7 @@ pub struct _cef_post_data_element_t {
     pub set_to_bytes: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_post_data_element_t,
-            size: size_t,
+            size: usize,
             bytes: *const ::std::os::raw::c_void,
         ),
     >,
@@ -9712,13 +9705,13 @@ pub struct _cef_post_data_element_t {
         unsafe extern "C" fn(self_: *mut _cef_post_data_element_t) -> cef_string_userfree_t,
     >,
     pub get_bytes_count:
-        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_post_data_element_t) -> size_t>,
+        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_post_data_element_t) -> usize>,
     pub get_bytes: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_post_data_element_t,
-            size: size_t,
+            size: usize,
             bytes: *mut ::std::os::raw::c_void,
-        ) -> size_t,
+        ) -> usize,
     >,
 }
 #[test]
@@ -10439,18 +10432,18 @@ pub struct _cef_x509certificate_t {
         unsafe extern "C" fn(self_: *mut _cef_x509certificate_t) -> *mut _cef_binary_value_t,
     >,
     pub get_issuer_chain_size:
-        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_x509certificate_t) -> size_t>,
+        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_x509certificate_t) -> usize>,
     pub get_derencoded_issuer_chain: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_x509certificate_t,
-            chainCount: *mut size_t,
+            chainCount: *mut usize,
             chain: *mut *mut _cef_binary_value_t,
         ),
     >,
     pub get_pemencoded_issuer_chain: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_x509certificate_t,
-            chainCount: *mut size_t,
+            chainCount: *mut usize,
             chain: *mut *mut _cef_binary_value_t,
         ),
     >,
@@ -11834,14 +11827,14 @@ pub struct _cef_media_observer_t {
     pub on_sinks: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_media_observer_t,
-            sinksCount: size_t,
+            sinksCount: usize,
             sinks: *const *mut _cef_media_sink_t,
         ),
     >,
     pub on_routes: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_media_observer_t,
-            routesCount: size_t,
+            routesCount: usize,
             routes: *const *mut _cef_media_route_t,
         ),
     >,
@@ -11857,7 +11850,7 @@ pub struct _cef_media_observer_t {
             self_: *mut _cef_media_observer_t,
             route: *mut _cef_media_route_t,
             message: *const ::std::os::raw::c_void,
-            message_size: size_t,
+            message_size: usize,
         ),
     >,
 }
@@ -11948,7 +11941,7 @@ pub struct _cef_media_route_t {
         unsafe extern "C" fn(
             self_: *mut _cef_media_route_t,
             message: *const ::std::os::raw::c_void,
-            message_size: size_t,
+            message_size: usize,
         ),
     >,
     pub terminate: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_media_route_t)>,
@@ -12889,11 +12882,11 @@ pub struct _cef_browser_t {
         ) -> *mut _cef_frame_t,
     >,
     pub get_frame_count:
-        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_browser_t) -> size_t>,
+        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_browser_t) -> usize>,
     pub get_frame_identifiers: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_browser_t,
-            identifiersCount: *mut size_t,
+            identifiersCount: *mut usize,
             identifiers: *mut int64,
         ),
     >,
@@ -13440,7 +13433,7 @@ pub struct _cef_browser_host_t {
         unsafe extern "C" fn(
             self_: *mut _cef_browser_host_t,
             message: *const ::std::os::raw::c_void,
-            message_size: size_t,
+            message_size: usize,
         ) -> ::std::os::raw::c_int,
     >,
     pub execute_dev_tools_method: ::std::option::Option<
@@ -13540,7 +13533,7 @@ pub struct _cef_browser_host_t {
         unsafe extern "C" fn(
             self_: *mut _cef_browser_host_t,
             text: *const cef_string_t,
-            underlinesCount: size_t,
+            underlinesCount: usize,
             underlines: *const cef_composition_underline_t,
             replacement_range: *const cef_range_t,
             selection_range: *const cef_range_t,
@@ -14459,16 +14452,16 @@ pub struct _cef_print_settings_t {
     pub set_page_ranges: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_print_settings_t,
-            rangesCount: size_t,
+            rangesCount: usize,
             ranges: *const cef_range_t,
         ),
     >,
     pub get_page_ranges_count:
-        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_print_settings_t) -> size_t>,
+        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_print_settings_t) -> usize>,
     pub get_page_ranges: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_print_settings_t,
-            rangesCount: *mut size_t,
+            rangesCount: *mut usize,
             ranges: *mut cef_range_t,
         ),
     >,
@@ -15618,7 +15611,7 @@ pub struct _cef_v8handler_t {
             self_: *mut _cef_v8handler_t,
             name: *const cef_string_t,
             object: *mut _cef_v8value_t,
-            argumentsCount: size_t,
+            argumentsCount: usize,
             arguments: *const *mut _cef_v8value_t,
             retval: *mut *mut _cef_v8value_t,
             exception: *mut cef_string_t,
@@ -16228,7 +16221,7 @@ pub struct _cef_v8value_t {
         unsafe extern "C" fn(
             self_: *mut _cef_v8value_t,
             object: *mut _cef_v8value_t,
-            argumentsCount: size_t,
+            argumentsCount: usize,
             arguments: *const *mut _cef_v8value_t,
         ) -> *mut _cef_v8value_t,
     >,
@@ -16237,7 +16230,7 @@ pub struct _cef_v8value_t {
             self_: *mut _cef_v8value_t,
             context: *mut _cef_v8context_t,
             object: *mut _cef_v8value_t,
-            argumentsCount: size_t,
+            argumentsCount: usize,
             arguments: *const *mut _cef_v8value_t,
         ) -> *mut _cef_v8value_t,
     >,
@@ -16806,7 +16799,7 @@ extern "C" {
 extern "C" {
     pub fn cef_v8value_create_array_buffer(
         buffer: *mut ::std::os::raw::c_void,
-        length: size_t,
+        length: usize,
         release_callback: *mut cef_v8array_buffer_release_callback_t,
     ) -> *mut cef_v8value_t;
 }
@@ -17289,7 +17282,7 @@ pub struct _cef_resource_bundle_handler_t {
             self_: *mut _cef_resource_bundle_handler_t,
             resource_id: ::std::os::raw::c_int,
             data: *mut *mut ::std::os::raw::c_void,
-            data_size: *mut size_t,
+            data_size: *mut usize,
         ) -> ::std::os::raw::c_int,
     >,
     pub get_data_resource_for_scale: ::std::option::Option<
@@ -17298,7 +17291,7 @@ pub struct _cef_resource_bundle_handler_t {
             resource_id: ::std::os::raw::c_int,
             scale_factor: cef_scale_factor_t::Type,
             data: *mut *mut ::std::os::raw::c_void,
-            data_size: *mut size_t,
+            data_size: *mut usize,
         ) -> ::std::os::raw::c_int,
     >,
 }
@@ -20875,7 +20868,7 @@ pub struct _cef_drag_handler_t {
             self_: *mut _cef_drag_handler_t,
             browser: *mut _cef_browser_t,
             frame: *mut _cef_frame_t,
-            regionsCount: size_t,
+            regionsCount: usize,
             regions: *const cef_draggable_region_t,
         ),
     >,
@@ -21455,7 +21448,7 @@ pub struct _cef_render_handler_t {
             self_: *mut _cef_render_handler_t,
             browser: *mut _cef_browser_t,
             type_: cef_paint_element_type_t::Type,
-            dirtyRectsCount: size_t,
+            dirtyRectsCount: usize,
             dirtyRects: *const cef_rect_t,
             buffer: *const ::std::os::raw::c_void,
             width: ::std::os::raw::c_int,
@@ -21467,7 +21460,7 @@ pub struct _cef_render_handler_t {
             self_: *mut _cef_render_handler_t,
             browser: *mut _cef_browser_t,
             type_: cef_paint_element_type_t::Type,
-            dirtyRectsCount: size_t,
+            dirtyRectsCount: usize,
             dirtyRects: *const cef_rect_t,
             shared_handle: *mut ::std::os::raw::c_void,
         ),
@@ -21511,7 +21504,7 @@ pub struct _cef_render_handler_t {
             self_: *mut _cef_render_handler_t,
             browser: *mut _cef_browser_t,
             selected_range: *const cef_range_t,
-            character_boundsCount: size_t,
+            character_boundsCount: usize,
             character_bounds: *const cef_rect_t,
         ),
     >,
@@ -21817,11 +21810,11 @@ pub struct _cef_response_filter_t {
         unsafe extern "C" fn(
             self_: *mut _cef_response_filter_t,
             data_in: *mut ::std::os::raw::c_void,
-            data_in_size: size_t,
-            data_in_read: *mut size_t,
+            data_in_size: usize,
+            data_in_read: *mut usize,
             data_out: *mut ::std::os::raw::c_void,
-            data_out_size: size_t,
-            data_out_written: *mut size_t,
+            data_out_size: usize,
+            data_out_written: *mut usize,
         ) -> cef_response_filter_status_t::Type,
     >,
 }
@@ -22347,7 +22340,7 @@ pub struct _cef_request_handler_t {
             isProxy: ::std::os::raw::c_int,
             host: *const cef_string_t,
             port: ::std::os::raw::c_int,
-            certificatesCount: size_t,
+            certificatesCount: usize,
             certificates: *const *mut _cef_x509certificate_t,
             callback: *mut _cef_select_client_certificate_callback_t,
         ) -> ::std::os::raw::c_int,
@@ -22881,7 +22874,7 @@ extern "C" {
 extern "C" {
     pub fn cef_base64encode(
         data: *const ::std::os::raw::c_void,
-        data_size: size_t,
+        data_size: usize,
     ) -> cef_string_userfree_t;
 }
 extern "C" {
@@ -22909,7 +22902,7 @@ extern "C" {
 extern "C" {
     pub fn cef_parse_json_buffer(
         json: *const ::std::os::raw::c_void,
-        json_size: size_t,
+        json_size: usize,
         options: cef_json_parser_options_t,
     ) -> *mut _cef_value_t;
 }
@@ -23316,7 +23309,7 @@ pub struct _cef_resource_bundle_t {
             self_: *mut _cef_resource_bundle_t,
             resource_id: ::std::os::raw::c_int,
             data: *mut *mut ::std::os::raw::c_void,
-            data_size: *mut size_t,
+            data_size: *mut usize,
         ) -> ::std::os::raw::c_int,
     >,
     pub get_data_resource_for_scale: ::std::option::Option<
@@ -23325,7 +23318,7 @@ pub struct _cef_resource_bundle_t {
             resource_id: ::std::os::raw::c_int,
             scale_factor: cef_scale_factor_t::Type,
             data: *mut *mut ::std::os::raw::c_void,
-            data_size: *mut size_t,
+            data_size: *mut usize,
         ) -> ::std::os::raw::c_int,
     >,
 }
@@ -23424,7 +23417,7 @@ pub struct _cef_server_t {
             connection_id: ::std::os::raw::c_int,
             content_type: *const cef_string_t,
             data: *const ::std::os::raw::c_void,
-            data_size: size_t,
+            data_size: usize,
         ),
     >,
     pub send_http404response: ::std::option::Option<
@@ -23452,7 +23445,7 @@ pub struct _cef_server_t {
             self_: *mut _cef_server_t,
             connection_id: ::std::os::raw::c_int,
             data: *const ::std::os::raw::c_void,
-            data_size: size_t,
+            data_size: usize,
         ),
     >,
     pub close_connection: ::std::option::Option<
@@ -23463,7 +23456,7 @@ pub struct _cef_server_t {
             self_: *mut _cef_server_t,
             connection_id: ::std::os::raw::c_int,
             data: *const ::std::os::raw::c_void,
-            data_size: size_t,
+            data_size: usize,
         ),
     >,
 }
@@ -23697,7 +23690,7 @@ pub struct _cef_server_handler_t {
             server: *mut _cef_server_t,
             connection_id: ::std::os::raw::c_int,
             data: *const ::std::os::raw::c_void,
-            data_size: size_t,
+            data_size: usize,
         ),
     >,
 }
@@ -24151,7 +24144,7 @@ pub struct _cef_urlrequest_client_t {
             self_: *mut _cef_urlrequest_client_t,
             request: *mut _cef_urlrequest_t,
             data: *const ::std::os::raw::c_void,
-            data_length: size_t,
+            data_length: usize,
         ),
     >,
     pub get_auth_credentials: ::std::option::Option<
@@ -24409,7 +24402,7 @@ pub struct _cef_xml_reader_t {
         unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> ::std::os::raw::c_int,
     >,
     pub get_attribute_count:
-        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> size_t>,
+        ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_xml_reader_t) -> usize>,
     pub get_attribute_byindex: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_xml_reader_t,
@@ -24868,7 +24861,7 @@ pub struct _cef_zip_reader_t {
         unsafe extern "C" fn(
             self_: *mut _cef_zip_reader_t,
             buffer: *mut ::std::os::raw::c_void,
-            bufferSize: size_t,
+            bufferSize: usize,
         ) -> ::std::os::raw::c_int,
     >,
     pub tell: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_zip_reader_t) -> int64>,
@@ -25057,7 +25050,7 @@ extern "C" {
 extern "C" {
     pub fn cef_get_vlog_level(
         file_start: *const ::std::os::raw::c_char,
-        N: size_t,
+        N: usize,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
@@ -25170,3 +25163,4 @@ extern "C" {
         copy: ::std::os::raw::c_int,
     );
 }
+
