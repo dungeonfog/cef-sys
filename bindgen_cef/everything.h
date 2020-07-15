@@ -77,6 +77,7 @@
 
 #if defined(OS_MACOSX)
 #include <include/cef_sandbox_mac.h>
+#include <include/wrapper/cef_library_loader.h>
 #endif
 
 #if defined(OS_WIN)

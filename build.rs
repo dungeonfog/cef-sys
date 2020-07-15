@@ -66,7 +66,7 @@ fn main() {
 
     // we ignore the unpack sentinel on macos because it needs to unpack the archive to build
     // ibcef_dll_wrapper
-    if unpack_cef && target_os != Ok("macos") {
+    if dbg!(unpack_cef || target_os == Ok("macos")) {
         cef_installer::download_cef(
             cef_version,
             cef_platform,
