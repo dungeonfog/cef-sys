@@ -2,7 +2,7 @@
 **/*.rs.bk
 Cargo.lock
 bindgen_cef/bindings.rs
-
+.DS_Store
 
 #Added by cargo
 #
