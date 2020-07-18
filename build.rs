@@ -9,12 +9,15 @@ fn main() {
     let lib_dir_env_var = "CARGO_CEF_SYS_LIB_OUT_DIR";
     let archive_dir_env_var = "CARGO_CEF_SYS_ARCHIVE_OUT_DIR";
     let unpack_sentinel_env_var = "CARGO_CEF_SYS_UNPACK_SENTINEL";
+    let cmake_dir_env_var = "CARGO_CEF_SYS_MACOS_CMAKE_PROJECT_DIR";
     println!("cargo:rerun-if-env-changed={}", lib_dir_env_var);
     println!("cargo:rerun-if-env-changed={}", archive_dir_env_var);
     println!("cargo:rerun-if-env-changed={}", unpack_sentinel_env_var);
+    println!("cargo:rerun-if-env-changed={}", cmake_dir_env_var);
     let lib_dir_env = std::env::var(lib_dir_env_var).ok();
     let archive_dir_env_var = std::env::var(archive_dir_env_var).ok();
     let unpack_sentinel_env_var = std::env::var(unpack_sentinel_env_var).ok();
+    let cmake_dir_env_var = std::env::var(cmake_dir_env_var).ok();
 
 
     let cef_version = "83.4.2+gc8d4f85+chromium-83.0.4103.106";
@@ -48,34 +51,57 @@ fn main() {
         },
         None => out_dir.clone(),
     };
+    let libcef_dll_project_dir: Option<PathBuf>;
+    let header_dir: Option<PathBuf>;
+    let libcef_dll_src_dir: Option<PathBuf>;
+    let cmake_macros_dir: Option<PathBuf>;
+    if target_os == Ok("macos") {
+        let project_dir = match cmake_dir_env_var {
+            Some(dir) => {
+                std::fs::create_dir_all(&dir).expect("could not create cmake dir");
+                dunce::canonicalize(PathBuf::from(&dir)).expect("could not canonicalize cmake dir")
+            },
+            None => out_dir.join("libcef_dll"),
+        };
+
+        header_dir = Some(project_dir.join("include"));
+        libcef_dll_src_dir = Some(project_dir.join("libcef_dll"));
+        cmake_macros_dir = Some(project_dir.join("cmake"));
+        libcef_dll_project_dir = Some(project_dir);
+    } else {
+        libcef_dll_project_dir = None;
+        header_dir = None;
+        libcef_dll_src_dir = None;
+        cmake_macros_dir = None;
+    }
+
     let unpack_sentinel_file_contents = format!(
-        "{};{};{}",
+        "{};{};{};{}",
         cef_version,
         targz_dir.display(),
         lib_dir.display(),
+        libcef_dll_project_dir.as_deref()
+            .filter(|_| target_os == Ok("macos"))
+            .map(|d| d.display().to_string()).unwrap_or_default(),
     );
     if let Ok(actual_contents) = fs::read_to_string(&unpack_sentinel_path) {
         if unpack_sentinel_file_contents == actual_contents {
             unpack_cef = false;
         }
     }
-    let libcef_dll_project_dir = out_dir.join("libcef_dll");
-    let header_dir = libcef_dll_project_dir.join("include");
-    let libcef_dll_src_dir = libcef_dll_project_dir.join("libcef_dll");
-    let cmake_macros_dir = libcef_dll_project_dir.join("cmake");
 
     // we ignore the unpack sentinel on macos because it needs to unpack the archive to build
     // ibcef_dll_wrapper
-    if dbg!(unpack_cef || target_os == Ok("macos")) {
+    if unpack_cef {
         cef_installer::download_cef(
             cef_version,
             cef_platform,
             opt_level,
             Some(&targz_dir),
             Some(&lib_dir),
-            Some(&header_dir),
-            Some(&libcef_dll_src_dir),
-            Some(&cmake_macros_dir),
+            header_dir.as_deref(),
+            libcef_dll_src_dir.as_deref(),
+            cmake_macros_dir.as_deref(),
             false,
         ).unwrap();
 
@@ -103,6 +129,9 @@ fn main() {
             println!("cargo:rustc-link-lib=GLESv2");
         }
         Ok("macos") => {
+            let libcef_dll_project_dir = libcef_dll_project_dir.unwrap();
+            let libcef_dll_src_dir = libcef_dll_src_dir.unwrap();
+            let cmake_macros_dir = cmake_macros_dir.unwrap();
             remove_find_package_dep(&cmake_macros_dir.join("cef_macros.cmake"));
             remove_find_package_dep(&cmake_macros_dir.join("cef_variables.cmake"));
 
