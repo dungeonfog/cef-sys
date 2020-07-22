@@ -108,8 +108,6 @@ fn main() {
         fs::write(&unpack_sentinel_path, &unpack_sentinel_file_contents).ok();
     }
 
-    println!("cargo:rustc-link-search={}", lib_dir.display());
-
     match target_os {
         Ok("windows") => {
             #[cfg(feature = "sandbox")]
@@ -122,11 +120,15 @@ fn main() {
             // link them here.
             println!("cargo:rustc-link-lib=wbemuuid");
             println!("cargo:rustc-link-lib=propsys");
+
+            println!("cargo:rustc-link-search={}", lib_dir.display());
         },
         Ok("linux") => {
             println!("cargo:rustc-link-lib=cef");
             println!("cargo:rustc-link-lib=EGL");
             println!("cargo:rustc-link-lib=GLESv2");
+
+            println!("cargo:rustc-link-search={}", lib_dir.display());
         }
         Ok("macos") => {
             let libcef_dll_project_dir = libcef_dll_project_dir.unwrap();
