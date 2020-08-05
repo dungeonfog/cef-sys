@@ -10,10 +10,6 @@ fn main() {
     let archive_dir_env_var = "CARGO_CEF_SYS_ARCHIVE_OUT_DIR";
     let unpack_sentinel_env_var = "CARGO_CEF_SYS_UNPACK_SENTINEL";
     let cmake_dir_env_var = "CARGO_CEF_SYS_MACOS_CMAKE_PROJECT_DIR";
-    println!("cargo:rerun-if-env-changed={}", lib_dir_env_var);
-    println!("cargo:rerun-if-env-changed={}", archive_dir_env_var);
-    println!("cargo:rerun-if-env-changed={}", unpack_sentinel_env_var);
-    println!("cargo:rerun-if-env-changed={}", cmake_dir_env_var);
     let lib_dir_env = std::env::var(lib_dir_env_var).ok();
     let archive_dir_env_var = std::env::var(archive_dir_env_var).ok();
     let unpack_sentinel_env_var = std::env::var(unpack_sentinel_env_var).ok();
