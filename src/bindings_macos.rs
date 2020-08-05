@@ -1,5 +1,7 @@
 #![allow(non_snake_case,non_camel_case_types)]
 
+compile_error!("bindings must be regenerated");
+
 pub type cef_cursor_handle_t = *mut ::std::os::raw::c_void;
 pub type cef_event_handle_t = *mut ::std::os::raw::c_void;
 pub type cef_window_handle_t = *mut ::std::os::raw::c_void;

@@ -5123,6 +5123,74 @@ pub mod cef_media_sink_icon_type_t {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+pub struct _cef_media_sink_device_info_t {
+    pub ip_address: cef_string_t,
+    pub port: ::std::os::raw::c_int,
+    pub model_name: cef_string_t,
+}
+#[test]
+fn bindgen_test_layout__cef_media_sink_device_info_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_media_sink_device_info_t>(),
+        56usize,
+        concat!("Size of: ", stringify!(_cef_media_sink_device_info_t))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_media_sink_device_info_t>(),
+        8usize,
+        concat!("Alignment of ", stringify!(_cef_media_sink_device_info_t))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_media_sink_device_info_t>())).ip_address as *const _
+                as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_sink_device_info_t),
+            "::",
+            stringify!(ip_address)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_media_sink_device_info_t>())).port as *const _ as usize
+        },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_sink_device_info_t),
+            "::",
+            stringify!(port)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_media_sink_device_info_t>())).model_name as *const _
+                as usize
+        },
+        32usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_sink_device_info_t),
+            "::",
+            stringify!(model_name)
+        )
+    );
+}
+pub type cef_media_sink_device_info_t = _cef_media_sink_device_info_t;
+pub mod cef_text_field_commands_t {
+    pub type Type = u32;
+    pub const CEF_TFC_CUT: Type = 1;
+    pub const CEF_TFC_COPY: Type = 2;
+    pub const CEF_TFC_PASTE: Type = 3;
+    pub const CEF_TFC_UNDO: Type = 4;
+    pub const CEF_TFC_DELETE: Type = 5;
+    pub const CEF_TFC_SELECT_ALL: Type = 6;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
 pub struct _cef_base_ref_counted_t {
     pub size: usize,
     pub add_ref: ::std::option::Option<unsafe extern "C" fn(self_: *mut _cef_base_ref_counted_t)>,
@@ -11988,6 +12056,12 @@ pub struct _cef_media_sink_t {
     pub get_icon_type: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_media_sink_t) -> cef_media_sink_icon_type_t::Type,
     >,
+    pub get_device_info: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_media_sink_t,
+            callback: *mut _cef_media_sink_device_info_callback_t,
+        ),
+    >,
     pub is_cast_sink: ::std::option::Option<
         unsafe extern "C" fn(self_: *mut _cef_media_sink_t) -> ::std::os::raw::c_int,
     >,
@@ -12005,7 +12079,7 @@ pub struct _cef_media_sink_t {
 fn bindgen_test_layout__cef_media_sink_t() {
     assert_eq!(
         ::std::mem::size_of::<_cef_media_sink_t>(),
-        104usize,
+        112usize,
         concat!("Size of: ", stringify!(_cef_media_sink_t))
     );
     assert_eq!(
@@ -12076,8 +12150,20 @@ fn bindgen_test_layout__cef_media_sink_t() {
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<_cef_media_sink_t>())).is_cast_sink as *const _ as usize },
+        unsafe {
+            &(*(::std::ptr::null::<_cef_media_sink_t>())).get_device_info as *const _ as usize
+        },
         80usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_sink_t),
+            "::",
+            stringify!(get_device_info)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<_cef_media_sink_t>())).is_cast_sink as *const _ as usize },
+        88usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_media_sink_t),
@@ -12087,7 +12173,7 @@ fn bindgen_test_layout__cef_media_sink_t() {
     );
     assert_eq!(
         unsafe { &(*(::std::ptr::null::<_cef_media_sink_t>())).is_dial_sink as *const _ as usize },
-        88usize,
+        96usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_media_sink_t),
@@ -12099,7 +12185,7 @@ fn bindgen_test_layout__cef_media_sink_t() {
         unsafe {
             &(*(::std::ptr::null::<_cef_media_sink_t>())).is_compatible_with as *const _ as usize
         },
-        96usize,
+        104usize,
         concat!(
             "Offset of field: ",
             stringify!(_cef_media_sink_t),
@@ -12109,6 +12195,63 @@ fn bindgen_test_layout__cef_media_sink_t() {
     );
 }
 pub type cef_media_sink_t = _cef_media_sink_t;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct _cef_media_sink_device_info_callback_t {
+    pub base: cef_base_ref_counted_t,
+    pub on_media_sink_device_info: ::std::option::Option<
+        unsafe extern "C" fn(
+            self_: *mut _cef_media_sink_device_info_callback_t,
+            device_info: *const _cef_media_sink_device_info_t,
+        ),
+    >,
+}
+#[test]
+fn bindgen_test_layout__cef_media_sink_device_info_callback_t() {
+    assert_eq!(
+        ::std::mem::size_of::<_cef_media_sink_device_info_callback_t>(),
+        48usize,
+        concat!(
+            "Size of: ",
+            stringify!(_cef_media_sink_device_info_callback_t)
+        )
+    );
+    assert_eq!(
+        ::std::mem::align_of::<_cef_media_sink_device_info_callback_t>(),
+        8usize,
+        concat!(
+            "Alignment of ",
+            stringify!(_cef_media_sink_device_info_callback_t)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_media_sink_device_info_callback_t>())).base as *const _
+                as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_sink_device_info_callback_t),
+            "::",
+            stringify!(base)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<_cef_media_sink_device_info_callback_t>()))
+                .on_media_sink_device_info as *const _ as usize
+        },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(_cef_media_sink_device_info_callback_t),
+            "::",
+            stringify!(on_media_sink_device_info)
+        )
+    );
+}
+pub type cef_media_sink_device_info_callback_t = _cef_media_sink_device_info_callback_t;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct _cef_media_source_t {
@@ -23200,18 +23343,14 @@ pub struct _cef_resource_bundle_t {
         unsafe extern "C" fn(
             self_: *mut _cef_resource_bundle_t,
             resource_id: ::std::os::raw::c_int,
-            data: *mut *mut ::std::os::raw::c_void,
-            data_size: *mut usize,
-        ) -> ::std::os::raw::c_int,
+        ) -> *mut _cef_binary_value_t,
     >,
     pub get_data_resource_for_scale: ::std::option::Option<
         unsafe extern "C" fn(
             self_: *mut _cef_resource_bundle_t,
             resource_id: ::std::os::raw::c_int,
             scale_factor: cef_scale_factor_t::Type,
-            data: *mut *mut ::std::os::raw::c_void,
-            data_size: *mut usize,
-        ) -> ::std::os::raw::c_int,
+        ) -> *mut _cef_binary_value_t,
     >,
 }
 #[test]

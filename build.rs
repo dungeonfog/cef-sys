@@ -16,7 +16,7 @@ fn main() {
     let cmake_dir_env_var = std::env::var(cmake_dir_env_var).ok();
 
 
-    let cef_version = "83.4.2+gc8d4f85+chromium-83.0.4103.106";
+    let cef_version = "84.3.10+ga46056b+chromium-84.0.4147.105";
     let cef_platform = match std::env::var("CARGO_CFG_TARGET_OS").unwrap().as_str() {
         "windows" => cef_installer::Platform::Windows,
         "linux" => cef_installer::Platform::Linux,
